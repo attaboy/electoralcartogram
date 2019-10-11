@@ -1,10 +1,11 @@
 import React, { CSSProperties } from 'react';
 import { Province } from './province';
 import { Riding } from './riding';
-import {data, RidingData, ProvinceData} from "./data";
+import {ridingDataSet, RidingData, ProvinceData} from "../data/riding_data";
+import {resultsSet, DateResults, Result} from '../data/result_data';
 
 class Map extends React.PureComponent<{
-  onHoverOn: (r: RidingData, p: ProvinceData) => void
+  onHoverOn: (riding: RidingData, province: ProvinceData, result: Result | undefined, date: string | undefined) => void
   onHoverOff: () => void
 }> {
   svgStyle(): CSSProperties {
@@ -71,6 +72,14 @@ class Map extends React.PureComponent<{
     };
   }
 
+  getResultsForRiding(riding: RidingData): DateResults[] {
+    return resultsSet.map((dateResults) => {
+      return Object.assign({}, dateResults, {
+        results: dateResults.results.filter((result) => result.index === riding.index)
+      });
+    });
+  }
+
   render() {
     return (
       <svg width="100%" height="100%" viewBox="0 0 760 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve">
@@ -79,7 +88,7 @@ class Map extends React.PureComponent<{
           <clipPath id="_clip1">
             <rect x="100" y="50" width="760" height="490" />
           </clipPath>
-          <g clip-path="url(#_clip1)">
+          <g clipPath="url(#_clip1)">
             <g id="Oceans" transform="matrix(0.791667,0,0,0.963667,100,50)">
               <rect x="0" y="0" width="960" height="600" style={this.oceanStyle()} />
             </g>
@@ -1837,11 +1846,20 @@ class Map extends React.PureComponent<{
                 <text x="89.196px" y="229.667px" style={this.waterTextStyle()}>Lake        Erie</text>
               </g>
             </g>
-            {data.map(province => (
+            {ridingDataSet.map(province => (
               <Province key={province.id} id={province.id} label={province.label} transform={province.transform}>
-                {province.ridings.map(riding => (
-                  <Riding key={riding.id} data={riding} onMouseOver={() => this.props.onHoverOn(riding, province)} onMouseOut={this.props.onHoverOff} />
-                ))}
+                {province.ridings.map(riding => {
+                  const results = this.getResultsForRiding(riding);
+                  return (
+                    <Riding
+                      key={riding.id}
+                      data={riding}
+                      results={results}
+                      onMouseOver={(result, date) => this.props.onHoverOn(riding, province, result, date)}
+                      onMouseOut={this.props.onHoverOff}
+                    />
+                  )
+                })}
               </Province>
             ))}
             <g id="Borders" transform="matrix(1,0,0,0.98,100,50)">
