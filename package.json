@@ -1,0 +1,17 @@
+{
+  "name": "electoralcartogram",
+  "version": "1.0.0",
+  "description": "Electoral Cartogram of Canada",
+  "main": "index.js",
+  "dependencies": {
+    "next": "^9.1.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luke Andrews",
+  "license": "MIT"
+}
