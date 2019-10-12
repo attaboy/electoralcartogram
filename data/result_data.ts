@@ -513,7 +513,7 @@ const results20151019: Result[] = [
   {
     "index": 12002,
     "candidate": "Alexander J. MacKenzie",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 570,
     "votePercentage": 1.3,
     "majority": 0,
@@ -558,7 +558,7 @@ const results20151019: Result[] = [
   {
     "index": 12003,
     "candidate": "Kenneth Jackson",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 181,
     "votePercentage": 0.4,
     "majority": 0,
@@ -567,7 +567,7 @@ const results20151019: Result[] = [
   {
     "index": 12003,
     "candidate": "Richard Trueman Plett",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 70,
     "votePercentage": 0.2,
     "majority": 0,
@@ -738,7 +738,7 @@ const results20151019: Result[] = [
   {
     "index": 12007,
     "candidate": "Edd Twohig",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 132,
     "votePercentage": 0.3,
     "majority": 0,
@@ -747,7 +747,7 @@ const results20151019: Result[] = [
   {
     "index": 12007,
     "candidate": "Clifford James Williams",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 100,
     "votePercentage": 0.2,
     "majority": 0,
@@ -828,7 +828,7 @@ const results20151019: Result[] = [
   {
     "index": 12009,
     "candidate": "Trevor Bruhm",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 257,
     "votePercentage": 0.5,
     "majority": 0,
@@ -1071,7 +1071,7 @@ const results20151019: Result[] = [
   {
     "index": 13004,
     "candidate": "David Raymond Amos",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 296,
     "votePercentage": 0.6,
     "majority": 0,
@@ -1503,7 +1503,7 @@ const results20151019: Result[] = [
   {
     "index": 24004,
     "candidate": "Renata Isopo",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 203,
     "votePercentage": 0.4,
     "majority": 0,
@@ -1621,7 +1621,7 @@ const results20151019: Result[] = [
     "index": 24007,
     "candidate": "Maxime Bernier **",
     "party": "Conservative/Conservateur",
-    "currentParty": "People's Party",
+    "currentParty": "People's Party/Parti populaire",
     "votes": 32910,
     "votePercentage": 58.9,
     "majority": 20468,
@@ -2026,7 +2026,7 @@ const results20151019: Result[] = [
   {
     "index": 24015,
     "candidate": "Julie Demers",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 669,
     "votePercentage": 1.6,
     "majority": 0,
@@ -2395,7 +2395,7 @@ const results20151019: Result[] = [
   {
     "index": 24024,
     "candidate": "Soulèye Ndiaye",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 230,
     "votePercentage": 0.4,
     "majority": 0,
@@ -2548,7 +2548,7 @@ const results20151019: Result[] = [
   {
     "index": 24027,
     "candidate": "Guy J. Bellavance",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 148,
     "votePercentage": 0.3,
     "majority": 0,
@@ -2755,7 +2755,7 @@ const results20151019: Result[] = [
   {
     "index": 24030,
     "candidate": "Luc Desjardins",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 160,
     "votePercentage": 0.3,
     "majority": 0,
@@ -3241,7 +3241,7 @@ const results20151019: Result[] = [
   {
     "index": 24039,
     "candidate": "Julien Bernatchez",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 160,
     "votePercentage": 0.3,
     "majority": 0,
@@ -3440,7 +3440,7 @@ const results20151019: Result[] = [
     "index": 24043,
     "candidate": "Pierre Nantel **",
     "party": "NDP-New Democratic Party/NPD-Nouveau Parti démocratique",
-    "currentParty": "Green",
+    "currentParty": "Green Party/Parti Vert",
     "votes": 18171,
     "votePercentage": 31.2,
     "majority": 703,
@@ -4043,7 +4043,7 @@ const results20151019: Result[] = [
   {
     "index": 24053,
     "candidate": "Lisa Julie Cahn",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 151,
     "votePercentage": 0.3,
     "majority": 0,
@@ -4160,7 +4160,7 @@ const results20151019: Result[] = [
   {
     "index": 24055,
     "candidate": "Chris Lloyd",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 505,
     "votePercentage": 1,
     "majority": 0,
@@ -4178,7 +4178,7 @@ const results20151019: Result[] = [
   {
     "index": 24055,
     "candidate": "Kim Waldron",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 159,
     "votePercentage": 0.3,
     "majority": 0,
@@ -4673,7 +4673,7 @@ const results20151019: Result[] = [
   {
     "index": 24062,
     "candidate": "Luis Quinteros",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 158,
     "votePercentage": 0.3,
     "majority": 0,
@@ -4853,7 +4853,7 @@ const results20151019: Result[] = [
   {
     "index": 24066,
     "candidate": "Ugo Ménard",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 270,
     "votePercentage": 0.5,
     "majority": 0,
@@ -5114,7 +5114,7 @@ const results20151019: Result[] = [
   {
     "index": 24071,
     "candidate": "Sylvain Larocque",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 219,
     "votePercentage": 0.4,
     "majority": 0,
@@ -5222,7 +5222,7 @@ const results20151019: Result[] = [
   {
     "index": 24073,
     "candidate": "Benoit Huberdeau",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 303,
     "votePercentage": 0.5,
     "majority": 0,
@@ -5646,7 +5646,7 @@ const results20151019: Result[] = [
     "index": 35003,
     "candidate": "Leona Alleslev",
     "party": "Liberal/Libéral",
-    "currentParty": "Conservative",
+    "currentParty": "Conservative/Conservateur",
     "votes": 24132,
     "votePercentage": 47.3,
     "majority": 1093,
@@ -5790,7 +5790,7 @@ const results20151019: Result[] = [
   {
     "index": 35005,
     "candidate": "Ram Faerber",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 188,
     "votePercentage": 0.4,
     "majority": 0,
@@ -5835,7 +5835,7 @@ const results20151019: Result[] = [
   {
     "index": 35006,
     "candidate": "Trueman Tuck",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 372,
     "votePercentage": 0.6,
     "majority": 0,
@@ -5880,7 +5880,7 @@ const results20151019: Result[] = [
   {
     "index": 35007,
     "candidate": "James Sears",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 254,
     "votePercentage": 0.5,
     "majority": 0,
@@ -5898,7 +5898,7 @@ const results20151019: Result[] = [
   {
     "index": 35007,
     "candidate": "Peter Surjanac",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 43,
     "votePercentage": 0.1,
     "majority": 0,
@@ -5953,7 +5953,7 @@ const results20151019: Result[] = [
     "index": 35009,
     "candidate": "Raj Grewal",
     "party": "Liberal/Libéral",
-    "currentParty": "Independent",
+    "currentParty": "Independent/Indépendant(e)",
     "votes": 23652,
     "votePercentage": 52.3,
     "majority": 13010,
@@ -6151,7 +6151,7 @@ const results20151019: Result[] = [
   {
     "index": 35013,
     "candidate": "The Engineer Turmel",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 164,
     "votePercentage": 0.3,
     "majority": 0,
@@ -6268,7 +6268,7 @@ const results20151019: Result[] = [
   {
     "index": 35016,
     "candidate": "Lee Sperduti",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 474,
     "votePercentage": 0.9,
     "majority": 0,
@@ -6403,7 +6403,7 @@ const results20151019: Result[] = [
   {
     "index": 35018,
     "candidate": "Chai Kalevar",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 107,
     "votePercentage": 0.2,
     "majority": 0,
@@ -6538,7 +6538,7 @@ const results20151019: Result[] = [
   {
     "index": 35021,
     "candidate": "Sharon Cromwell",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 75,
     "votePercentage": 0.1,
     "majority": 0,
@@ -7123,7 +7123,7 @@ const results20151019: Result[] = [
   {
     "index": 35033,
     "candidate": "Dustin Wakeford",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 272,
     "votePercentage": 0.5,
     "majority": 0,
@@ -7132,7 +7132,7 @@ const results20151019: Result[] = [
   {
     "index": 35033,
     "candidate": "Leslie Bory",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 151,
     "votePercentage": 0.3,
     "majority": 0,
@@ -7231,7 +7231,7 @@ const results20151019: Result[] = [
   {
     "index": 35035,
     "candidate": "Maria Anastasiou",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 186,
     "votePercentage": 0.5,
     "majority": 0,
@@ -7573,7 +7573,7 @@ const results20151019: Result[] = [
   {
     "index": 35042,
     "candidate": "Kelvin Boucher-Chicago",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 162,
     "votePercentage": 0.5,
     "majority": 0,
@@ -8068,7 +8068,7 @@ const results20151019: Result[] = [
   {
     "index": 35051,
     "candidate": "Ali Hamadi",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 352,
     "votePercentage": 0.6,
     "majority": 0,
@@ -8078,7 +8078,7 @@ const results20151019: Result[] = [
     "index": 35054,
     "candidate": "Jane Philpott",
     "party": "Liberal/Libéral",
-    "currentParty": "Independent",
+    "currentParty": "Independent/Indépendant(e)",
     "votes": 29416,
     "votePercentage": 49.2,
     "majority": 3851,
@@ -8438,7 +8438,7 @@ const results20151019: Result[] = [
   {
     "index": 35062,
     "candidate": "Naresh Tharani",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 203,
     "votePercentage": 0.5,
     "majority": 0,
@@ -8528,7 +8528,7 @@ const results20151019: Result[] = [
   {
     "index": 35064,
     "candidate": "Jesus Cosico",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 416,
     "votePercentage": 0.6,
     "majority": 0,
@@ -8537,7 +8537,7 @@ const results20151019: Result[] = [
   {
     "index": 35064,
     "candidate": "Hubert Mamba",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 69,
     "votePercentage": 0.1,
     "majority": 0,
@@ -8546,7 +8546,7 @@ const results20151019: Result[] = [
   {
     "index": 35064,
     "candidate": "Harry Splett",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 66,
     "votePercentage": 0.1,
     "majority": 0,
@@ -9383,7 +9383,7 @@ const results20151019: Result[] = [
   {
     "index": 35081,
     "candidate": "Carol Royer",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 93,
     "votePercentage": 0.2,
     "majority": 0,
@@ -9393,7 +9393,7 @@ const results20151019: Result[] = [
     "index": 35082,
     "candidate": "Tony Clement **",
     "party": "Conservative/Conservateur",
-    "currentParty": "Independent",
+    "currentParty": "Independent/Indépendant(e)",
     "votes": 22206,
     "votePercentage": 43.3,
     "majority": 2269,
@@ -9609,7 +9609,7 @@ const results20151019: Result[] = [
   {
     "index": 35086,
     "candidate": "Hector Clouthier",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 6300,
     "votePercentage": 11,
     "majority": 0,
@@ -9879,7 +9879,7 @@ const results20151019: Result[] = [
   {
     "index": 35096,
     "candidate": "Raphael Rosch",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 164,
     "votePercentage": 0.4,
     "majority": 0,
@@ -9888,7 +9888,7 @@ const results20151019: Result[] = [
   {
     "index": 35096,
     "candidate": "Aasia Khatoon",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 156,
     "votePercentage": 0.4,
     "majority": 0,
@@ -10014,7 +10014,7 @@ const results20151019: Result[] = [
   {
     "index": 35095,
     "candidate": "Kevin Clarke",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 175,
     "votePercentage": 0.4,
     "majority": 0,
@@ -10293,7 +10293,7 @@ const results20151019: Result[] = [
   {
     "index": 35103,
     "candidate": "Jean-Raymond Audet",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 134,
     "votePercentage": 0.3,
     "majority": 0,
@@ -10311,7 +10311,7 @@ const results20151019: Result[] = [
   {
     "index": 35103,
     "candidate": "J. David Popescu",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 84,
     "votePercentage": 0.2,
     "majority": 0,
@@ -10446,7 +10446,7 @@ const results20151019: Result[] = [
   {
     "index": 35106,
     "candidate": "Robert Skaf",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 270,
     "votePercentage": 0.6,
     "majority": 0,
@@ -10527,7 +10527,7 @@ const results20151019: Result[] = [
   {
     "index": 35108,
     "candidate": "Jordan Stone",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 147,
     "votePercentage": 0.3,
     "majority": 0,
@@ -10861,7 +10861,7 @@ const results20151019: Result[] = [
     "index": 35114,
     "candidate": "Celina Caesar-Chavannes",
     "party": "Liberal/Libéral",
-    "currentParty": "Independent",
+    "currentParty": "Independent/Indépendant(e)",
     "votes": 29003,
     "votePercentage": 45,
     "majority": 1849,
@@ -10897,7 +10897,7 @@ const results20151019: Result[] = [
   {
     "index": 35114,
     "candidate": "Jon O'Connor",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 279,
     "votePercentage": 0.4,
     "majority": 0,
@@ -10942,7 +10942,7 @@ const results20151019: Result[] = [
   {
     "index": 35115,
     "candidate": "Birinder Singh Ahluwalia",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 216,
     "votePercentage": 0.5,
     "majority": 0,
@@ -11302,7 +11302,7 @@ const results20151019: Result[] = [
   {
     "index": 46004,
     "candidate": "Inky Mark",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 3357,
     "votePercentage": 8.1,
     "majority": 0,
@@ -11401,7 +11401,7 @@ const results20151019: Result[] = [
   {
     "index": 46006,
     "candidate": "Eduard Walter Hiebert",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 142,
     "votePercentage": 0.3,
     "majority": 0,
@@ -11761,7 +11761,7 @@ const results20151019: Result[] = [
   {
     "index": 47001,
     "candidate": "Doug Anguish",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 1076,
     "votePercentage": 3.2,
     "majority": 0,
@@ -12401,7 +12401,7 @@ const results20151019: Result[] = [
   {
     "index": 48003,
     "candidate": "Andrew Kucy",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 543,
     "votePercentage": 1.1,
     "majority": 0,
@@ -12464,7 +12464,7 @@ const results20151019: Result[] = [
   {
     "index": 48004,
     "candidate": "Yogi Henderson",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 248,
     "votePercentage": 0.4,
     "majority": 0,
@@ -12626,7 +12626,7 @@ const results20151019: Result[] = [
   {
     "index": 48007,
     "candidate": "Larry R. Heather",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 114,
     "votePercentage": 0.2,
     "majority": 0,
@@ -12635,7 +12635,7 @@ const results20151019: Result[] = [
   {
     "index": 48007,
     "candidate": "Korry Zepik",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 73,
     "votePercentage": 0.1,
     "majority": 0,
@@ -12644,7 +12644,7 @@ const results20151019: Result[] = [
   {
     "index": 48007,
     "candidate": "Nicolas Duchastel de Montrouge",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 61,
     "votePercentage": 0.1,
     "majority": 0,
@@ -12932,7 +12932,7 @@ const results20151019: Result[] = [
   {
     "index": 48013,
     "candidate": "Joseph Young",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 182,
     "votePercentage": 0.4,
     "majority": 0,
@@ -12995,7 +12995,7 @@ const results20151019: Result[] = [
   {
     "index": 48014,
     "candidate": "Kat Yaki",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 163,
     "votePercentage": 0.3,
     "majority": 0,
@@ -13112,7 +13112,7 @@ const results20151019: Result[] = [
   {
     "index": 48016,
     "candidate": "Mebreate Deres",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 540,
     "votePercentage": 1.1,
     "majority": 0,
@@ -13166,7 +13166,7 @@ const results20151019: Result[] = [
   {
     "index": 48017,
     "candidate": "Colin Stubbs",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 560,
     "votePercentage": 1.1,
     "majority": 0,
@@ -13310,7 +13310,7 @@ const results20151019: Result[] = [
   {
     "index": 48019,
     "candidate": "Chris Jones",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 116,
     "votePercentage": 0.2,
     "majority": 0,
@@ -13319,7 +13319,7 @@ const results20151019: Result[] = [
   {
     "index": 48019,
     "candidate": "Andrew Schurman",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 107,
     "votePercentage": 0.2,
     "majority": 0,
@@ -13724,7 +13724,7 @@ const results20151019: Result[] = [
   {
     "index": 48027,
     "candidate": "John Clayton Turner",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 500,
     "votePercentage": 1,
     "majority": 0,
@@ -13886,7 +13886,7 @@ const results20151019: Result[] = [
   {
     "index": 48031,
     "candidate": "Brent Rathgeber **",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 11652,
     "votePercentage": 19.7,
     "majority": 0,
@@ -13949,7 +13949,7 @@ const results20151019: Result[] = [
   {
     "index": 48032,
     "candidate": "James Ford",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 1563,
     "votePercentage": 2.3,
     "majority": 0,
@@ -14147,7 +14147,7 @@ const results20151019: Result[] = [
   {
     "index": 59002,
     "candidate": "Helen Hee Soon Chang",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 207,
     "votePercentage": 0.4,
     "majority": 0,
@@ -14255,7 +14255,7 @@ const results20151019: Result[] = [
   {
     "index": 59004,
     "candidate": "Sheldon Clare",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 657,
     "votePercentage": 1.2,
     "majority": 0,
@@ -14840,7 +14840,7 @@ const results20151019: Result[] = [
   {
     "index": 59017,
     "candidate": "Wyatt Scott",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 914,
     "votePercentage": 2,
     "majority": 0,
@@ -15074,7 +15074,7 @@ const results20151019: Result[] = [
   {
     "index": 59021,
     "candidate": "Payam Azad",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 94,
     "votePercentage": 0.1,
     "majority": 0,
@@ -15119,7 +15119,7 @@ const results20151019: Result[] = [
   {
     "index": 59022,
     "candidate": "Steve Ranta",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 452,
     "votePercentage": 0.9,
     "majority": 0,
@@ -15389,7 +15389,7 @@ const results20151019: Result[] = [
   {
     "index": 59029,
     "candidate": "Brian Gray",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 376,
     "votePercentage": 0.6,
     "majority": 0,
@@ -15686,7 +15686,7 @@ const results20151019: Result[] = [
   {
     "index": 59035,
     "candidate": "D. Alex Millar",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 216,
     "votePercentage": 0.4,
     "majority": 0,
@@ -15714,7 +15714,7 @@ const results20151019: Result[] = [
     "index": 59036,
     "candidate": "Jody Wilson-Raybould",
     "party": "Liberal/Libéral",
-    "currentParty": "Independent",
+    "currentParty": "Independent/Indépendant(e)",
     "votes": 23643,
     "votePercentage": 43.9,
     "majority": 9181,
@@ -15867,7 +15867,7 @@ const results20151019: Result[] = [
   {
     "index": 59039,
     "candidate": "Jean-François Caron",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 59,
     "votePercentage": 0.1,
     "majority": 0,
@@ -15984,7 +15984,7 @@ const results20151019: Result[] = [
   {
     "index": 59041,
     "candidate": "Saul Andersen",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 124,
     "votePercentage": 0.2,
     "majority": 0,
@@ -16120,7 +16120,7 @@ const results20151019: Result[] = [
     "index": 62001,
     "candidate": "Hunter Tootoo",
     "party": "Liberal/Libéral",
-    "currentParty": "Independent",
+    "currentParty": "Independent/Indépendant(e)",
     "votes": 5619,
     "votePercentage": 47.1,
     "majority": 2448,
@@ -16324,7 +16324,7 @@ const results20170403 = [
   {
     "index": 35055,
     "candidate": "Above Znoneofthe",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 77,
     "votePercentage": 0.4,
     "majority": 0,
@@ -16369,7 +16369,7 @@ const results20170403 = [
   {
     "index": 35078,
     "candidate": "John 'The Engineer' Turmel",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 147,
     "votePercentage": 0.5,
     "majority": 0,
@@ -16387,7 +16387,7 @@ const results20170403 = [
   {
     "index": 35078,
     "candidate": "Christina Wilson",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 99,
     "votePercentage": 0.3,
     "majority": 0,
@@ -16690,7 +16690,7 @@ const results20171211 = [
   {
     "index": 35093,
     "candidate": "Tom Zhu",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 148,
     "votePercentage": 0.8,
     "majority": 0,
@@ -16699,7 +16699,7 @@ const results20171211 = [
   {
     "index": 35093,
     "candidate": "John 'The Engineer' Turmel",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 145,
     "votePercentage": 0.8,
     "majority": 0,
@@ -16735,7 +16735,7 @@ const results20171211 = [
   {
     "index": 47001,
     "candidate": "Ken Finlayson",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 681,
     "votePercentage": 5.3,
     "majority": 0,
@@ -16864,7 +16864,7 @@ const results20180618 = [
   {
     "index": 24022,
     "candidate": "John The Engineer Turmel",
-    "party": "Independent/Indépendant",
+    "party": "Independent/Indépendant(e)",
     "votes": 98,
     "votePercentage": 0.4,
     "majority": 0,

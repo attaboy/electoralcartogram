@@ -82,7 +82,7 @@ class Map extends React.PureComponent<{
 
   render() {
     return (
-      <svg width="100%" height="100%" viewBox="0 0 760 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve">
+      <svg width="100%" viewBox="0 0 760 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve">
         <g id="Electoral-Cartogram-of-Canada" data-label="Electoral Cartogram of Canada" transform="matrix(1,0,0,1.02041,-100,-51.0204)">
           <rect x="100" y="50" width="760" height="490" style={this.svgStyle()} />
           <clipPath id="_clip1">
@@ -1847,7 +1847,7 @@ class Map extends React.PureComponent<{
               </g>
             </g>
             {ridingDataSet.map(province => (
-              <Province key={province.id} id={province.id} label={province.label} transform={province.transform}>
+              <Province key={province.id} id={province.id} label={province.en} transform={province.transform}>
                 {province.ridings.map(riding => {
                   const results = this.getResultsForRiding(riding);
                   return (

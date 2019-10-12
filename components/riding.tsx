@@ -1,12 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { DateResults, Result } from '../data/result_data';
-
-interface RidingData {
-  id: string
-  label: string
-  transform: string
-  pathD: string
-}
+import { RidingData } from '../data/riding_data';
 
 interface Props {
   data: RidingData
@@ -92,7 +86,7 @@ class Riding extends React.PureComponent<Props, State> {
   render() {
     const result = this.getResult();
     return (
-      <g id={this.props.data.id} data-label={this.props.data.label} transform={this.props.data.transform}
+      <g id={this.props.data.id} transform={this.props.data.transform}
         onMouseOver={() => this.onHoverOn(result.winner, result.date)}
         onMouseOut={() => this.onHoverOff()}
       >
