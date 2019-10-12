@@ -6,11 +6,14 @@ import Party from '../data/party';
 
 interface CurrentRidingInfo {
   province: string
+  flag: string
   riding: string
   candidate: string
   party: string
   originalParty: string | undefined
   date: string
+  votePercentage: number
+  majorityPercentage: number
 }
 
 interface State {
@@ -47,11 +50,14 @@ class Home extends React.Component<{}, State> {
     const resultText = result ? `${partyString} — ${result.candidate} (${dateString})` : "(unknown)"
     this.delayUpdate(result ? {
       province: province,
+      flag: provinceData.flagUrl,
       riding: riding,
       candidate: result.candidate,
       date: dateString,
       party: result.currentParty || result.party,
-      originalParty: result.currentParty ? result.party : undefined
+      originalParty: result.currentParty ? result.party : undefined,
+      votePercentage: result.votePercentage,
+      majorityPercentage: result.majorityPercentage
     } : null);
   }
 
@@ -61,15 +67,17 @@ class Home extends React.Component<{}, State> {
 
   renderInfo(ridingInfo: CurrentRidingInfo) {
     const candidate = ridingInfo.candidate.replace(/ \*\*$/, "");
-    const elected = / \*\*$/.test(ridingInfo.candidate) ? ` (re-elected ${ridingInfo.date})` : ` (elected ${ridingInfo.date})`;
+    const elected = / \*\*$/.test(ridingInfo.candidate) ? `Re-elected ${ridingInfo.date}` : `Elected ${ridingInfo.date}`;
     const ridingName = ridingInfo.riding.replace(/\/.+$/, "");
     const party = Party.findByRawName(ridingInfo.party);
     const originalParty = ridingInfo.originalParty ? Party.findByRawName(ridingInfo.originalParty) : null;
     return (
       <div>
+        <div><img src={ridingInfo.flag} style={{ height: "1.5rem", marginBottom: "0.25em" }} /></div>
         <h5>{ridingInfo.province}</h5>
-        <h3>{ridingName}</h3>
-        <div>
+        <h3 style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.5)", paddingBottom: "0.25em", marginBottom: "0.25em" }}>{ridingName}</h3>
+        <div>{candidate}</div>
+        <div style={{ marginBottom: "0.25em" }}>
           <div style={{ display: "inline-block", width: "0.9rem", height: "0.9rem", verticalAlign: "middle", backgroundColor: party.color, marginRight: "0.5em" }}></div>
           <div style={{ display: "inline-block", verticalAlign: "middle" }}>
             <b>{party.en} </b>
@@ -78,7 +86,10 @@ class Home extends React.Component<{}, State> {
             ) : null}
           </div>
         </div>
-        <div>{candidate} <i>{elected}</i></div>
+        <div style={{ fontSize: "0.9rem" }}>
+          <div>{elected}</div>
+          <div>{ridingInfo.votePercentage}% of vote (+{ridingInfo.majorityPercentage}% lead)</div>
+        </div>
       </div>
     );
   }

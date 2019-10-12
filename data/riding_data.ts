@@ -16,12 +16,14 @@ export interface RidingData extends PoliticalData {
 }
 
 export interface ProvinceData extends PoliticalData {
+  flagUrl: string
   ridings: RidingData[]
 }
 
 const ridingDataSet: ProvinceData[] = [
   {
     "id": "British-Columbia",
+    "flagUrl": "/images/flags/Flag_of_British_Columbia.svg",
     "en": "British Columbia",
     "fr": "Colombie-Britannique",
     "transform": "matrix(1,0,0,0.98,-240,-106.8)",
@@ -367,6 +369,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Alberta",
+    "flagUrl": "/images/flags/Flag_of_Alberta.svg",
     "en": "Alberta",
     "fr": "Alberta",
     "transform": "matrix(1,0,0,0.98,-240,-106.8)",
@@ -648,6 +651,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Saskatchewan",
+    "flagUrl": "/images/flags/Flag_of_Saskatchewan.svg",
     "en": "Saskatchewan",
     "fr": "Saskatchewan",
     "transform": "matrix(1,0,0,0.98,-240,-106.8)",
@@ -769,6 +773,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Manitoba",
+    "flagUrl": "/images/flags/Flag_of_Manitoba.svg",
     "en": "Manitoba",
     "fr": "Manitoba",
     "transform": "matrix(1,0,0,0.98,-240,-106.8)",
@@ -890,6 +895,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Ontario",
+    "flagUrl": "/images/flags/Flag_of_Ontario.svg",
     "en": "Ontario",
     "fr": "Ontario",
     "transform": "matrix(1,0,0,0.98,-240,-106.8)",
@@ -1867,6 +1873,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Quebec",
+    "flagUrl": "/images/flags/Flag_of_Quebec.svg",
     "en": "Quebec",
     "fr": "Québec",
     "transform": "matrix(1,0,0,0.98,-240,-106.8)",
@@ -2500,6 +2507,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "New-Brunswick",
+    "flagUrl": "/images/flags/Flag_of_New_Brunswick.svg",
     "en": "New Brunswick",
     "fr": "Nouveau-Brunswick",
     "transform": "matrix(1,0,0,0.98,-240,-106.8)",
@@ -2589,6 +2597,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Nova-Scotia",
+    "flagUrl": "/images/flags/Flag_of_Nova_Scotia.svg",
     "en": "Nova Scotia",
     "fr": "Nouvelle-Écosse",
     "transform": "matrix(1,0,0,0.98,-240,-106.8)",
@@ -2686,6 +2695,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Prince-Edward-Island",
+    "flagUrl": "/images/flags/Flag_of_Prince_Edward_Island.svg",
     "en": "Prince Edward Island",
     "fr": "Île-du-Prince-Édouard",
     "transform": "matrix(1,0,0,0.98,-240,-106.8)",
@@ -2727,6 +2737,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Newfoundland-and-Labrador",
+    "flagUrl": "/images/flags/Flag_of_Newfoundland_and_Labrador.svg",
     "en": "Newfoundland and Labrador",
     "fr": "Terre-Neuve-et-Labrador",
     "transform": "matrix(1,0,0,0.98,-240,-106.8)",
@@ -2792,6 +2803,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Nunavut",
+    "flagUrl": "/images/flags/Flag_of_Nunavut.svg",
     "en": "Nunavut",
     "fr": "Nunavut",
     "transform": "matrix(1,0,0,0.98,-30.2,-204.702)",
@@ -2809,6 +2821,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Yukon",
+    "flagUrl": "/images/flags/Flag_of_Yukon.svg",
     "en": "Yukon",
     "fr": "Yukon",
     "transform": "matrix(1,0,0,0.98,-119.9,-165.698)",
@@ -2826,6 +2839,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Northwest-Territories",
+    "flagUrl": "/images/flags/Flag_of_the_Northwest_Territories.svg",
     "en": "Northwest Territories",
     "fr": "Territoires du Nord-Ouest",
     "transform": "matrix(1,0,0,0.98,-59.918,-146.098)",
