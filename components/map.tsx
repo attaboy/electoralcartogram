@@ -84,7 +84,6 @@ class Map extends React.PureComponent<{
 
   countryTextStyle(): CSSProperties {
     return {
-      fontFamily: "'Helvetica Neue'",
       fontWeight: 700,
       fontSize: "18px",
       fillOpacity: 0.75
@@ -93,7 +92,6 @@ class Map extends React.PureComponent<{
 
   provinceTextStyle(): CSSProperties {
     return {
-      fontFamily: "'Helvetica Neue'",
       fontWeight: 700,
       fontSize: "14px",
       fillOpacity: 0.75
@@ -102,7 +100,6 @@ class Map extends React.PureComponent<{
 
   waterTextStyle(): CSSProperties {
     return {
-      fontFamily: "'Helvetica Neue'",
       fontSize: "10px",
       fill: "rgb(126, 171, 213)"
     };

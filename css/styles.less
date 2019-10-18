@@ -1,0 +1,165 @@
+@accentColor: white;
+
+body {
+  font-family: 'Barlow', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 { margin: 0 }
+
+h1 {
+  font-size: 2rem;
+  font-weight: 300
+}
+
+h5 { text-transform: uppercase; margin-bottom: 0.5em }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  padding-top: 0.125em;
+  padding-right: 0.1em;
+  padding-bottom: 0.125em;
+  padding-left: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+td:last-child {
+  padding-right: 0;
+}
+
+thead td {
+  padding-top: 0;
+  border-bottom: 3px double white;
+}
+
+tfoot td { border-top: 3px double white; border-bottom: 0; }
+
+b { font-weight: 600; }
+
+header {
+  position: relative;
+  background-color: black;
+  padding: 1em;
+
+  &::after {
+    clear: both;
+    display: table;
+    content: "";
+  }
+}
+
+header h1 {
+  float: left;
+}
+
+#langButtons {
+  float: right;
+  margin-top: 0.25em;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 1;
+  top: 60%;
+  min-height: 40%;
+  right: 0;
+  background-color: black;
+  color: white;
+  padding: 1em;
+  line-height: 1.3;
+  width: 30vw;
+  overflow: auto;
+}
+
+.radioButtons {
+  font-size: 1rem;
+  line-height: 1.2rem;
+  vertical-align: middle;
+  display: inline-block;
+  white-space: nowrap;
+  border: 1px solid @accentColor;
+  border-radius: 3px;
+  padding: 2px;
+}
+
+button.radio {
+  float: left;
+  display: block;
+  margin: 0;
+  border-radius: 0;
+  padding: 1px 0.5rem;
+  font-size: 1rem;
+  line-height: 1.2em;
+  background-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 2px;
+  color: white;
+
+  &:focus, &:active {
+    border-color: @accentColor;
+    outline: none;
+  }
+
+  &.active {
+    background-color: @accentColor;
+    border-color: @accentColor;
+    color: black;
+  }
+
+  .button-label-short { display: none }
+}
+
+@media (max-width: 767px) {
+  html {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    line-height: 1.4em;
+  }
+
+  button.radio {
+    .button-label-short { display: inline }
+    .button-label-long { display: none }
+  }
+}
+
+@media (max-width: 1023px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media (max-aspect-ratio: ~"8/9") {
+  .overlay {
+    position: static;
+    width: auto;
+    max-width: 30em;
+    height: auto;
+  }
+
+  header h1 {
+    float: none;
+  }
+
+  #langButtons {
+    margin-top: 0.75em;
+    float: none;
+  }
+}

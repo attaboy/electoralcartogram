@@ -2,6 +2,7 @@ import React, { CSSProperties } from 'react';
 import { DateResults, Result } from '../data/result_data';
 import { RidingData } from '../data/riding_data';
 import { Lang } from '../pages';
+import Party from '../data/party';
 
 interface Props {
   data: RidingData
@@ -33,23 +34,12 @@ class Riding extends React.PureComponent<Props, State> {
   }
 
   colorForParty(result: Result | undefined): string {
-    const party = result ? (result.currentParty || result.party) : "";
-    const alpha = this.state.hover ? "0.75" : "1.0";
-
-    if (/Liberal/.test(party)) {
-      return `hsla(359, 78%, 47%, ${alpha})`;
-    } else if (/Conservative/.test(party)) {
-      return `hsla(214, 63%, 31%, ${alpha})`;
-    } else if (/NDP/.test(party)) {
-      return `hsla(33, 94%, 55%, ${alpha})`;
-    } else if (/Green/.test(party)) {
-      return `hsla(116, 49%, 41%, ${alpha})`;
-    } else if (/Bloc Québécois/.test(party)) {
-      return `hsla(200, 70%, 50%, ${alpha})`;
-    } else if (/People's Party/.test(party)) {
-      return `hsla(280, 57%, 56%, ${alpha})`;
+    if (this.state.hover) {
+      return "white";
     } else {
-      return `hsla(0, 0%, 58%, ${alpha})`;
+      const partyId = result ? (result.currentParty || result.party) : "";
+      const party = Party.findByRawName(partyId);
+      return party.color;
     }
   }
 
