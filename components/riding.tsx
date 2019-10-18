@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { DateResults, Result } from '../data/result_data';
 import { RidingData } from '../data/riding_data';
+import { Lang } from '../pages';
 
 interface Props {
   data: RidingData

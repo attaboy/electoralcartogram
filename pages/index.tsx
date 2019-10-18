@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Map} from '../components/map';
 import { RidingData, ProvinceData, ridingDataSet } from '../data/riding_data';
-import { DateResults, Result } from '../data/result_data';
+import { DateResults, Result, resultsSet } from '../data/result_data';
 import Party from '../data/party';
 
 interface CurrentRidingInfo {
@@ -16,8 +16,13 @@ interface CurrentRidingInfo {
   majorityPercentage: number
 }
 
+export enum Lang {
+  en="en", fr="fr"
+}
+
 interface State {
   currentRiding: CurrentRidingInfo | null
+  lang: Lang
 }
 
 class Home extends React.Component<{}, State> {
@@ -26,7 +31,8 @@ class Home extends React.Component<{}, State> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      currentRiding: null
+      currentRiding: null,
+      lang: Lang.fr
     };
   }
 
@@ -40,14 +46,9 @@ class Home extends React.Component<{}, State> {
   }
 
   onHoverOn(ridingData: RidingData, provinceData: ProvinceData, result: Result | undefined, date: string | undefined): void {
-    const province = provinceData.en;
-    const riding = ridingData.en;
-    const ridingText = province === riding ? province : `${province}: ${riding}`;
+    const province = provinceData[this.state.lang];
+    const riding = ridingData[this.state.lang];
     const dateString = date ? new Date(date).toLocaleDateString() : "unknown date";
-    const partyString = result ? (
-      result.currentParty ? `${result.currentParty} (originally ${result.party})` : result.party
-    ) : ""
-    const resultText = result ? `${partyString} — ${result.candidate} (${dateString})` : "(unknown)"
     this.delayUpdate(result ? {
       province: province,
       flag: provinceData.flagUrl,
@@ -65,33 +66,100 @@ class Home extends React.Component<{}, State> {
     this.delayUpdate(null);
   }
 
+  labelForReElected(date: string): string {
+    if (this.state.lang === Lang.fr) {
+      return `Réélu(e) ${date}`;
+    } else {
+      return `Re-elected ${date}`;
+    }
+  }
+
+  labelForElected(date: string): string {
+    if (this.state.lang === Lang.fr) {
+      return `Élu(e) ${date}`;
+    } else {
+      return `Elected ${date}`;
+    }
+  }
+
+  electedAs(party: Party): string {
+    return this.state.lang === Lang.fr ? `(élu(e) comme ${party[this.state.lang]})` : `(elected as ${party[this.state.lang]})`;
+  }
+
+  renderSummary() {
+    const partyByRiding: { [ridingId: string] : string } = {};
+    const byParty: { [partyId: string]: number } = {};
+    resultsSet.forEach((dateResults) => {
+      dateResults.results.forEach((result) => {
+        if (result.majority > 0) {
+          const party = result.currentParty || result.party;
+          partyByRiding[`${result.index}`] = party;
+        }
+      });
+    });
+    Object.keys(partyByRiding).forEach((ridingId) => {
+      const party = partyByRiding[ridingId];
+      if (typeof byParty[party] !== "number") {
+        byParty[party] = 0;
+      }
+      byParty[party] = byParty[party] + 1;
+    });
+    return (
+      <div>
+        {Object.keys(byParty).sort((a, b) => {
+          return byParty[b] - byParty[a];
+        }).map((party) => {
+          return (
+            <div key={party}>
+              {party}: {byParty[party]}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
   renderInfo(ridingInfo: CurrentRidingInfo) {
     const candidate = ridingInfo.candidate.replace(/ \*\*$/, "");
-    const elected = / \*\*$/.test(ridingInfo.candidate) ? `Re-elected ${ridingInfo.date}` : `Elected ${ridingInfo.date}`;
+    const elected = / \*\*$/.test(ridingInfo.candidate) ? this.labelForReElected(ridingInfo.date) : this.labelForElected(ridingInfo.date);
     const ridingName = ridingInfo.riding.replace(/\/.+$/, "");
     const party = Party.findByRawName(ridingInfo.party);
     const originalParty = ridingInfo.originalParty ? Party.findByRawName(ridingInfo.originalParty) : null;
     return (
       <div>
         <div><img src={ridingInfo.flag} style={{ height: "1.5rem", marginBottom: "0.25em" }} /></div>
-        <h5>{ridingInfo.province}</h5>
+        {ridingName === ridingInfo.province ? null : (
+          <h5>{ridingInfo.province}</h5>
+        )}
         <h3 style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.5)", paddingBottom: "0.25em", marginBottom: "0.25em" }}>{ridingName}</h3>
         <div>{candidate}</div>
         <div style={{ marginBottom: "0.25em" }}>
           <div style={{ display: "inline-block", width: "0.9rem", height: "0.9rem", verticalAlign: "middle", backgroundColor: party.color, marginRight: "0.5em" }}></div>
           <div style={{ display: "inline-block", verticalAlign: "middle" }}>
-            <b>{party.en} </b>
+            <b>{party[this.state.lang]} </b>
             {originalParty ? (
-              <i>(originally {originalParty.en})</i>
+              <i>{this.electedAs(originalParty)}</i>
             ) : null}
           </div>
         </div>
         <div style={{ fontSize: "0.9rem" }}>
           <div>{elected}</div>
-          <div>{ridingInfo.votePercentage}% of vote (+{ridingInfo.majorityPercentage}% lead)</div>
+          <div>{ridingInfo.votePercentage}% of vote (+{ridingInfo.majorityPercentage} point lead)</div>
         </div>
       </div>
     );
+  }
+
+  setEnglish(): void {
+    this.setState({
+      lang: Lang.en
+    });
+  }
+
+  setFrench(): void {
+    this.setState({
+      lang: Lang.fr
+    });
   }
 
   render() {
@@ -119,13 +187,17 @@ class Home extends React.Component<{}, State> {
             color: "white",
             padding: "1em",
             lineHeight: 1.3,
-            width: "33vw",
+            width: "30vw",
             height: "25vw",
             overflow: "auto"
           }}>
-            {ridingInfo ? this.renderInfo(ridingInfo) : null}
+            {ridingInfo ? this.renderInfo(ridingInfo) : this.renderSummary()}
           </div>
-          <Map onHoverOn={(r, p, rs, d) => this.onHoverOn(r, p, rs, d)} onHoverOff={() => this.onHoverOff()} />
+          <div style={{ backgroundColor: "black", padding: "1em" }}>
+            <button type="button" onClick={() => this.setEnglish()}>English</button>
+            <button type="button" onClick={() => this.setFrench()}>Français</button>
+          </div>
+          <Map onHoverOn={(r, p, rs, d) => this.onHoverOn(r, p, rs, d)} onHoverOff={() => this.onHoverOff()} lang={this.state.lang} />
         </div>
       </div>
     )
