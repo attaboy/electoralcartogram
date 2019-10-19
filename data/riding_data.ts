@@ -23,7 +23,7 @@ export interface ProvinceData extends PoliticalData {
 const ridingDataSet: ProvinceData[] = [
   {
     "id": "British-Columbia",
-    "flagUrl": "/images/flags/Flag_of_British_Columbia.svg",
+    "flagUrl": "/images/flags/Flag_of_British_Columbia.png",
     "en": "British Columbia",
     "fr": "Colombie-Britannique",
     "transform": "matrix(0.926829,0,0,0.98,-215.168,10.5658)",
@@ -369,7 +369,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Alberta",
-    "flagUrl": "/images/flags/Flag_of_Alberta.svg",
+    "flagUrl": "/images/flags/Flag_of_Alberta.png",
     "en": "Alberta",
     "fr": "Alberta",
     "transform": "matrix(0.926829,0,0,0.98,-242.973,-125.654)",
@@ -651,7 +651,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Saskatchewan",
-    "flagUrl": "/images/flags/Flag_of_Saskatchewan.svg",
+    "flagUrl": "/images/flags/Flag_of_Saskatchewan.png",
     "en": "Saskatchewan",
     "fr": "Saskatchewan",
     "transform": "matrix(0.926829,0,0,0.98,-187.363,-125.654)",
@@ -773,7 +773,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Manitoba",
-    "flagUrl": "/images/flags/Flag_of_Manitoba.svg",
+    "flagUrl": "/images/flags/Flag_of_Manitoba.png",
     "en": "Manitoba",
     "fr": "Manitoba",
     "transform": "matrix(0.926829,0,0,0.98,-131.754,-125.654)",
@@ -895,7 +895,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Ontario",
-    "flagUrl": "/images/flags/Flag_of_Ontario.svg",
+    "flagUrl": "/images/flags/Flag_of_Ontario.png",
     "en": "Ontario",
     "fr": "Ontario",
     "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
@@ -1873,7 +1873,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Quebec",
-    "flagUrl": "/images/flags/Flag_of_Quebec.svg",
+    "flagUrl": "/images/flags/Flag_of_Quebec.png",
     "en": "Quebec",
     "fr": "Québec",
     "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
@@ -2507,7 +2507,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "New-Brunswick",
-    "flagUrl": "/images/flags/Flag_of_New_Brunswick.svg",
+    "flagUrl": "/images/flags/Flag_of_New_Brunswick.png",
     "en": "New Brunswick",
     "fr": "Nouveau-Brunswick",
     "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
@@ -2597,7 +2597,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Nova-Scotia",
-    "flagUrl": "/images/flags/Flag_of_Nova_Scotia.svg",
+    "flagUrl": "/images/flags/Flag_of_Nova_Scotia.png",
     "en": "Nova Scotia",
     "fr": "Nouvelle-Écosse",
     "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
@@ -2695,7 +2695,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Prince-Edward-Island",
-    "flagUrl": "/images/flags/Flag_of_Prince_Edward_Island.svg",
+    "flagUrl": "/images/flags/Flag_of_Prince_Edward_Island.png",
     "en": "Prince Edward Island",
     "fr": "Île-du-Prince-Édouard",
     "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
@@ -2737,7 +2737,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Newfoundland-and-Labrador",
-    "flagUrl": "/images/flags/Flag_of_Newfoundland_and_Labrador.svg",
+    "flagUrl": "/images/flags/Flag_of_Newfoundland_and_Labrador.png",
     "en": "Newfoundland and Labrador",
     "fr": "Terre-Neuve-et-Labrador",
     "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
@@ -2803,7 +2803,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Nunavut",
-    "flagUrl": "/images/flags/Flag_of_Nunavut.svg",
+    "flagUrl": "/images/flags/Flag_of_Nunavut.png",
     "en": "Nunavut",
     "fr": "Nunavut",
     "transform": "matrix(0.926829,0,0,0.98,21.0341,-194.902)",
@@ -2821,7 +2821,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Yukon",
-    "flagUrl": "/images/flags/Flag_of_Yukon.svg",
+    "flagUrl": "/images/flags/Flag_of_Yukon.png",
     "en": "Yukon",
     "fr": "Yukon",
     "transform": "matrix(0.926829,0,0,0.98,-145.517,-155.898)",
@@ -2839,7 +2839,7 @@ const ridingDataSet: ProvinceData[] = [
   },
   {
     "id": "Northwest-Territories",
-    "flagUrl": "/images/flags/Flag_of_the_Northwest_Territories.svg",
+    "flagUrl": "/images/flags/Flag_of_the_Northwest_Territories.png",
     "en": "Northwest Territories",
     "fr": "Territoires du Nord-Ouest",
     "transform": "matrix(0.926829,0,0,0.98,-62.1191,-155.898)",
