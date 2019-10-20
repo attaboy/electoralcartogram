@@ -1,0 +1,1800 @@
+body {
+  margin: 20px 20px 20px;
+  font-family: Optima, sans-serif;
+  color: #5A5A5A;
+  background-color: #C44638;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.1)), to(#C44638));
+  background-repeat: no-repeat;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 #FFF;
+}
+
+label, .result.selected, .tipsy {
+  text-shadow: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 6px 0;
+  font-weight: normal;
+  text-align: center;
+  line-height: 24px;
+}
+
+sup {
+  font-size: .6667em;
+  vertical-align: .4em;
+}
+
+a:link, a:visited {
+  color: #C13912;
+  text-decoration: none;
+  border-bottom: 1px dotted #c13912;
+}
+
+a:hover { color: #591200; }
+
+#header {
+  position: relative;
+  padding-top: 20px;
+}
+
+#tweetButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#container {
+  width: 918px;
+  padding: 20px 0 20px 0;
+  margin: 0 auto;
+  background-color: #F1F1F1;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#F1F1F1), to(#E0E0E0), color-stop(.15, #D9D9D9), color-stop(.3, #F1F1F1));
+  background-repeat: no-repeat;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  position: relative;
+  -webkit-box-shadow: 0 3px 5px rgba(0,0,0,.5);
+  -moz-box-shadow: 0 3px 5px rgba(0,0,0,.5);
+  box-shadow: 0 3px 5px rgba(0,0,0,.5);
+}
+
+.footer {
+  padding: 225px 20px 0px;
+  background-image: url(img/special_ballot.png);
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+  height: 1em;
+}
+
+.footer1 { float: left; }
+
+.footer2 { float: right; }
+
+
+#mapContainer {
+  width: 918px;
+  height: 377px;
+  position: relative;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: #E5E5E5 #FFF #AAA #999;
+}
+
+.selectors {
+  margin: 30px 0 0 0;
+  text-align: center;
+  position: relative;
+  top: 1px;
+  z-index: 1;
+}
+
+label {
+  font-size: 1.25em;
+  margin: 0 1px 0 0;
+  padding: .1em .5em;
+  background-color: #B3B3B3;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  -webkit-transition: background-color .25s;
+  -moz-transition: background-color .25s;
+  transition: background-color .25s;
+  border-color: #E5E5E5;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+}
+
+label.first {
+  -webkit-border-top-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  border-top-left-radius: 5px;
+  border-left-width: 1px;
+}
+
+label.last {
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-right-radius: 5px;
+  border-right-width: 1px;
+}
+
+label.selected {
+  background-color: #444 !important;
+}
+
+label:hover { background-color: #B5340C; }
+
+label input {
+  display: none;
+}
+
+.riding {
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  background-color: transparent;
+  -webkit-transition: background-color .75s;
+  -moz-transition: background-color .75s;
+  transition: background-color .75s;
+}
+
+.riding:hover {
+  background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(255,255,255,.5)), to(rgba(255,255,255,.1)));
+}
+
+.con {
+  background-color: #004FA5;
+  border-color: #004FA5;
+}
+
+.lib {
+  background-color: #DC000D;
+  border-color: #DC000D;
+}
+
+.ndp {
+  background-color: #EC832C;
+  border-color: #EC832C;
+}
+
+.bq {
+  background-color: #3486C7;
+  border-color: #3486C7;
+}
+
+.grn {
+  background-color: #4C7722;
+  border-color: #4C7722;
+}
+
+.ind {
+  background-color: #999999;
+  border-color: #999999;
+}
+
+.hidden {
+  background-color: transparent;
+}
+
+#results {
+  overflow: hidden;
+  padding: 10px 110px 10px 110px;
+}
+
+#results .help {
+  font-size: 12px;
+  padding: 0 0 10px 0;
+  text-align: center;
+}
+
+.result {
+  position: relative;
+  display: inline-block;
+  background-color: transparent;
+  padding: 0 1px 0 8px;
+  margin: 1px 10px 1px;
+  width: 300px;
+  cursor: pointer;
+  border-width: 0 0 1px 20px;
+  border-style: dotted solid;
+}
+
+.result:hover {
+  background-color: white;
+}
+
+.result.selected {
+  background-color: #444;
+  color: white;
+}
+
+.result .numbers { float: right; }
+.result .afterNumber {
+  width: 2em;
+  display: inline-block;
+  text-align: right;
+}
+
+.result .hidden {
+  display: none;
+}
+
+#yukon {
+  left: 163px;
+  top: 37px;
+}
+
+#western_arctic {
+  left: 181px;
+  top: 37px;
+}
+
+#edmonton_st_albert {
+  left: 199px;
+  top: 37px;
+}
+
+#edmonton_east {
+  left: 217px;
+  top: 37px;
+}
+
+#edmonton_strathcona {
+  left: 235px;
+  top: 37px;
+}
+
+#fort_mcmurray_athabaska {
+  left: 253px;
+  top: 37px;
+}
+
+#nunavut {
+  left: 379px;
+  top: 37px;
+}
+
+#roberval_lac_st_jean {
+  left: 703px;
+  top: 37px;
+}
+
+#chicoutimi_le_fjord {
+  left: 721px;
+  top: 37px;
+}
+
+#labrador {
+  left: 757px;
+  top: 37px;
+}
+
+#humber_st_barbe_baie_verte {
+  left: 793px;
+  top: 37px;
+}
+
+#north_vancouver {
+  left: 91px;
+  top: 55px;
+}
+
+#west_vancouver_sunshine_coast_sea_to_sky_country {
+  left: 109px;
+  top: 55px;
+}
+
+#skeena_bulkley_valley {
+  left: 127px;
+  top: 55px;
+}
+
+#cariboo_prince_george {
+  left: 145px;
+  top: 55px;
+}
+
+#desnethe_missinippi_churchill_river {
+  left: 307px;
+  top: 55px;
+}
+
+#selkirk_interlake {
+  left: 361px;
+  top: 55px;
+}
+
+#saint_maurice_champlain {
+  left: 667px;
+  top: 55px;
+}
+
+#portneuf_jacques_cartier {
+  left: 685px;
+  top: 55px;
+}
+
+#jonquiere_alma {
+  left: 703px;
+  top: 55px;
+}
+
+#louis_saint_laurent {
+  left: 721px;
+  top: 55px;
+}
+
+#montmorency_charlevoix_haute_cote_nord {
+  left: 739px;
+  top: 55px;
+}
+
+#manicouagan {
+  left: 757px;
+  top: 55px;
+}
+
+#random_burin_st_georges {
+  left: 793px;
+  top: 55px;
+}
+
+#bonavista_gander_grand_falls_windsor {
+  left: 811px;
+  top: 55px;
+}
+
+#st_johns_east {
+  left: 829px;
+  top: 55px;
+}
+
+#prince_george_peace_river {
+  left: 163px;
+  top: 55px;
+}
+
+#peace_river {
+  left: 181px;
+  top: 55px;
+}
+
+#edmonton_centre {
+  left: 199px;
+  top: 55px;
+}
+
+#edmonton_leduc {
+  left: 217px;
+  top: 55px;
+}
+
+#edmonton_mill_woods_beaumont {
+  left: 235px;
+  top: 55px;
+}
+
+#edmonton_sherwood_park {
+  left: 253px;
+  top: 55px;
+}
+
+#churchill {
+  left: 379px;
+  top: 55px;
+}
+
+#chilliwack_fraser_canyon {
+  left: 145px;
+  top: 73px;
+}
+
+#edmonton_spruce_grove {
+  left: 199px;
+  top: 73px;
+}
+
+#red_deer {
+  left: 217px;
+  top: 73px;
+}
+
+#wetaskiwin {
+  left: 235px;
+  top: 73px;
+}
+
+#westlock_st_paul {
+  left: 253px;
+  top: 73px;
+}
+
+#saskatoon_wanuskewin {
+  left: 289px;
+  top: 73px;
+}
+
+#dauphin_swan_river_marquette {
+  left: 343px;
+  top: 73px;
+}
+
+#kildonan_st_paul {
+  left: 379px;
+  top: 73px;
+}
+
+#joliette {
+  left: 649px;
+  top: 73px;
+}
+
+#berthier_maskinonge {
+  left: 667px;
+  top: 73px;
+}
+
+#trois_rivieres {
+  left: 685px;
+  top: 73px;
+}
+
+#louis_hebert {
+  left: 703px;
+  top: 73px;
+}
+
+#charlesbourg_haute_saint_charles {
+  left: 721px;
+  top: 73px;
+}
+
+#beauport_limoilou {
+  left: 739px;
+  top: 73px;
+}
+
+#vancouver_east {
+  left: 91px;
+  top: 73px;
+}
+
+#burnaby_douglas {
+  left: 109px;
+  top: 73px;
+}
+
+#port_moody_westwood_port_coquitlam {
+  left: 127px;
+  top: 73px;
+}
+
+#kamloops_thompson_cariboo {
+  left: 163px;
+  top: 73px;
+}
+
+#yellowhead {
+  left: 181px;
+  top: 73px;
+}
+
+#saskatoon_humboldt {
+  left: 307px;
+  top: 73px;
+}
+
+#winnipeg_north {
+  left: 361px;
+  top: 73px;
+}
+
+#avalon {
+  left: 811px;
+  top: 73px;
+}
+
+#st_johns_south_mount_pearl {
+  left: 829px;
+  top: 73px;
+}
+
+#vancouver_centre {
+  left: 73px;
+  top: 91px;
+}
+
+#new_westminster_coquitlam {
+  left: 127px;
+  top: 91px;
+}
+
+#pitt_meadows_maple_ridge_mission {
+  left: 145px;
+  top: 91px;
+}
+
+#saskatoon_rosetown_biggar {
+  left: 289px;
+  top: 91px;
+}
+
+#blackstrap {
+  left: 307px;
+  top: 91px;
+}
+
+#prince_albert {
+  left: 325px;
+  top: 91px;
+}
+
+#charleswood_st_james_assiniboia {
+  left: 343px;
+  top: 91px;
+}
+
+#abitibi_baie_james_nunavik_eeyou {
+  left: 505px;
+  top: 91px;
+}
+
+#repentigny {
+  left: 703px;
+  top: 91px;
+}
+
+#rimouski_neigette_temiscouata_les_basques {
+  left: 739px;
+  top: 91px;
+}
+
+#haute_gaspesie_la_mitis_matane_matapedia {
+  left: 757px;
+  top: 91px;
+}
+
+#gaspesie_iles_de_la_madeleine {
+  left: 775px;
+  top: 91px;
+}
+
+#vancouver_kingsway {
+  left: 91px;
+  top: 91px;
+}
+
+#burnaby_new_westminster {
+  left: 109px;
+  top: 91px;
+}
+
+#okanagan_shuswap {
+  left: 163px;
+  top: 91px;
+}
+
+#wild_rose {
+  left: 181px;
+  top: 91px;
+}
+
+#calgary_nose_hill {
+  left: 199px;
+  top: 91px;
+}
+
+#calgary_centre_north {
+  left: 217px;
+  top: 91px;
+}
+
+#calgary_northeast {
+  left: 235px;
+  top: 91px;
+}
+
+#vegreville_wainwright {
+  left: 253px;
+  top: 91px;
+}
+
+#winnipeg_centre {
+  left: 361px;
+  top: 91px;
+}
+
+#elmwood_transcona {
+  left: 379px;
+  top: 91px;
+}
+
+#riviere_du_nord {
+  left: 649px;
+  top: 91px;
+}
+
+#terrebonne_blainville {
+  left: 667px;
+  top: 91px;
+}
+
+#alfred_pellan {
+  left: 685px;
+  top: 91px;
+}
+
+#quebec {
+  left: 721px;
+  top: 91px;
+}
+
+#vancouver_island_north {
+  left: 19px;
+  top: 109px
+}
+
+#vancouver_quadra {
+  left: 55px;
+  top: 109px
+}
+
+#newton_north_delta {
+  left: 91px;
+  top: 109px
+}
+
+#fleetwood_port_kells {
+  left: 127px;
+  top: 109px
+}
+
+#kelowna_lake_country {
+  left: 163px;
+  top: 109px
+}
+
+#battlefords_lloydminster {
+  left: 271px;
+  top: 109px
+}
+
+#winnipeg_south_centre {
+  left: 361px;
+  top: 109px
+}
+
+#saint_boniface {
+  left: 379px;
+  top: 109px
+}
+
+#kenora {
+  left: 397px;
+  top: 109px
+}
+
+#abitibi_temiscaming {
+  left: 505px;
+  top: 109px
+}
+
+#gatineau {
+  left: 523px;
+  top: 109px
+}
+
+#pontiac {
+  left: 541px;
+  top: 109px
+}
+
+#laurentides_labelle {
+  left: 559px;
+  top: 109px
+}
+
+#riviere_des_mille_iles {
+  left: 577px;
+  top: 109px
+}
+
+#marc_aurele_fortin {
+  left: 595px;
+  top: 109px
+}
+
+#laval {
+  left: 613px;
+  top: 109px
+}
+
+#ahuntsic {
+  left: 631px;
+  top: 109px
+}
+
+#bourassa {
+  left: 649px;
+  top: 109px
+}
+
+#honore_mercier {
+  left: 667px;
+  top: 109px
+}
+
+#montcalm {
+  left: 685px;
+  top: 109px
+}
+
+#levis_bellechasse {
+  left: 721px;
+  top: 109px
+}
+
+#miramichi {
+  left: 775px;
+  top: 109px
+}
+
+#acadie_bathurst {
+  left: 793px;
+  top: 109px
+}
+
+#beausejour {
+  left: 811px;
+  top: 109px
+}
+
+#egmont {
+  left: 847px;
+  top: 109px
+}
+
+#vancouver_south {
+  left: 73px;
+  top: 109px
+}
+
+#surrey_north {
+  left: 109px;
+  top: 109px
+}
+
+#okanagan_coquihalla {
+  left: 145px;
+  top: 109px
+}
+
+#macleod {
+  left: 181px;
+  top: 109px
+}
+
+#calgary_west {
+  left: 199px;
+  top: 109px
+}
+
+#calgary_centre {
+  left: 217px;
+  top: 109px
+}
+
+#calgary_east {
+  left: 235px;
+  top: 109px
+}
+
+#crowfoot {
+  left: 253px;
+  top: 109px
+}
+
+#regina_lumsden_lake_centre {
+  left: 289px;
+  top: 109px
+}
+
+#regina_quappelle {
+  left: 307px;
+  top: 109px
+}
+
+#yorkton_melville {
+  left: 325px;
+  top: 109px
+}
+
+#portage_lisgar {
+  left: 343px;
+  top: 109px
+}
+
+#vercheres_les_patriotes {
+  left: 703px;
+  top: 109px
+}
+
+#montmagny_lislet_kamouraska_riviere_du_loup {
+  left: 739px;
+  top: 109px
+}
+
+#madawaska_restigouche {
+  left: 757px;
+  top: 109px
+}
+
+#richmond {
+  left: 73px;
+  top: 127px;
+}
+
+#delta_richmond_east {
+  left: 91px;
+  top: 127px;
+}
+
+#abbotsford {
+  left: 145px;
+  top: 127px;
+}
+
+#british_columbia_southern_interior {
+  left: 163px;
+  top: 127px;
+}
+
+#calgary_southwest {
+  left: 199px;
+  top: 127px;
+}
+
+#brandon_souris {
+  left: 343px;
+  top: 127px;
+}
+
+#algoma_manitoulin_kapuskasing {
+  left: 415px;
+  top: 127px;
+}
+
+#timmins_james_bay {
+  left: 433px;
+  top: 127px;
+}
+
+#hull_aylmer {
+  left: 505px;
+  top: 127px;
+}
+
+#ottawa_centre {
+  left: 523px;
+  top: 127px;
+}
+
+#hochelaga {
+  left: 667px;
+  top: 127px;
+}
+
+#bas_richelieu_nicolet_becancour {
+  left: 703px;
+  top: 127px;
+}
+
+#lotbiniere_chutes_de_la_chaudiere {
+  left: 721px;
+  top: 127px;
+}
+
+#beauce {
+  left: 739px;
+  top: 127px;
+}
+
+#charlottetown {
+  left: 865px;
+  top: 127px;
+}
+
+#cardigan {
+  left: 883px;
+  top: 127px;
+}
+
+#nanaimo_alberni {
+  left: 19px;
+  top: 127px;
+}
+
+#south_surrey_white_rock_cloverdale {
+  left: 109px;
+  top: 127px;
+}
+
+#langley {
+  left: 127px;
+  top: 127px;
+}
+
+#kootenay_columbia {
+  left: 181px;
+  top: 127px;
+}
+
+#calgary_southeast {
+  left: 217px;
+  top: 127px;
+}
+
+#lethbridge {
+  left: 235px;
+  top: 127px;
+}
+
+#medicine_hat {
+  left: 253px;
+  top: 127px;
+}
+
+#cypress_hills_grasslands {
+  left: 271px;
+  top: 127px;
+}
+
+#palliser {
+  left: 289px;
+  top: 127px;
+}
+
+#wascana {
+  left: 307px;
+  top: 127px;
+}
+
+#souris_moose_mountain {
+  left: 325px;
+  top: 127px;
+}
+
+#winnipeg_south {
+  left: 361px;
+  top: 127px;
+}
+
+#provencher {
+  left: 379px;
+  top: 127px;
+}
+
+#thunder_bay_superior_north {
+  left: 397px;
+  top: 127px;
+}
+
+#ottawa_vanier {
+  left: 541px;
+  top: 127px;
+}
+
+#argenteuil_papineau_mirabel {
+  left: 559px;
+  top: 127px;
+}
+
+#laval_les_iles {
+  left: 577px;
+  top: 127px;
+}
+
+#saint_laurent_cartierville {
+  left: 595px;
+  top: 127px;
+}
+
+#mount_royal {
+  left: 613px;
+  top: 127px;
+}
+
+#papineau {
+  left: 631px;
+  top: 127px;
+}
+
+#saint_leonard_saint_michel {
+  left: 649px;
+  top: 127px;
+}
+
+#la_pointe_de_lile {
+  left: 685px;
+  top: 127px;
+}
+
+#tobique_mactaquac {
+  left: 775px;
+  top: 127px;
+}
+
+#fredericton {
+  left: 793px;
+  top: 127px;
+}
+
+#moncton_riverview_dieppe {
+  left: 811px;
+  top: 127px;
+}
+
+#malpeque {
+  left: 847px;
+  top: 127px;
+}
+
+#saanich_gulf_islands {
+  left: 37px;
+  top: 145px;
+}
+
+#thunder_bay_rainy_river {
+  left: 397px;
+  top: 145px;
+}
+
+#sault_ste_marie {
+  left: 415px;
+  top: 145px;
+}
+
+#vaudreuil_soulanges {
+  left: 559px;
+  top: 145px;
+}
+
+#lasalle_emard {
+  left: 613px;
+  top: 145px;
+}
+
+#outremont {
+  left: 649px;
+  top: 145px;
+}
+
+#saint_hyacinthe_bagot {
+  left: 685px;
+  top: 145px;
+}
+
+#drummond {
+  left: 703px;
+  top: 145px;
+}
+
+#new_brunswick_southwest {
+  left: 775px;
+  top: 145px;
+}
+
+#fundy_royal {
+  left: 811px;
+  top: 145px;
+}
+
+#nanaimo_cowichan {
+  left: 19px;
+  top: 145px;
+}
+
+#sudbury {
+  left: 433px;
+  top: 145px;
+}
+
+#ottawa_west_nepean {
+  left: 505px;
+  top: 145px;
+}
+
+#ottawa_south {
+  left: 523px;
+  top: 145px;
+}
+
+#ottawa_orleans {
+  left: 541px;
+  top: 145px;
+}
+
+#pierrefonds_dollard {
+  left: 577px;
+  top: 145px;
+}
+
+#notre_dame_de_grace_lachine {
+  left: 595px;
+  top: 145px;
+}
+
+#westmount_ville_marie {
+  left: 631px;
+  top: 145px;
+}
+
+#rosemont_la_petite_patrie {
+  left: 667px;
+  top: 145px;
+}
+
+#richmond_arthabaska {
+  left: 721px;
+  top: 145px;
+}
+
+#megantic_lerable {
+  left: 739px;
+  top: 145px;
+}
+
+#saint_john {
+  left: 793px;
+  top: 145px;
+}
+
+#esquimalt_juan_de_fuca {
+  left: 19px;
+  top: 163px;
+}
+
+#carleton_mississippi_mills {
+  left: 505px;
+  top: 163px;
+}
+
+#glengarry_prescott_russell {
+  left: 559px;
+  top: 163px;
+}
+
+#brossard_la_prairie {
+  left: 613px;
+  top: 163px;
+}
+
+#jeanne_le_ber {
+  left: 631px;
+  top: 163px;
+}
+
+#longueuil_pierre_boucher {
+  left: 667px;
+  top: 163px;
+}
+
+#sherbrooke {
+  left: 721px;
+  top: 163px;
+}
+
+#cumberland_colchester_mosquodoboit_valley {
+  left: 811px;
+  top: 163px;
+}
+
+#central_nova {
+  left: 829px;
+  top: 163px;
+}
+
+#cape_breton_canso {
+  left: 847px;
+  top: 163px;
+}
+
+#sydney_victoria {
+  left: 865px;
+  top: 163px;
+}
+
+#victoria {
+  left: 37px;
+  top: 163px;
+}
+
+#nickel_belt {
+  left: 433px;
+  top: 163px;
+}
+
+#nepean_carleton {
+  left: 523px;
+  top: 163px;
+}
+
+#lanark_frontenac_lennox_and_addington {
+  left: 541px;
+  top: 163px;
+}
+
+#lac_saint_louis {
+  left: 577px;
+  top: 163px;
+}
+
+#chateauguay_saint_constant {
+  left: 595px;
+  top: 163px;
+}
+
+#laurier_sainte_marie {
+  left: 649px;
+  top: 163px;
+}
+
+#chambly_borduas {
+  left: 685px;
+  top: 163px;
+}
+
+#shefford {
+  left: 703px;
+  top: 163px;
+}
+
+#simcoe_grey {
+  left: 379px;
+  top: 181px;
+}
+
+#york_simcoe {
+  left: 397px;
+  top: 181px;
+}
+
+#simcoe_north {
+  left: 415px;
+  top: 181px;
+}
+
+#nipissing_timiskaming {
+  left: 451px;
+  top: 181px;
+}
+
+#stormont_dundas_south_glengarry {
+  left: 577px;
+  top: 181px;
+}
+
+#saint_jean {
+  left: 613px;
+  top: 181px;
+}
+
+#saint_lambert {
+  left: 631px;
+  top: 181px;
+}
+
+#saint_bruno_saint_hubert {
+  left: 649px;
+  top: 181px;
+}
+
+#brome_missisquoi {
+  left: 667px;
+  top: 181px;
+}
+
+#west_nova {
+  left: 775px;
+  top: 181px;
+}
+
+#kings_hants {
+  left: 793px;
+  top: 181px;
+}
+
+#parry_sound_muskoka {
+  left: 433px;
+  top: 181px;
+}
+
+#renfrew_nipissing_pembroke {
+  left: 505px;
+  top: 181px;
+}
+
+#northumberland_quinte_west {
+  left: 523px;
+  top: 181px;
+}
+
+#peterborough {
+  left: 541px;
+  top: 181px;
+}
+
+#leeds_grenville {
+  left: 559px;
+  top: 181px;
+}
+
+#beauharnois_salaberry {
+  left: 595px;
+  top: 181px;
+}
+
+#compton_stanstead {
+  left: 685px;
+  top: 181px;
+}
+
+#halifax_west {
+  left: 811px;
+  top: 181px;
+}
+
+#dartmouth_cole_harbour {
+  left: 829px;
+  top: 181px;
+}
+
+#sackville_eastern_shore {
+  left: 847px;
+  top: 181px;
+}
+
+#bruce_grey_owen_sound {
+  left: 361px;
+  top: 199px;
+}
+
+#newmarket_aurora {
+  left: 397px;
+  top: 199px;
+}
+
+#richmond_hill {
+  left: 415px;
+  top: 199px;
+}
+
+#oak_ridges_markham {
+  left: 433px;
+  top: 199px;
+}
+
+#oshawa {
+  left: 523px;
+  top: 199px;
+}
+
+#prince_edward_hastings {
+  left: 541px;
+  top: 199px;
+}
+
+#kingston_and_the_islands {
+  left: 559px;
+  top: 199px;
+}
+
+#south_shore_st_margarets {
+  left: 775px;
+  top: 199px;
+}
+
+#halifax {
+  left: 829px;
+  top: 199px;
+}
+
+#barrie {
+  left: 379px;
+  top: 199px;
+}
+
+#markham_unionville {
+  left: 451px;
+  top: 199px;
+}
+
+#haliburton_kawartha_lakes_brock {
+  left: 505px;
+  top: 199px;
+}
+
+#dufferin_caledon {
+  left: 343px;
+  top: 217px;
+}
+
+#thornhill {
+  left: 379px;
+  top: 217px;
+}
+
+#york_west {
+  left: 397px;
+  top: 217px;
+}
+
+#willowdale {
+  left: 451px;
+  top: 217px;
+}
+
+#scarborough_agincourt {
+  left: 469px;
+  top: 217px;
+}
+
+#scarborough_rouge_river {
+  left: 487px;
+  top: 217px;
+}
+
+#vaughan {
+  left: 361px;
+  top: 217px;
+}
+
+#york_centre {
+  left: 415px;
+  top: 217px;
+}
+
+#eglinton_lawrence {
+  left: 433px;
+  top: 217px;
+}
+
+#durham {
+  left: 505px;
+  top: 217px;
+}
+
+#whitby_oshawa {
+  left: 523px;
+  top: 217px;
+}
+
+#huron_bruce {
+  left: 325px;
+  top: 235px;
+}
+
+#bramalea_gore_malton {
+  left: 361px;
+  top: 235px;
+}
+
+#etobicoke_north {
+  left: 379px;
+  top: 235px;
+}
+
+#york_south_weston {
+  left: 397px;
+  top: 235px;
+}
+
+#davenport {
+  left: 415px;
+  top: 235px;
+}
+
+#st_pauls {
+  left: 433px;
+  top: 235px;
+}
+
+#don_valley_west {
+  left: 451px;
+  top: 235px;
+}
+
+#scarborough_centre {
+  left: 487px;
+  top: 235px;
+}
+
+#pickering_scarborough_east {
+  left: 505px;
+  top: 235px;
+}
+
+#ajax_pickering {
+  left: 523px;
+  top: 235px;
+}
+
+#brampton_springdale {
+  left: 343px;
+  top: 235px;
+}
+
+#don_valley_east {
+  left: 469px;
+  top: 235px;
+}
+
+#parkdale_high_park {
+  left: 397px;
+  top: 253px;
+}
+
+#toronto_centre {
+  left: 433px;
+  top: 253px;
+}
+
+#toronto_danforth {
+  left: 451px;
+  top: 253px;
+}
+
+#beaches_east_york {
+  left: 469px;
+  top: 253px;
+}
+
+#scarborough_southwest {
+  left: 487px;
+  top: 253px;
+}
+
+#perth_wellington {
+  left: 325px;
+  top: 253px;
+}
+
+#brampton_west {
+  left: 343px;
+  top: 253px;
+}
+
+#mississauga_east_cooksville {
+  left: 361px;
+  top: 253px;
+}
+
+#etobicoke_centre {
+  left: 379px;
+  top: 253px;
+}
+
+#trinity_spadina {
+  left: 415px;
+  top: 253px;
+}
+
+#scarborough_guildwood {
+  left: 505px;
+  top: 253px;
+}
+
+#wellington_halton_hills {
+  left: 325px;
+  top: 271px;
+}
+
+#mississauga_erindale {
+  left: 361px;
+  top: 271px;
+}
+
+#mississauga_south {
+  left: 379px;
+  top: 271px;
+}
+
+#mississauga_brampton_south {
+  left: 343px;
+  top: 271px;
+}
+
+#etobicoke_lakeshore {
+  left: 397px;
+  top: 271px;
+}
+
+#kitchener_waterloo {
+  left: 325px;
+  top: 289px;
+}
+
+#mississauga_streetsville {
+  left: 343px;
+  top: 289px;
+}
+
+#halton {
+  left: 361px;
+  top: 289px;
+}
+
+#oakville {
+  left: 379px;
+  top: 289px;
+}
+
+#lambton_kent_middlesex {
+  left: 289px;
+  top: 307px;
+}
+
+#kitchener_conestoga {
+  left: 307px;
+  top: 307px;
+}
+
+#kitchenr_centre {
+  left: 325px;
+  top: 307px;
+}
+
+#guelph {
+  left: 343px;
+  top: 307px;
+}
+
+#cambridge {
+  left: 361px;
+  top: 307px;
+}
+
+#burlington {
+  left: 379px;
+  top: 307px;
+}
+
+#windsor_tecumseh {
+  left: 271px;
+  top: 325px;
+}
+
+#sarnia_lambton {
+  left: 289px;
+  top: 325px;
+}
+
+#hamilton_mountain {
+  left: 397px;
+  top: 325px;
+}
+
+#hamilton_east_stoney_creek {
+  left: 415px;
+  top: 325px;
+}
+
+#st_catharines {
+  left: 433px;
+  top: 325px;
+}
+
+#london_west {
+  left: 307px;
+  top: 325px;
+}
+
+#london_north_centre {
+  left: 325px;
+  top: 325px;
+}
+
+#london_fanshawe {
+  left: 343px;
+  top: 325px;
+}
+
+#ancaster_dundas_flamborough_westdale {
+  left: 361px;
+  top: 325px;
+}
+
+#hamilton_centre {
+  left: 379px;
+  top: 325px;
+}
+
+#oxford {
+  left: 343px;
+  top: 343px;
+}
+
+#windsor_west {
+  left: 271px;
+  top: 343px;
+}
+
+#essex {
+  left: 289px;
+  top: 343px;
+}
+
+#chatham_kent_essex {
+  left: 307px;
+  top: 343px;
+}
+
+#elgin_middlesex_london {
+  left: 325px;
+  top: 343px;
+}
+
+#haldimand_norfolk {
+  left: 361px;
+  top: 343px;
+}
+
+#brant {
+  left: 379px;
+  top: 343px;
+}
+
+#niagara_west_glanbrook {
+  left: 397px;
+  top: 343px;
+}
+
+#welland {
+  left: 415px;
+  top: 343px;
+}
+
+#niagara_falls {
+  left: 433px;
+  top: 343px;
+}
+
+#kitchener_centre {
+  left: 325px;
+  top: 307px;
+}
+
+
+.tipsy {
+  font-size: 12px;
+  position: absolute;
+  padding: 5px;
+  z-index: 100000;
+}
+  .tipsy-inner { background-color: #000; color: #FFF; padding: 5px 8px 4px 8px; text-align: center; }
+
+  /* Rounded corners */
+  .tipsy-inner { border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+
+  /* Uncomment for shadow */
+  .tipsy-inner { box-shadow: 0 0 3px rgba(0,0,0,.25); -webkit-box-shadow: 0 0 3px rgba(0,0,0,.25); -moz-box-shadow: 0 0 5px rgba(0,0,0,.25); }
+
+  .tipsy-arrow { position: absolute; width: 0; height: 0; border: 5px solid transparent; }
+
+  /* Rules to colour arrows */
+  .tipsy-arrow-n { border-bottom-color: #000; }
+  .tipsy-arrow-s { border-top-color: #000; }
+  .tipsy-arrow-e { border-left-color: #000; }
+  .tipsy-arrow-w { border-right-color: #000; }
+
+  .tipsy-n .tipsy-arrow, .tipsy-nw .tipsy-arrow, .tipsy-ne .tipsy-arrow { top: 0; border-top: none; }
+  .tipsy-s .tipsy-arrow, .tipsy-sw .tipsy-arrow, .tipsy-se .tipsy-arrow { bottom: 0; border-bottom: none; }
+  .tipsy-n .tipsy-arrow, .tipsy-s .tipsy-arrow { left: 50%; margin-left: -5px; }
+  .tipsy-nw .tipsy-arrow, .tipsy-sw .tipsy-arrow { left: 10px; }
+  .tipsy-ne .tipsy-arrow, .tipsy-se .tipsy-arrow { right: 10px; }
+  .tipsy-e .tipsy-arrow, .tipsy-w .tipsy-arrow { top: 50%; margin-top: -5px; }
+  .tipsy-e .tipsy-arrow { right: 0; border-right: none; }
+  .tipsy-w .tipsy-arrow { left: 0; border-left: none; }

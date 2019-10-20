@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>2011 Canadian election results map - The Electoral Cartogram of Canada</title>
+  <link rel="stylesheet" href="default.css" type="text/css" media="all" charset="utf-8" />
+  <script type="text/javascript" src="https://use.typekit.com/grj2snh.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+<body>
+<div id="container">
+  <div id="header">
+    <h1>The Electoral Cartogram of Canada</h1>
+    <h2>Election results from the 41<sup>st</sup> federal election in 2011</h2>
+    <h3>Read more about this: <a href="https://attaboy.ca/archives/2011/04/001067.php" target="attaboy">first here</a> and <a href="https://attaboy.ca/archives/2011/05/001068.php" target="attaboy">then here</a></h3>
+  </div>
+  <div class="selectors">
+    <label class="yearButtonLabel first" for="y2010"><input class="yearButton" type="radio" name="year" value="2010" id="y2010" checked="checked" />Before</label><label class="yearButtonLabel" for="y2011"><input class="yearButton" type="radio" name="year" value="2011" id="y2011" />After</label><label class="yearButtonLabel last" for="animate"><input class="yearButton" type="radio" name="year" value="animate" id="animate" />Animate</label>
+  </div>
+  <div id="mapContainer">
+    <img id="map" src="canada-map-by-riding-blank.png" alt="Map of Canada by riding" width="918" height="377" />
+    <div class="ridings">
+      <div class="riding" id="yukon"></div>
+      <div class="riding" id="western_arctic"></div>
+      <div class="riding" id="edmonton_st_albert"></div>
+      <div class="riding" id="edmonton_east"></div>
+      <div class="riding" id="edmonton_strathcona"></div>
+      <div class="riding" id="fort_mcmurray_athabaska"></div>
+      <div class="riding" id="nunavut"></div>
+      <div class="riding" id="roberval_lac_st_jean"></div>
+      <div class="riding" id="chicoutimi_le_fjord"></div>
+      <div class="riding" id="labrador"></div>
+      <div class="riding" id="humber_st_barbe_baie_verte"></div>
+      <div class="riding" id="north_vancouver"></div>
+      <div class="riding" id="west_vancouver_sunshine_coast_sea_to_sky_country"></div>
+      <div class="riding" id="skeena_bulkley_valley"></div>
+      <div class="riding" id="cariboo_prince_george"></div>
+      <div class="riding" id="desnethe_missinippi_churchill_river"></div>
+      <div class="riding" id="selkirk_interlake"></div>
+      <div class="riding" id="saint_maurice_champlain"></div>
+      <div class="riding" id="portneuf_jacques_cartier"></div>
+      <div class="riding" id="jonquiere_alma"></div>
+      <div class="riding" id="louis_saint_laurent"></div>
+      <div class="riding" id="montmorency_charlevoix_haute_cote_nord"></div>
+      <div class="riding" id="manicouagan"></div>
+      <div class="riding" id="random_burin_st_georges"></div>
+      <div class="riding" id="bonavista_gander_grand_falls_windsor"></div>
+      <div class="riding" id="st_johns_east"></div>
+      <div class="riding" id="prince_george_peace_river"></div>
+      <div class="riding" id="peace_river"></div>
+      <div class="riding" id="edmonton_centre"></div>
+      <div class="riding" id="edmonton_leduc"></div>
+      <div class="riding" id="edmonton_mill_woods_beaumont"></div>
+      <div class="riding" id="edmonton_sherwood_park"></div>
+      <div class="riding" id="churchill"></div>
+      <div class="riding" id="chilliwack_fraser_canyon"></div>
+      <div class="riding" id="edmonton_spruce_grove"></div>
+      <div class="riding" id="red_deer"></div>
+      <div class="riding" id="wetaskiwin"></div>
+      <div class="riding" id="westlock_st_paul"></div>
+      <div class="riding" id="saskatoon_wanuskewin"></div>
+      <div class="riding" id="dauphin_swan_river_marquette"></div>
+      <div class="riding" id="kildonan_st_paul"></div>
+      <div class="riding" id="joliette"></div>
+      <div class="riding" id="berthier_maskinonge"></div>
+      <div class="riding" id="trois_rivieres"></div>
+      <div class="riding" id="louis_hebert"></div>
+      <div class="riding" id="charlesbourg_haute_saint_charles"></div>
+      <div class="riding" id="beauport_limoilou"></div>
+      <div class="riding" id="vancouver_east"></div>
+      <div class="riding" id="burnaby_douglas"></div>
+      <div class="riding" id="port_moody_westwood_port_coquitlam"></div>
+      <div class="riding" id="kamloops_thompson_cariboo"></div>
+      <div class="riding" id="yellowhead"></div>
+      <div class="riding" id="saskatoon_humboldt"></div>
+      <div class="riding" id="winnipeg_north"></div>
+      <div class="riding" id="avalon"></div>
+      <div class="riding" id="st_johns_south_mount_pearl"></div>
+      <div class="riding" id="vancouver_centre"></div>
+      <div class="riding" id="new_westminster_coquitlam"></div>
+      <div class="riding" id="pitt_meadows_maple_ridge_mission"></div>
+      <div class="riding" id="saskatoon_rosetown_biggar"></div>
+      <div class="riding" id="blackstrap"></div>
+      <div class="riding" id="prince_albert"></div>
+      <div class="riding" id="charleswood_st_james_assiniboia"></div>
+      <div class="riding" id="abitibi_baie_james_nunavik_eeyou"></div>
+      <div class="riding" id="repentigny"></div>
+      <div class="riding" id="rimouski_neigette_temiscouata_les_basques"></div>
+      <div class="riding" id="haute_gaspesie_la_mitis_matane_matapedia"></div>
+      <div class="riding" id="gaspesie_iles_de_la_madeleine"></div>
+      <div class="riding" id="vancouver_kingsway"></div>
+      <div class="riding" id="burnaby_new_westminster"></div>
+      <div class="riding" id="okanagan_shuswap"></div>
+      <div class="riding" id="wild_rose"></div>
+      <div class="riding" id="calgary_nose_hill"></div>
+      <div class="riding" id="calgary_centre_north"></div>
+      <div class="riding" id="calgary_northeast"></div>
+      <div class="riding" id="vegreville_wainwright"></div>
+      <div class="riding" id="winnipeg_centre"></div>
+      <div class="riding" id="elmwood_transcona"></div>
+      <div class="riding" id="riviere_du_nord"></div>
+      <div class="riding" id="terrebonne_blainville"></div>
+      <div class="riding" id="alfred_pellan"></div>
+      <div class="riding" id="quebec"></div>
+      <div class="riding" id="vancouver_island_north"></div>
+      <div class="riding" id="vancouver_quadra"></div>
+      <div class="riding" id="newton_north_delta"></div>
+      <div class="riding" id="fleetwood_port_kells"></div>
+      <div class="riding" id="kelowna_lake_country"></div>
+      <div class="riding" id="battlefords_lloydminster"></div>
+      <div class="riding" id="winnipeg_south_centre"></div>
+      <div class="riding" id="saint_boniface"></div>
+      <div class="riding" id="kenora"></div>
+      <div class="riding" id="abitibi_temiscaming"></div>
+      <div class="riding" id="gatineau"></div>
+      <div class="riding" id="pontiac"></div>
+      <div class="riding" id="laurentides_labelle"></div>
+      <div class="riding" id="riviere_des_mille_iles"></div>
+      <div class="riding" id="marc_aurele_fortin"></div>
+      <div class="riding" id="laval"></div>
+      <div class="riding" id="ahuntsic"></div>
+      <div class="riding" id="bourassa"></div>
+      <div class="riding" id="honore_mercier"></div>
+      <div class="riding" id="montcalm"></div>
+      <div class="riding" id="levis_bellechasse"></div>
+      <div class="riding" id="miramichi"></div>
+      <div class="riding" id="acadie_bathurst"></div>
+      <div class="riding" id="beausejour"></div>
+      <div class="riding" id="egmont"></div>
+      <div class="riding" id="vancouver_south"></div>
+      <div class="riding" id="surrey_north"></div>
+      <div class="riding" id="okanagan_coquihalla"></div>
+      <div class="riding" id="macleod"></div>
+      <div class="riding" id="calgary_west"></div>
+      <div class="riding" id="calgary_centre"></div>
+      <div class="riding" id="calgary_east"></div>
+      <div class="riding" id="crowfoot"></div>
+      <div class="riding" id="regina_lumsden_lake_centre"></div>
+      <div class="riding" id="regina_quappelle"></div>
+      <div class="riding" id="yorkton_melville"></div>
+      <div class="riding" id="portage_lisgar"></div>
+      <div class="riding" id="vercheres_les_patriotes"></div>
+      <div class="riding" id="montmagny_lislet_kamouraska_riviere_du_loup"></div>
+      <div class="riding" id="madawaska_restigouche"></div>
+      <div class="riding" id="richmond"></div>
+      <div class="riding" id="delta_richmond_east"></div>
+      <div class="riding" id="abbotsford"></div>
+      <div class="riding" id="british_columbia_southern_interior"></div>
+      <div class="riding" id="calgary_southwest"></div>
+      <div class="riding" id="brandon_souris"></div>
+      <div class="riding" id="algoma_manitoulin_kapuskasing"></div>
+      <div class="riding" id="timmins_james_bay"></div>
+      <div class="riding" id="hull_aylmer"></div>
+      <div class="riding" id="ottawa_centre"></div>
+      <div class="riding" id="hochelaga"></div>
+      <div class="riding" id="bas_richelieu_nicolet_becancour"></div>
+      <div class="riding" id="lotbiniere_chutes_de_la_chaudiere"></div>
+      <div class="riding" id="beauce"></div>
+      <div class="riding" id="charlottetown"></div>
+      <div class="riding" id="cardigan"></div>
+      <div class="riding" id="nanaimo_alberni"></div>
+      <div class="riding" id="south_surrey_white_rock_cloverdale"></div>
+      <div class="riding" id="langley"></div>
+      <div class="riding" id="kootenay_columbia"></div>
+      <div class="riding" id="calgary_southeast"></div>
+      <div class="riding" id="lethbridge"></div>
+      <div class="riding" id="medicine_hat"></div>
+      <div class="riding" id="cypress_hills_grasslands"></div>
+      <div class="riding" id="palliser"></div>
+      <div class="riding" id="wascana"></div>
+      <div class="riding" id="souris_moose_mountain"></div>
+      <div class="riding" id="winnipeg_south"></div>
+      <div class="riding" id="provencher"></div>
+      <div class="riding" id="thunder_bay_superior_north"></div>
+      <div class="riding" id="ottawa_vanier"></div>
+      <div class="riding" id="argenteuil_papineau_mirabel"></div>
+      <div class="riding" id="laval_les_iles"></div>
+      <div class="riding" id="saint_laurent_cartierville"></div>
+      <div class="riding" id="mount_royal"></div>
+      <div class="riding" id="papineau"></div>
+      <div class="riding" id="saint_leonard_saint_michel"></div>
+      <div class="riding" id="la_pointe_de_lile"></div>
+      <div class="riding" id="tobique_mactaquac"></div>
+      <div class="riding" id="fredericton"></div>
+      <div class="riding" id="moncton_riverview_dieppe"></div>
+      <div class="riding" id="malpeque"></div>
+      <div class="riding" id="saanich_gulf_islands"></div>
+      <div class="riding" id="thunder_bay_rainy_river"></div>
+      <div class="riding" id="sault_ste_marie"></div>
+      <div class="riding" id="vaudreuil_soulanges"></div>
+      <div class="riding" id="lasalle_emard"></div>
+      <div class="riding" id="outremont"></div>
+      <div class="riding" id="saint_hyacinthe_bagot"></div>
+      <div class="riding" id="drummond"></div>
+      <div class="riding" id="new_brunswick_southwest"></div>
+      <div class="riding" id="fundy_royal"></div>
+      <div class="riding" id="nanaimo_cowichan"></div>
+      <div class="riding" id="sudbury"></div>
+      <div class="riding" id="ottawa_west_nepean"></div>
+      <div class="riding" id="ottawa_south"></div>
+      <div class="riding" id="ottawa_orleans"></div>
+      <div class="riding" id="pierrefonds_dollard"></div>
+      <div class="riding" id="notre_dame_de_grace_lachine"></div>
+      <div class="riding" id="westmount_ville_marie"></div>
+      <div class="riding" id="rosemont_la_petite_patrie"></div>
+      <div class="riding" id="richmond_arthabaska"></div>
+      <div class="riding" id="megantic_lerable"></div>
+      <div class="riding" id="saint_john"></div>
+      <div class="riding" id="esquimalt_juan_de_fuca"></div>
+      <div class="riding" id="carleton_mississippi_mills"></div>
+      <div class="riding" id="glengarry_prescott_russell"></div>
+      <div class="riding" id="brossard_la_prairie"></div>
+      <div class="riding" id="jeanne_le_ber"></div>
+      <div class="riding" id="longueuil_pierre_boucher"></div>
+      <div class="riding" id="sherbrooke"></div>
+      <div class="riding" id="cumberland_colchester_mosquodoboit_valley"></div>
+      <div class="riding" id="central_nova"></div>
+      <div class="riding" id="cape_breton_canso"></div>
+      <div class="riding" id="sydney_victoria"></div>
+      <div class="riding" id="victoria"></div>
+      <div class="riding" id="nickel_belt"></div>
+      <div class="riding" id="nepean_carleton"></div>
+      <div class="riding" id="lanark_frontenac_lennox_and_addington"></div>
+      <div class="riding" id="lac_saint_louis"></div>
+      <div class="riding" id="chateauguay_saint_constant"></div>
+      <div class="riding" id="laurier_sainte_marie"></div>
+      <div class="riding" id="chambly_borduas"></div>
+      <div class="riding" id="shefford"></div>
+      <div class="riding" id="simcoe_grey"></div>
+      <div class="riding" id="york_simcoe"></div>
+      <div class="riding" id="simcoe_north"></div>
+      <div class="riding" id="nipissing_timiskaming"></div>
+      <div class="riding" id="stormont_dundas_south_glengarry"></div>
+      <div class="riding" id="saint_jean"></div>
+      <div class="riding" id="saint_lambert"></div>
+      <div class="riding" id="saint_bruno_saint_hubert"></div>
+      <div class="riding" id="brome_missisquoi"></div>
+      <div class="riding" id="west_nova"></div>
+      <div class="riding" id="kings_hants"></div>
+      <div class="riding" id="parry_sound_muskoka"></div>
+      <div class="riding" id="renfrew_nipissing_pembroke"></div>
+      <div class="riding" id="northumberland_quinte_west"></div>
+      <div class="riding" id="peterborough"></div>
+      <div class="riding" id="leeds_grenville"></div>
+      <div class="riding" id="beauharnois_salaberry"></div>
+      <div class="riding" id="compton_stanstead"></div>
+      <div class="riding" id="halifax_west"></div>
+      <div class="riding" id="dartmouth_cole_harbour"></div>
+      <div class="riding" id="sackville_eastern_shore"></div>
+      <div class="riding" id="bruce_grey_owen_sound"></div>
+      <div class="riding" id="newmarket_aurora"></div>
+      <div class="riding" id="richmond_hill"></div>
+      <div class="riding" id="oak_ridges_markham"></div>
+      <div class="riding" id="oshawa"></div>
+      <div class="riding" id="prince_edward_hastings"></div>
+      <div class="riding" id="kingston_and_the_islands"></div>
+      <div class="riding" id="south_shore_st_margarets"></div>
+      <div class="riding" id="halifax"></div>
+      <div class="riding" id="barrie"></div>
+      <div class="riding" id="markham_unionville"></div>
+      <div class="riding" id="haliburton_kawartha_lakes_brock"></div>
+      <div class="riding" id="dufferin_caledon"></div>
+      <div class="riding" id="thornhill"></div>
+      <div class="riding" id="york_west"></div>
+      <div class="riding" id="willowdale"></div>
+      <div class="riding" id="scarborough_agincourt"></div>
+      <div class="riding" id="scarborough_rouge_river"></div>
+      <div class="riding" id="vaughan"></div>
+      <div class="riding" id="york_centre"></div>
+      <div class="riding" id="eglinton_lawrence"></div>
+      <div class="riding" id="durham"></div>
+      <div class="riding" id="whitby_oshawa"></div>
+      <div class="riding" id="huron_bruce"></div>
+      <div class="riding" id="bramalea_gore_malton"></div>
+      <div class="riding" id="etobicoke_north"></div>
+      <div class="riding" id="york_south_weston"></div>
+      <div class="riding" id="davenport"></div>
+      <div class="riding" id="st_pauls"></div>
+      <div class="riding" id="don_valley_west"></div>
+      <div class="riding" id="scarborough_centre"></div>
+      <div class="riding" id="pickering_scarborough_east"></div>
+      <div class="riding" id="ajax_pickering"></div>
+      <div class="riding" id="brampton_springdale"></div>
+      <div class="riding" id="don_valley_east"></div>
+      <div class="riding" id="parkdale_high_park"></div>
+      <div class="riding" id="toronto_centre"></div>
+      <div class="riding" id="toronto_danforth"></div>
+      <div class="riding" id="beaches_east_york"></div>
+      <div class="riding" id="scarborough_southwest"></div>
+      <div class="riding" id="perth_wellington"></div>
+      <div class="riding" id="brampton_west"></div>
+      <div class="riding" id="mississauga_east_cooksville"></div>
+      <div class="riding" id="etobicoke_centre"></div>
+      <div class="riding" id="trinity_spadina"></div>
+      <div class="riding" id="scarborough_guildwood"></div>
+      <div class="riding" id="wellington_halton_hills"></div>
+      <div class="riding" id="mississauga_erindale"></div>
+      <div class="riding" id="mississauga_south"></div>
+      <div class="riding" id="mississauga_brampton_south"></div>
+      <div class="riding" id="etobicoke_lakeshore"></div>
+      <div class="riding" id="kitchener_waterloo"></div>
+      <div class="riding" id="mississauga_streetsville"></div>
+      <div class="riding" id="halton"></div>
+      <div class="riding" id="oakville"></div>
+      <div class="riding" id="lambton_kent_middlesex"></div>
+      <div class="riding" id="kitchener_conestoga"></div>
+      <div class="riding" id="guelph"></div>
+      <div class="riding" id="cambridge"></div>
+      <div class="riding" id="burlington"></div>
+      <div class="riding" id="windsor_tecumseh"></div>
+      <div class="riding" id="sarnia_lambton"></div>
+      <div class="riding" id="hamilton_mountain"></div>
+      <div class="riding" id="hamilton_east_stoney_creek"></div>
+      <div class="riding" id="st_catharines"></div>
+      <div class="riding" id="london_west"></div>
+      <div class="riding" id="london_north_centre"></div>
+      <div class="riding" id="london_fanshawe"></div>
+      <div class="riding" id="ancaster_dundas_flamborough_westdale"></div>
+      <div class="riding" id="hamilton_centre"></div>
+      <div class="riding" id="oxford"></div>
+      <div class="riding" id="windsor_west"></div>
+      <div class="riding" id="essex"></div>
+      <div class="riding" id="chatham_kent_essex"></div>
+      <div class="riding" id="elgin_middlesex_london"></div>
+      <div class="riding" id="haldimand_norfolk"></div>
+      <div class="riding" id="brant"></div>
+      <div class="riding" id="niagara_west_glanbrook"></div>
+      <div class="riding" id="welland"></div>
+      <div class="riding" id="niagara_falls"></div>
+      <div class="riding" id="kitchener_centre"></div>
+    </div>
+  </div>
+  <div id="results">
+    <div class="help">Click a party below to toggle only that party’s seats.</div>
+  </div>
+
+  <div class="footer">
+    <div class="footer1">Copyright &copy; 2011 <a href="https://twitter.com/attaboy">Luke Andrews</a></div>
+    <div class="footer2">
+      <a href="https://attaboy.ca/">attaboy.ca</a>
+    </div>
+  </div>
+
+</div>
+<script src="js/jquery.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+<script src="js/jquery.tipsy.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+<script src="js/ridings.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+<script src="js/paint.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-615474-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

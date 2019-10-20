@@ -144,11 +144,11 @@ class Home extends React.Component<{}, State> {
             <td colSpan={2}>
               {this.state.lang === Lang.fr ? (
                 <span>
-                  <b>42<sup>me</sup> Parlement</b> (de 2015 à aujourd’hui)
+                  <b>42<sup>me</sup> Parlement</b> (2015-10-19—2019-10-20)
                 </span>
               ) : (
                 <span>
-                  <b>42<sup>nd</sup> Parliament</b> (2015–Present)
+                  <b>42<sup>nd</sup> Parliament</b> (2015-10-19—2019-10-20)
                 </span>
               )}
             </td>
@@ -258,6 +258,52 @@ class Home extends React.Component<{}, State> {
             {ridingInfo ? this.renderInfo(ridingInfo) : this.renderSummary()}
           </div>
         </div>
+        <footer>
+          {this.state.lang === Lang.fr ? (
+            <div className="columns">
+              <div className="column">
+                <h4>C’est quoi ça?</h4>
+
+                <p>Au Canada, chaqun des 338 membres du Parlement à la Chambre des communes  représente une circonscription. Pour la plupart, les circonscriptions sont divisée également par la population au lieu de la géographie. (Certaines circonscriptions rurales et les quatres circonscriptions de l’Île-du-Prince-Edouard ont une population moins nombreuse.)</p>
+
+                <p>Ce <a href="https://fr.wikipedia.org/wiki/Cartogramme">cartogramme</a> fait chaque circonscription la même taille et la même forme. L’accent est mis sur la répartition de la population. En général, les circonscriptions voisines sont proches les unes des autres, et la forme du pays est à peu près préservée.</p>
+              </div>
+
+              <div className="column">
+                <h4>Crédits</h4>
+
+                <p>Copyright &copy; 2019 <a href="https://attaboy.ca/">Luke Andrews</a></p>
+
+                <p><a href="https://github.com/attaboy/electoralcartogram">Code source sur GitHub</a></p>
+
+                <p>Commentaires (et corrections de français) encouragés: <a href="https://twitter.com/attaboy">@attaboy</a></p>
+
+                <p>Version précédente: <a href="/2011/">2011</a></p>
+              </div>
+            </div>
+          ): (
+            <div className="columns">
+              <div className="column">
+                <h4>What is this?</h4>
+                <p>In Canada, each of the 338 Members of Parliament in the House of Commons represent a riding (district). With a few exceptions, the ridings are divided evenly by population rather than geographical size. (Some rural ridings and in particular the four Prince Edward Island ridings have smaller populations.)</p>
+
+                <p>In this <a href="https://en.wikipedia.org/wiki/Cartogram">cartogram</a>, each riding is the same size and shape, so population distribution is emphasized. In general, ridings that border each other geographically are shown near each other, with the rough shape of the country preserved.</p>
+              </div>
+
+              <div className="column">
+                <h4>Credits</h4>
+
+                <p>Copyright &copy; 2019 <a href="https://attaboy.ca/">Luke Andrews</a></p>
+
+                <p><a href="https://github.com/attaboy/electoralcartogram">Source code on GitHub</a></p>
+
+                <p>Feedback welcome: <a href="https://twitter.com/attaboy">@attaboy</a></p>
+
+                <p>Previous version: <a href="/2011/">2011</a></p>
+              </div>
+            </div>
+          )}
+        </footer>
       </div>
     )
   }
