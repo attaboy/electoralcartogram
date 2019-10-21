@@ -512,7 +512,11 @@ class Home extends React.Component<{}, State> {
 
                 <p>Commentaires (et corrections de français) encouragés: <a href="https://twitter.com/attaboy">@attaboy</a></p>
 
-                <p>Version précédente: <a href="/2011/">2011</a></p>
+                <p>Édition précédente: <a href="/2011/">2011</a></p>
+
+                {process.env.buildTimestamp ? (
+                  <p>Dernière modification: {this.formatDate(new Date(process.env.buildTimestamp))}</p>
+                ) : null}
               </div>
             </div>
           ): (
@@ -539,7 +543,11 @@ class Home extends React.Component<{}, State> {
 
                 <p>Feedback welcome: <a href="https://twitter.com/attaboy">@attaboy</a></p>
 
-                <p>Previous version: <a href="/2011/">2011</a></p>
+                <p>Previous edition: <a href="/2011/">2011</a></p>
+
+                {process.env.buildTimestamp ? (
+                  <p>Last modified: {this.formatDate(new Date(process.env.buildTimestamp))}</p>
+                ) : null}
               </div>
             </div>
           )}
