@@ -82,7 +82,7 @@ footer h4 {
   margin-top: 0;
 }
 
-#langButtons {
+#langButtons, #electionButtons {
   float: right;
   margin-top: 0.25em;
   margin-left: 1rem;
@@ -141,6 +141,10 @@ button.radio {
   }
 
   .button-label-short { display: none }
+
+  &[disabled] {
+    color: hsla(0, 0%, 100%, 0.5);
+  }
 }
 
 #search {
@@ -213,6 +217,66 @@ footer {
   text-align: center;
 }
 
+
+svg {
+  g.riding {
+    cursor: pointer;
+    &:hover path {
+      fill-opacity: 0.75;
+    }
+  }
+
+  .ocean {
+    fill: hsl(209, 51%, 87%);
+  }
+
+  .foreignLand {
+    fill: hsl(207, 17%, 74%);
+  }
+
+  .foreignLandBorder {
+    fill: none;
+    stroke: hsl(207, 17%, 74%);
+    stroke-width: 2px;
+  }
+
+  .canadaLand {
+    fill: hsl(168, 30%, 74%);
+  }
+
+  .internationalBorder {
+    fill: none;
+    stroke: hsl(207, 17%, 12%);
+    stroke-width: 2px;
+  }
+
+  .provincialBorder {
+    fill: none;
+    stroke: rgb(0, 0, 0);
+    stroke-opacity: 0.75;
+    stroke-width: 2px;
+    stroke-dasharray: 4, 4, 0, 0;
+  }
+
+  .countryText {
+    font-weight: 700;
+    font-size: 18px;
+    fill: rgba(0, 0, 0, 0.65);
+  }
+
+  .provinceText {
+    font-weight: 700;
+    font-size: 14px;
+    fill: rgba(0, 0, 0, 0.65);
+  }
+
+  .waterText {
+    font-weight: 400;
+    font-size: 10px;
+    fill: hsl(209, 51%, 62%);
+  }
+}
+
 @media (max-width: 64rem) {
   .columns .column {
     float: none;
@@ -238,6 +302,13 @@ footer {
   button.radio {
     .button-label-short { display: inline }
     .button-label-long { display: none }
+  }
+
+  svg {
+    .provincialBorder, .internationalBorder {
+      stroke-opacity: 1;
+      stroke-width: 3px;
+    }
   }
 }
 
@@ -267,20 +338,11 @@ footer {
     float: none;
   }
 
-  #langButtons, #search {
+  #langButtons, #electionButtons, #search {
     margin-top: 0.75em;
     margin-left: 0;
     margin-right: 1em;
     float: left;
   }
 
-}
-
-svg g.riding {
-  cursor: pointer;
-
-  &:hover {
-    fill-opacity: 0.5;
-    filter: brightness(150%);
-  }
 }

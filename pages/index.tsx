@@ -24,6 +24,7 @@ export enum Lang {
 }
 
 interface State {
+  election: 2015 | 2019
   currentRiding: CurrentRidingInfo | null
   coords: Coordinates
   searchText: string
@@ -43,6 +44,7 @@ class Home extends React.Component<{}, State> {
   constructor(props: {}) {
     super(props);
     this.state = {
+      election: 2015,
       currentRiding: null,
       coords: { x: 0, y: 0 },
       searchText: "",
@@ -270,9 +272,12 @@ class Home extends React.Component<{}, State> {
   handleInputKeyUp(event: React.KeyboardEvent<HTMLInputElement>, sortedResults: RidingData[]): void {
     if (event.key === "Enter") {
       event.preventDefault();
+      const target = event.currentTarget;
       if (sortedResults[0]) {
         this.setState({
           searchText: sortedResults[0][this.state.lang]
+        }, () => {
+          target.blur();
         });
       }
     }
@@ -425,6 +430,17 @@ class Home extends React.Component<{}, State> {
         <Head>
           <title>{title}</title>
           <link href="https://fonts.googleapis.com/css?family=Barlow:300,400,600&display=swap" rel="stylesheet" />
+          {/* Global site tag (gtag.js) - Google Analytics */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-615474-5" />
+          <script dangerouslySetInnerHTML={{
+            __html:
+              `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', 'UA-615474-5');
+          `
+          }}></script>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         <header>
@@ -435,6 +451,10 @@ class Home extends React.Component<{}, State> {
           <div id="langButtons" className="radioButtons">
             <button className={`radio ${this.state.lang === Lang.en ? "active" : ""}`} type="button" onClick={() => this.setEnglish()}>English</button>
             <button className={`radio ${this.state.lang === Lang.fr ? "active" : ""}`} type="button" onClick={() => this.setFrench()}>Français</button>
+          </div>
+          <div id="electionButtons" className="radioButtons">
+            <button className={`radio ${this.state.election === 2015 ? "active" : ""}`} type="button" onClick={() => {}}>2015</button>
+            <button title={this.state.lang === Lang.fr ? "À venir" : "Coming soon"} className={`radio ${this.state.election === 2019 ? "active" : ""}`} type="button" onClick={() => {}} disabled={true}>2019</button>
           </div>
           <div id="search">
             <input
@@ -472,9 +492,11 @@ class Home extends React.Component<{}, State> {
               <div className="column">
                 <h4>C’est quoi ça?</h4>
 
-                <p>Au Canada, chaqun des 338 membres du Parlement à <a href="https://www.ourcommons.ca/fr">la Chambre des communes</a> représente une circonscription. Pour la plupart, les circonscriptions sont réparties uniformément par la population au lieu de la géographie. (Certaines circonscriptions rurales et les quatres circonscriptions de l’Île-du-Prince-Edouard ont une population moins nombreuse.)</p>
+                <p>Au Canada, chaqun des 338 membres du Parlement à <a href="https://www.ourcommons.ca/fr">la Chambre des communes</a> représente une circonscription. Pour la plupart, les circonscriptions sont réparties uniformément par la population au lieu de la géographie.* En 2019, la population moyenne d’une circonscription est d’environ 111&nbsp;200.</p>
 
-                <p>Ce <a href="https://fr.wikipedia.org/wiki/Cartogramme">cartogramme</a> fait chaque circonscription la même taille et la même forme. L’accent est mis sur la répartition de la population. En général, les circonscriptions voisines sont proches les unes des autres, et la forme du pays est à peu près préservée.</p>
+                <p>Ce <a href="https://fr.wikipedia.org/wiki/Cartogramme">cartogramme</a> fait chaque circonscription la même taille et la même forme. L’accent est mis sur la répartition de la population. En général, les circonscriptions voisines sont proches les unes des autres, et la forme du pays reste évidente.</p>
+
+                <p><small>*Certaines zones rurales, les trois territoires, et l’Île-du-Prince-Edouard ont des circonscriptions dont la population est notablement moins nombreuse.</small></p>
               </div>
 
               <div className="column">
@@ -482,7 +504,10 @@ class Home extends React.Component<{}, State> {
 
                 <p>Copyright &copy; 2019 <a href="https://attaboy.ca/">Luke Andrews</a></p>
 
-                <p><a href="https://github.com/attaboy/electoralcartogram">Code source sur GitHub</a></p>
+                <p>
+                  <a href="https://github.com/attaboy/electoralcartogram">Code source sur GitHub</a>
+                  <span> · Résultats des élections copiés de <a href="https://elections.ca/content.aspx?section=ele&dir=pas&document=index&lang=f">Élections Canada</a></span>
+                </p>
 
                 <p>Commentaires (et corrections de français) encouragés: <a href="https://twitter.com/attaboy">@attaboy</a></p>
 
@@ -492,10 +517,13 @@ class Home extends React.Component<{}, State> {
           ): (
             <div className="columns">
               <div className="column">
-                <h4>What is this?</h4>
-                <p>In Canada, each of the 338 Members of Parliament in the <a href="https://www.ourcommons.ca/en">House of Commons</a> represent a riding (district). With a few exceptions, the ridings are drawn evenly by population rather than geographical size. (Some rural ridings and in particular the four Prince Edward Island ridings have smaller populations.)</p>
+                <h4>What’s this?</h4>
+
+                <p>In Canada, each of the 338 Members of Parliament in the <a href="https://www.ourcommons.ca/en">House of Commons</a> represent a riding (also known as an electoral district). In general, the ridings are divided evenly by population rather than geographical size.* As of 2019, the average population of a riding is approximately 111,200.</p>
 
                 <p>In this <a href="https://en.wikipedia.org/wiki/Cartogram">cartogram</a>, each riding is the same size and shape, so population distribution is emphasized. In general, ridings that border each other geographically are shown near each other, with the rough shape of the country preserved.</p>
+
+                <p><small>*Some rural areas, the three territories, and Prince Edward Island have ridings with notably smaller populations.</small></p>
               </div>
 
               <div className="column">
@@ -503,7 +531,10 @@ class Home extends React.Component<{}, State> {
 
                 <p>Copyright &copy; 2019 <a href="https://attaboy.ca/">Luke Andrews</a></p>
 
-                <p><a href="https://github.com/attaboy/electoralcartogram">Source code on GitHub</a></p>
+                <p>
+                  <a href="https://github.com/attaboy/electoralcartogram">Source code on GitHub</a>
+                  <span> · Electoral results copied from <a href="https://elections.ca/content.aspx?section=ele&dir=pas&document=index&lang=e">Elections Canada</a></span>
+                </p>
 
                 <p>Feedback welcome: <a href="https://twitter.com/attaboy">@attaboy</a></p>
 
