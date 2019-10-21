@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { Province } from './province';
-import { Riding } from './riding';
+import { Riding, Coordinates } from './riding';
 import {ridingDataSet, RidingData, ProvinceData} from "../data/riding_data";
 import {resultsSet, DateResults, Result} from '../data/result_data';
 import { Lang } from '../pages';
@@ -44,9 +44,11 @@ const labels: LabelLookup = {
 };
 
 class Map extends React.PureComponent<{
-  onHoverOn: (riding: RidingData, province: ProvinceData, result: Result | undefined, date: string | undefined) => void
+  onClick: (riding: RidingData) => void
+  onHoverOn: (riding: RidingData, province: ProvinceData, result: Result | undefined, date: string | undefined, coords: Coordinates) => void
   onHoverOff: () => void
   lang: Lang
+  searchText: string
 }> {
   oceanStyle(): CSSProperties {
     return {
@@ -246,8 +248,11 @@ class Map extends React.PureComponent<{
                       key={riding.id}
                       data={riding}
                       results={results}
-                      onMouseOver={(result, date) => this.props.onHoverOn(riding, province, result, date)}
+                      onClick={this.props.onClick}
+                      onMouseOver={(result, date, coords) => this.props.onHoverOn(riding, province, result, date, coords)}
                       onMouseOut={this.props.onHoverOff}
+                      searchText={this.props.searchText}
+                      lang={this.props.lang}
                     />
                   )
                 })}

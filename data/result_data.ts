@@ -17216,4 +17216,25 @@ const resultsSet: DateResults[] = [{
   results: results20190506
 }];
 
-export { resultsSet }
+interface DateResult {
+  winner: Result
+  date: string
+}
+
+function findWinnerFor(ridingIndex: number): DateResult | null {
+  let winner: Result | undefined;
+  let date: string | undefined;
+  resultsSet.forEach((dateResults) => {
+    const resultWinner = dateResults.results.find((ea) => ea.index === ridingIndex && ea.majority > 0);
+    if (resultWinner) {
+      winner = resultWinner;
+      date = dateResults.date;
+    }
+  });
+  return winner && date ? {
+    winner: winner,
+    date: date
+  } : null;
+}
+
+export { resultsSet, findWinnerFor }

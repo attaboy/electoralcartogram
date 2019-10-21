@@ -7,12 +7,20 @@ import Party from '../data/party';
 interface Props {
   data: RidingData
   results: DateResults[]
-  onMouseOver: (result: Result | undefined, date: string | undefined) => void
+  onMouseOver: (result: Result | undefined, date: string | undefined, coords: Coordinates) => void
+  onClick: (data: RidingData) => void
   onMouseOut: () => void
+  searchText: string
+  lang: Lang
 }
 
 interface State {
   hover: boolean
+}
+
+export interface Coordinates {
+  x: number
+  y: number
 }
 
 class Riding extends React.PureComponent<Props, State> {
@@ -23,9 +31,9 @@ class Riding extends React.PureComponent<Props, State> {
     };
   }
 
-  onHoverOn(result: Result | undefined, date: string | undefined): void {
+  onHoverOn(result: Result | undefined, date: string | undefined, coords: Coordinates): void {
     this.setState({ hover: true });
-    this.props.onMouseOver(result, date);
+    this.props.onMouseOver(result, date, coords);
   }
 
   onHoverOff(): void {
@@ -33,13 +41,19 @@ class Riding extends React.PureComponent<Props, State> {
     this.props.onMouseOut();
   }
 
+  onClick(e: React.MouseEvent<SVGGElement>): void {
+    this.props.onClick(this.props.data);
+    e.stopPropagation();
+  }
+
   colorForParty(result: Result | undefined): string {
-    if (this.state.hover) {
+    const partyId = result ? (result.currentParty || result.party) : "";
+    const party = Party.findByRawName(partyId);
+    const color = party.color;
+    if (this.props.searchText === this.props.data[this.props.lang]) {
       return "white";
     } else {
-      const partyId = result ? (result.currentParty || result.party) : "";
-      const party = Party.findByRawName(partyId);
-      return party.color;
+      return color;
     }
   }
 
@@ -77,9 +91,13 @@ class Riding extends React.PureComponent<Props, State> {
   render() {
     const result = this.getResult();
     return (
-      <g id={this.props.data.id} transform={this.props.data.transform}
-        onMouseOver={() => this.onHoverOn(result.winner, result.date)}
+      <g className="riding" id={this.props.data.id} transform={this.props.data.transform}
+        onMouseOver={(event) => this.onHoverOn(result.winner, result.date, {
+          x: event.clientX,
+          y: event.clientY
+        })}
         onMouseOut={() => this.onHoverOff()}
+        onClick={(e) => this.onClick(e)}
       >
         <path d={this.props.data.pathD} style={this.ridingStyle(result.winner)} />
         {/* <g transform="matrix(1,0,0,1,310.576,282.495)">

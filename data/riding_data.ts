@@ -13,6 +13,7 @@ type PartyId = "Green" | "Conservative" | "NDP" | "Liberal" | "People's Party" |
 
 export interface RidingData extends PoliticalData {
   pathD: string
+  province?: ProvinceData
 }
 
 export interface ProvinceData extends PoliticalData {
@@ -640,7 +641,7 @@ const ridingDataSet: ProvinceData[] = [
         "index": 48002
       },
       {
-        "id": "Banff---Airdrie1",
+        "id": "Banff---Airdrie",
         "en": "Banff — Airdrie",
         "fr": "Banff — Airdrie",
         "transform": "matrix(1,0,0,1,165.35,9.439)",
@@ -2016,9 +2017,9 @@ const ridingDataSet: ProvinceData[] = [
         "index": 24062
       },
       {
-        "id": "Vaudreiul---Soulanges1",
-        "en": "Vaudreiul — Soulanges",
-        "fr": "Vaudreiul — Soulanges",
+        "id": "Richmond---Arthabaska",
+        "en": "Richmond — Arthabaska",
+        "fr": "Richmond — Arthabaska",
         "transform": "matrix(1,0,0,1,-30,19.8)",
         "pathD": "M980,350.4L970,350.4L965,360.4L970,370.4L980,370.4L985,360.4L980,350.4Z",
         "index": 24061
@@ -2256,9 +2257,9 @@ const ridingDataSet: ProvinceData[] = [
         "index": 24032
       },
       {
-        "id": "Argenteuil---La-Petite-Nation",
-        "en": "Argenteuil — La Petite-Nation",
-        "fr": "Argenteuil — La Petite-Nation",
+        "id": "Joliette",
+        "en": "Joliette",
+        "fr": "Joliette",
         "transform": "matrix(1,0,0,1,-44.9485,-10.1)",
         "pathD": "M844.9,300.1L834.9,300.1L829.9,310.1L834.9,320.1L844.9,320.1L849.9,310.1L844.9,300.1Z",
         "index": 24031
@@ -2464,7 +2465,7 @@ const ridingDataSet: ProvinceData[] = [
         "index": 24006
       },
       {
-        "id": "Argenteuil---La-Petite-Nation1",
+        "id": "Argenteuil---La-Petite-Nation",
         "en": "Argenteuil — La Petite-Nation",
         "fr": "Argenteuil — La Petite-Nation",
         "transform": "matrix(1,0,0,1,-29.9,0)",

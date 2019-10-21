@@ -2,9 +2,10 @@ import Head from 'next/head';
 import * as React from 'react';
 import {Map} from '../components/map';
 import { RidingData, ProvinceData, ridingDataSet } from '../data/riding_data';
-import { DateResults, Result, resultsSet } from '../data/result_data';
+import { DateResults, Result, resultsSet, findWinnerFor } from '../data/result_data';
 import Party from '../data/party';
 import "../css/styles.less";
+import { Coordinates } from '../components/riding';
 
 interface CurrentRidingInfo {
   province: string
@@ -24,6 +25,9 @@ export enum Lang {
 
 interface State {
   currentRiding: CurrentRidingInfo | null
+  coords: Coordinates
+  searchText: string
+  searchResultsVisible: boolean
   lang: Lang
 }
 
@@ -33,12 +37,16 @@ interface Summary {
 
 class Home extends React.Component<{}, State> {
   updateTimer: number | undefined;
+  searchResultsTimer: number | undefined;
   summaryByParty: Summary
 
   constructor(props: {}) {
     super(props);
     this.state = {
       currentRiding: null,
+      coords: { x: 0, y: 0 },
+      searchText: "",
+      searchResultsVisible: false,
       lang: Lang.en
     };
     this.summaryByParty = this.getSummaryByParty();
@@ -73,11 +81,12 @@ class Home extends React.Component<{}, State> {
     return byParty;
   }
 
-  delayUpdate(riding: CurrentRidingInfo | null, timing: number) {
+  delayUpdate(riding: CurrentRidingInfo | null, coords: Coordinates | null, timing: number) {
     window.clearTimeout(this.updateTimer);
     this.updateTimer = window.setTimeout(() => {
       this.setState({
-        currentRiding: riding
+        currentRiding: riding,
+        coords: coords ? coords : this.state.coords
       });
     }, timing);
   }
@@ -91,11 +100,11 @@ class Home extends React.Component<{}, State> {
     }
   }
 
-  onHoverOn(ridingData: RidingData, provinceData: ProvinceData, result: Result | undefined, date: string | undefined): void {
+  getRidingInfo(ridingData: RidingData, provinceData: ProvinceData, result: Result | undefined, date: string | undefined): CurrentRidingInfo | null {
     const province = provinceData[this.state.lang];
     const riding = ridingData[this.state.lang];
     const dateString = date ? this.formatDate(new Date(date)) : "unknown date";
-    this.delayUpdate(result ? {
+    return result ? {
       province: province,
       flag: provinceData.flagUrl,
       riding: riding,
@@ -105,11 +114,27 @@ class Home extends React.Component<{}, State> {
       originalParty: result.currentParty ? result.party : undefined,
       votePercentage: result.votePercentage,
       majorityPercentage: result.majorityPercentage
-    } : null, 50);
+    } : null
+  }
+
+  onHoverOn(ridingData: RidingData, provinceData: ProvinceData, result: Result | undefined, date: string | undefined, coords: Coordinates): void {
+    this.delayUpdate(this.getRidingInfo(ridingData, provinceData, result, date), coords, 100);
+  }
+
+  onClickRiding(ridingData: RidingData): void {
+    this.setState({
+      searchText: ridingData[this.state.lang]
+    });
+  }
+
+  onClickNoRiding(): void {
+    this.setState({
+      searchText: ""
+    });
   }
 
   onHoverOff(): void {
-    this.delayUpdate(null, 500);
+    this.delayUpdate(null, null, 500);
   }
 
   labelForReElected(date: string): string {
@@ -141,17 +166,19 @@ class Home extends React.Component<{}, State> {
       <div>
         <table>
           <thead>
-            <td colSpan={2}>
-              {this.state.lang === Lang.fr ? (
-                <span>
-                  <b>42<sup>me</sup> Parlement</b> (2015-10-19—2019-10-20)
-                </span>
-              ) : (
-                <span>
-                  <b>42<sup>nd</sup> Parliament</b> (2015-10-19—2019-10-20)
-                </span>
-              )}
-            </td>
+            <tr>
+              <td colSpan={2}>
+                {this.state.lang === Lang.fr ? (
+                  <span>
+                    <b>42<sup>me</sup> Parlement</b> (2015-10-19—2019-10-20)
+                  </span>
+                ) : (
+                  <span>
+                    <b>42<sup>nd</sup> Parliament</b> (2015-10-19—2019-10-20)
+                  </span>
+                )}
+              </td>
+            </tr>
           </thead>
           <tbody>
             {partyIds.map((partyId) => {
@@ -215,8 +242,11 @@ class Home extends React.Component<{}, State> {
   }
 
   renderVoteSummary(votePercentage: number, majorityPercentage: number) {
-    return this.state.lang === "fr" ? `${votePercentage} % du vote (+${majorityPercentage} points en avant)` :
-      `${votePercentage}% of vote (${majorityPercentage} points ahead)`;
+    if (this.state.lang === Lang.fr) {
+      return `${votePercentage} % du vote (+${majorityPercentage === 1 ? "point" : "points"} en avant)`;
+    } else {
+      return `${votePercentage}% of vote (${majorityPercentage === 1 ? "point" : "points"} ahead)`;
+    }
   }
 
   setEnglish(): void {
@@ -231,14 +261,171 @@ class Home extends React.Component<{}, State> {
     });
   }
 
+  updateSearchText(event: React.ChangeEvent<HTMLInputElement>): void {
+    this.setState({
+      searchText: event.currentTarget.value
+    });
+  }
+
+  handleInputKeyUp(event: React.KeyboardEvent<HTMLInputElement>, sortedResults: RidingData[]): void {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (sortedResults[0]) {
+        this.setState({
+          searchText: sortedResults[0][this.state.lang]
+        });
+      }
+    }
+  }
+
+  handleInputFocus(): void {
+    window.clearTimeout(this.searchResultsTimer);
+    this.setState({
+      searchResultsVisible: true
+    });
+  }
+
+  handleInputBlur(): void {
+    this.searchResultsTimer = window.setTimeout(() => {
+      this.setState({
+        searchResultsVisible: false
+      });
+    }, 50);
+  }
+
+  getRidingsFromSearch(): ProvinceData[] {
+    if (!this.state.searchText.trim().length) {
+      return [];
+    }
+    const searchTokens = this.state.searchText.toLowerCase().trim().split(" ");
+    return ridingDataSet.map((province) => {
+      return Object.assign({}, province, {
+        ridings: province.ridings.filter((riding) => {
+          const ridingTokens = riding[this.state.lang].toLowerCase().trim().split(" ");
+          return searchTokens.every((searchToken) => ridingTokens.some((ridingToken) => ridingToken.includes(searchToken)));
+        })
+      });
+    }).filter((province) => province.ridings.length > 0);
+  }
+
+  getRidingInfoFromRiding(riding: RidingData, province: ProvinceData): CurrentRidingInfo | null {
+    const result = findWinnerFor(riding.index);
+    if (result) {
+      return {
+        province: province[this.state.lang],
+        flag: province.flagUrl,
+        riding: riding[this.state.lang],
+        candidate: result.winner.candidate,
+        party: result.winner.currentParty || result.winner.party,
+        originalParty: result.winner.currentParty ? result.winner.party : undefined,
+        date: this.formatDate(new Date(result.date)),
+        votePercentage: result.winner.votePercentage,
+        majorityPercentage: result.winner.majorityPercentage
+      };
+    } else {
+      return null;
+    }
+  }
+
+  sortedSearchResults(provinces: ProvinceData[]): RidingData[] {
+    const results = provinces.reduce<RidingData[]>((all, prov) => {
+      return all.concat(prov.ridings.map((ea) => {
+        return Object.assign({}, ea, {
+          province: prov
+        });
+      }));
+    }, []).sort((a, b) => {
+      const aName = a[this.state.lang].toLowerCase();
+      const bName = b[this.state.lang].toLowerCase();
+      const aStartsWith = aName.startsWith(this.state.searchText.toLowerCase());
+      const bStartsWith = bName.startsWith(this.state.searchText.toLowerCase());
+      if (aStartsWith === bStartsWith) {
+        if (aName < bName) {
+          return -1;
+        } else if (aName < bName) {
+          return 1;
+        } else {
+          return 0;
+        }
+      } else if (aStartsWith && !bStartsWith) {
+        return -1;
+      } else if (bStartsWith && !aStartsWith) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+
+    if (results.length >= 1 && results[0][this.state.lang] === this.state.searchText) {
+      return [results[0]];
+    } else {
+      return results.slice(0, 10);
+    }
+  }
+
+  renderSearchResult(riding: RidingData) {
+    const text = riding[this.state.lang];
+    const sub = this.state.searchText;
+    const onClick = () => this.setState({
+      searchText: text
+    });
+    if (!sub) {
+      return (
+        <div className="searchResult" key={riding.id} onMouseDown={onClick}>{text}</div>
+      );
+    }
+    const choppedLowercase = text.toLowerCase().split(sub.toLowerCase());
+    const highlightLength = sub.length;
+    let startIndex = 0;
+    return (
+      <div className="searchResult" key={riding.id} onMouseDown={onClick}>
+        {choppedLowercase.map((lowercaseFragment, index) => {
+          const fragmentLength = lowercaseFragment.length;
+          const displayFragment = text.substr(startIndex, fragmentLength);
+          const highlighted = text.substr(startIndex + fragmentLength, highlightLength);
+          startIndex += fragmentLength + highlightLength;
+
+          return (
+            <span key={`fragment${index}`}>
+              <span>{displayFragment}</span>
+              {highlighted ? (
+                <b>{highlighted}</b>
+              ) : null}
+            </span>
+          );
+        })}
+      </div>
+    );
+  }
+
+  renderTooltip(currentRiding: CurrentRidingInfo) {
+    const windowWidth = window.innerWidth;
+    const style: React.CSSProperties = {
+      top: `${this.state.coords.y}px`
+    };
+    if (this.state.coords.x > windowWidth / 2) {
+      style.right = `${windowWidth - this.state.coords.x}px`;
+    } else {
+      style.left = `${this.state.coords.x}px`;
+    }
+    return (
+      <div id="mapTooltip" style={style}>{currentRiding.riding}</div>
+    );
+  }
+
   render() {
     const title = this.state.lang === Lang.fr ? "Cartogramme électorale du Canada" : "Electoral Cartogram of Canada";
-    const ridingInfo = this.state.currentRiding;
+    const searchProvinces = this.getRidingsFromSearch();
+    const sortedResults = this.sortedSearchResults(searchProvinces);
+    const ridingInfoFromSearch = (sortedResults.length === 1) ?
+      this.getRidingInfoFromRiding(sortedResults[0], searchProvinces[0]) : null;
+    const ridingInfo = ridingInfoFromSearch || this.state.currentRiding;
     return (
       <div>
         <Head>
           <title>{title}</title>
           <link href="https://fonts.googleapis.com/css?family=Barlow:300,400,600&display=swap" rel="stylesheet" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         <header>
           <h1>
@@ -249,10 +436,31 @@ class Home extends React.Component<{}, State> {
             <button className={`radio ${this.state.lang === Lang.en ? "active" : ""}`} type="button" onClick={() => this.setEnglish()}>English</button>
             <button className={`radio ${this.state.lang === Lang.fr ? "active" : ""}`} type="button" onClick={() => this.setFrench()}>Français</button>
           </div>
+          <div id="search">
+            <input
+              type="search"
+              placeholder={this.state.lang === Lang.fr ? "Rechercher par circonscription" : "Search by riding name"} onKeyUp={(e) => this.handleInputKeyUp(e, sortedResults)}
+              onChange={(e) => this.updateSearchText(e)} value={this.state.searchText}
+              onFocus={() => this.handleInputFocus()}
+              onBlur={() => this.handleInputBlur()}
+            />
+            {this.state.searchResultsVisible ? (
+              <div id="searchResults">
+                {sortedResults.map((riding) => this.renderSearchResult(riding))}
+              </div>
+            ) : null}
+          </div>
         </header>
         <div style={{ position: "relative" }}>
-          <div className="map">
-            <Map onHoverOn={(r, p, rs, d) => this.onHoverOn(r, p, rs, d)} onHoverOff={() => this.onHoverOff()} lang={this.state.lang} />
+          <div className="map" onClick={() => this.onClickNoRiding()}>
+            <Map
+              onClick={(r) => this.onClickRiding(r)}
+              onHoverOn={(r, p, rs, d, c) => this.onHoverOn(r, p, rs, d, c)}
+              onHoverOff={() => this.onHoverOff()}
+              lang={this.state.lang}
+              searchText={this.state.searchText}
+            />
+            {this.state.currentRiding ? this.renderTooltip(this.state.currentRiding) : null}
           </div>
           <div className="overlay">
             {ridingInfo ? this.renderInfo(ridingInfo) : this.renderSummary()}
@@ -264,7 +472,7 @@ class Home extends React.Component<{}, State> {
               <div className="column">
                 <h4>C’est quoi ça?</h4>
 
-                <p>Au Canada, chaqun des 338 membres du Parlement à la Chambre des communes  représente une circonscription. Pour la plupart, les circonscriptions sont divisée également par la population au lieu de la géographie. (Certaines circonscriptions rurales et les quatres circonscriptions de l’Île-du-Prince-Edouard ont une population moins nombreuse.)</p>
+                <p>Au Canada, chaqun des 338 membres du Parlement à <a href="https://www.ourcommons.ca/fr">la Chambre des communes</a> représente une circonscription. Pour la plupart, les circonscriptions sont réparties uniformément par la population au lieu de la géographie. (Certaines circonscriptions rurales et les quatres circonscriptions de l’Île-du-Prince-Edouard ont une population moins nombreuse.)</p>
 
                 <p>Ce <a href="https://fr.wikipedia.org/wiki/Cartogramme">cartogramme</a> fait chaque circonscription la même taille et la même forme. L’accent est mis sur la répartition de la population. En général, les circonscriptions voisines sont proches les unes des autres, et la forme du pays est à peu près préservée.</p>
               </div>
@@ -285,7 +493,7 @@ class Home extends React.Component<{}, State> {
             <div className="columns">
               <div className="column">
                 <h4>What is this?</h4>
-                <p>In Canada, each of the 338 Members of Parliament in the House of Commons represent a riding (district). With a few exceptions, the ridings are divided evenly by population rather than geographical size. (Some rural ridings and in particular the four Prince Edward Island ridings have smaller populations.)</p>
+                <p>In Canada, each of the 338 Members of Parliament in the <a href="https://www.ourcommons.ca/en">House of Commons</a> represent a riding (district). With a few exceptions, the ridings are drawn evenly by population rather than geographical size. (Some rural ridings and in particular the four Prince Edward Island ridings have smaller populations.)</p>
 
                 <p>In this <a href="https://en.wikipedia.org/wiki/Cartogram">cartogram</a>, each riding is the same size and shape, so population distribution is emphasized. In general, ridings that border each other geographically are shown near each other, with the rough shape of the country preserved.</p>
               </div>
