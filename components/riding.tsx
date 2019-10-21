@@ -78,13 +78,7 @@ class Riding extends React.PureComponent<Props, State> {
 
   ridingStyle(result: Result | undefined): CSSProperties {
     return {
-      fill: this.colorForParty(result),
-      fillRule: "nonzero",
-      stroke: "black",
-      strokeWidth: "0.5px",
-      strokeLinecap: "butt",
-      strokeLinejoin: "miter",
-      strokeMiterlimit: 10
+      fill: this.colorForParty(result)
     };
   }
 
@@ -99,10 +93,7 @@ class Riding extends React.PureComponent<Props, State> {
         onMouseOut={() => this.onHoverOff()}
         onClick={(e) => this.onClick(e)}
       >
-        <path d={this.props.data.pathD} style={this.ridingStyle(result.winner)} />
-        {/* <g transform="matrix(1,0,0,1,310.576,282.495)">
-          <text x="0px" y="0px" style={this.textStyle()}>42</text>
-        </g> */}
+        <path className="ridingPath" d={this.props.data.pathD} style={this.ridingStyle(result.winner)} />
       </g>
     );
   }

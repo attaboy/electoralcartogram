@@ -124,8 +124,9 @@ class Home extends React.Component<{}, State> {
   }
 
   onClickRiding(ridingData: RidingData): void {
+    const newText = ridingData[this.state.lang];
     this.setState({
-      searchText: ridingData[this.state.lang]
+      searchText: this.state.searchText === newText ? "" : newText
     });
   }
 

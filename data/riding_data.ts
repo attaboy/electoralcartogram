@@ -930,7 +930,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "York-Centre---York-Centre",
         "en": "York Centre",
         "fr": "York-Centre",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0.1,-19.9)",
         "pathD": "M679.9,489.9L669.9,489.9L664.9,499.9L669.9,509.9L679.9,509.9L684.9,499.9L679.9,489.9Z",
         "index": 35118
       },
@@ -954,7 +954,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Willowdale",
         "en": "Willowdale",
         "fr": "Willowdale",
-        "transform": "matrix(1,0,0,1,0.4,-19.9)",
+        "transform": "matrix(1,0,0,1,0.4,0.1)",
         "pathD": "M694.6,459.9L684.6,459.9L679.6,469.9L684.6,479.9L694.6,479.9L699.6,469.9L694.6,459.9Z",
         "index": 35115
       },
@@ -1042,7 +1042,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Thornhill",
         "en": "Thornhill",
         "fr": "Thornhill",
-        "transform": "matrix(1,0,0,1,0.2,0.1)",
+        "transform": "matrix(1,0,0,1,0.2,-19.9)",
         "pathD": "M679.8,469.9L669.8,469.9L664.8,479.9L669.8,489.9L679.8,489.9L684.8,479.9L679.8,469.9Z",
         "index": 35104
       },
@@ -1178,7 +1178,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Richmond-Hill",
         "en": "Richmond Hill",
         "fr": "Richmond Hill",
-        "transform": "matrix(1,0,0,1,0,0.1)",
+        "transform": "matrix(1,0,0,1,15,-9.9)",
         "pathD": "M680,449.9L670,449.9L665,459.9L670,469.9L680,469.9L685,459.9L680,449.9Z",
         "index": 35087
       },
@@ -1682,7 +1682,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Eglinton---Lawrence",
         "en": "Eglinton — Lawrence",
         "fr": "Eglinton — Lawrence",
-        "transform": "matrix(1,0,0,1,0.4,-19.9)",
+        "transform": "matrix(1,0,0,1,-14.6,10.1)",
         "pathD": "M694.6,479.9L684.6,479.9L679.6,489.9L684.6,499.9L694.6,499.9L699.6,489.9L694.6,479.9Z",
         "index": 35024
       },

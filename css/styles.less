@@ -221,7 +221,17 @@ footer {
 svg {
   g.riding {
     cursor: pointer;
-    &:hover path {
+
+    .ridingPath {
+      fill-rule: nonzero;
+      stroke: black;
+      stroke-width: 0.5px;
+      stroke-linecap: butt;
+      stroke-linejoin: miter;
+      stroke-miterlimit: 10;
+    }
+
+    &:hover .ridingPath {
       fill-opacity: 0.75;
     }
   }
