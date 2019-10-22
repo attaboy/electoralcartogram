@@ -414,6 +414,7 @@ class Home extends React.Component<{}, State> {
     const ridingInfoFromSearch = (sortedResults.length === 1) ?
       this.getRidingInfoFromRiding(sortedResults[0], searchProvinces[0]) : null;
     const ridingInfo = ridingInfoFromSearch || this.state.currentRiding;
+    const thisYear = new Date().getFullYear();
     return (
       <div>
         <Head>
@@ -438,12 +439,14 @@ class Home extends React.Component<{}, State> {
             <span>{title} </span>
           </h1>
           <div id="langButtons" className="radioButtons">
-            <button className={`radio ${this.state.lang === Lang.en ? "active" : ""}`} type="button" onClick={() => this.setEnglish()}>English</button>
-            <button className={`radio ${this.state.lang === Lang.fr ? "active" : ""}`} type="button" onClick={() => this.setFrench()}>Français</button>
+            <button className={`radio ${this.state.lang === Lang.en ? "active" : ""}`} type="button" onClick={() => this.setEnglish()}>En</button>
+            <button className={`radio ${this.state.lang === Lang.fr ? "active" : ""}`} type="button" onClick={() => this.setFrench()}>Fr</button>
           </div>
           <div id="electionButtons" className="radioButtons">
-            <button className={`radio ${this.state.election === Election.Oct2015 ? "active" : ""}`} type="button" onClick={() => this.setElection2015()}>2015</button>
-            <button className={`radio ${this.state.election === Election.Oct2019 ? "active" : ""}`} type="button" onClick={() => this.setElection2019()}>2019</button>
+            <button className={`radio ${this.state.election === Election.Oct2015 ? "active" : ""}`} type="button" onClick={() => this.setElection2015()}>2015–19</button>
+            <button className={`radio ${this.state.election === Election.Oct2019 ? "active" : ""}`} type="button" onClick={() => this.setElection2019()}>{
+              thisYear === 2019 ? "2019" : `2019–${thisYear - 2000}`
+            }</button>
           </div>
           <div id="search">
             <input

@@ -27,9 +27,9 @@ class Party {
 }
 
 Party.Liberal = new Party("Liberal/Libéral", "Liberal", "Libéral", "hsla(359, 78%, 47%, 1.0)");
-Party.NDP = new Party("NDP-New Democratic Party/NPD-Nouveau Parti démocratique", "NDP", "NPD", "hsla(34, 96%, 45%, 1.0)");
-Party.Conservative = new Party("Conservative/Conservateur", "Conservative", "Conservateur", "hsla(214, 63%, 35%, 1.0)");
-Party.Green = new Party("Green Party/Parti Vert", "Green Party", "Parti vert", "hsla(116, 49%, 41%, 1.0)");
+Party.NDP = new Party("NDP-New Democratic Party/NPD-Nouveau Parti démocratique", "NDP", "NPD", "hsla(34, 96%, 46%, 1.0)");
+Party.Conservative = new Party("Conservative/Conservateur", "Conservative", "Conservateur", "hsla(214, 63%, 34%, 1.0)");
+Party.Green = new Party("Green Party/Parti Vert", "Green Party", "Parti vert", "hsla(116, 49%, 37%, 1.0)");
 Party.BQ = new Party("Bloc Québécois/Bloc Québécois", "Bloc Québécois", "Bloc Québécois", "hsla(200, 80%, 46%, 1.0)");
 Party.PPC = new Party("People's Party/Parti populaire", "People’s Party", "Parti populaire", "hsla(285, 65%, 58%, 1.0)");
 Party.Independent = new Party("Independent/Indépendant(e)", "Independent", "Indépendant(e)", "hsla(45, 20%, 65%, 1.0)");
