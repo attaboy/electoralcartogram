@@ -1,4 +1,6 @@
 @accentColor: white;
+@oceanBlue: hsl(209, 61%, 86%);
+@oceanBlueDark: hsl(209, 61%, 80%);
 
 @liberalRed: hsla(359, 78%, 47%, 1.0);
 @liberalRedBright: hsla(359, 88%, 67%, 1.0);
@@ -25,12 +27,16 @@ body {
 }
 
 a:link, a:visited {
-  color: hsl(59, 49%, 77%);
+  color: @oceanBlueDark;
   text-decoration: none;
 }
 
 a:hover {
   color: hsl(59, 49%, 57%);
+}
+
+a:active {
+  text-decoration: underline;
 }
 
 h1, h2, h3, h4, h5, h6 { margin: 0 }
@@ -42,7 +48,7 @@ h4 {
 }
 
 h1 {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: 300
 }
 
@@ -77,7 +83,7 @@ b { font-weight: 600; }
 header, footer {
   position: relative;
   background-color: black;
-  padding: 1em;
+  padding: 0.5rem 1rem;
 
   &::after {
     clear: both;
@@ -95,10 +101,13 @@ footer h4 {
   margin-top: 0;
 }
 
-#langButtons, #electionButtons {
+#langButtons, #electionButtons, #search {
   float: right;
-  margin-top: 0.25em;
-  margin-left: 1rem;
+  margin-top: 0.125em;
+}
+
+#langButtons, #electionButtons {
+  margin-left: 0.5rem;
 }
 
 .overlay {
@@ -162,18 +171,16 @@ button.radio {
 
 #search {
   position: relative;
-  float: right;
-  margin: 0.25rem 0 0 0;
   input {
     margin: 0;
     border: 1px solid white;
     border-radius: 3px;
-    box-sizing: border-box;
+    box-sizing: content-box;
     font-size: 16px;
-    height: 1.85rem;
+    height: 1.5rem;
     background-color: black;
     color: white;
-    padding: 1px 5px;
+    padding: 1px 2px;
     -webkit-appearance: none;
     width: 18em;
   }
@@ -263,7 +270,7 @@ svg {
   }
 
   .ocean {
-    fill: hsl(209, 51%, 87%);
+    fill: @oceanBlue;
   }
 
   .foreignLand {

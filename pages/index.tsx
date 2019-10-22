@@ -2,7 +2,7 @@ import Head from 'next/head';
 import * as React from 'react';
 import {Map} from '../components/map';
 import { RidingData, ProvinceData, ridingDataSet } from '../data/riding_data';
-import { DateResults, Result, resultsSet, findWinnerFor } from '../data/result_data';
+import { DateResults, Result, findWinnerFor, getSummaryByParty, Summary } from '../data/result_data';
 import Party from '../data/party';
 import "../css/styles.less";
 import { Coordinates } from '../components/riding';
@@ -23,8 +23,13 @@ export enum Lang {
   en="en", fr="fr"
 }
 
+export enum Election {
+  Oct2015="2019-10-20T12:00:00.000Z",
+  Oct2019="2019-10-21T12:00:00.000Z"
+}
+
 interface State {
-  election: 2015 | 2019
+  election: Election
   currentRiding: CurrentRidingInfo | null
   coords: Coordinates
   searchText: string
@@ -32,26 +37,19 @@ interface State {
   lang: Lang
 }
 
-interface Summary {
-  [partyId: string]: number
-}
-
 class Home extends React.Component<{}, State> {
   updateTimer: number | undefined;
   searchResultsTimer: number | undefined;
-  summaryByParty: Summary
-
   constructor(props: {}) {
     super(props);
     this.state = {
-      election: 2015,
+      election: Election.Oct2019,
       currentRiding: null,
       coords: { x: 0, y: 0 },
       searchText: "",
       searchResultsVisible: false,
       lang: Lang.en
     };
-    this.summaryByParty = this.getSummaryByParty();
   }
 
   componentDidMount(): void {
@@ -60,27 +58,6 @@ class Home extends React.Component<{}, State> {
         lang: Lang.fr
       });
     }
-  }
-
-  getSummaryByParty(): Summary {
-    const partyByRiding: { [ridingId: string]: string } = {};
-    const byParty: { [partyId: string]: number } = {};
-    resultsSet.forEach((dateResults) => {
-      dateResults.results.forEach((result) => {
-        if (result.majority > 0) {
-          const party = result.currentParty || result.party;
-          partyByRiding[`${result.index}`] = party;
-        }
-      });
-    });
-    Object.keys(partyByRiding).forEach((ridingId) => {
-      const party = partyByRiding[ridingId];
-      if (typeof byParty[party] !== "number") {
-        byParty[party] = 0;
-      }
-      byParty[party] = byParty[party] + 1;
-    });
-    return byParty;
   }
 
   delayUpdate(riding: CurrentRidingInfo | null, coords: Coordinates | null, timing: number) {
@@ -102,25 +79,8 @@ class Home extends React.Component<{}, State> {
     }
   }
 
-  getRidingInfo(ridingData: RidingData, provinceData: ProvinceData, result: Result | undefined, date: string | undefined): CurrentRidingInfo | null {
-    const province = provinceData[this.state.lang];
-    const riding = ridingData[this.state.lang];
-    const dateString = date ? this.formatDate(new Date(date)) : "unknown date";
-    return result ? {
-      province: province,
-      flag: provinceData.flagUrl,
-      riding: riding,
-      candidate: result.candidate,
-      date: dateString,
-      party: result.currentParty || result.party,
-      originalParty: result.currentParty ? result.party : undefined,
-      votePercentage: result.votePercentage,
-      majorityPercentage: result.majorityPercentage
-    } : null
-  }
-
   onHoverOn(ridingData: RidingData, provinceData: ProvinceData, result: Result | undefined, date: string | undefined, coords: Coordinates): void {
-    this.delayUpdate(this.getRidingInfo(ridingData, provinceData, result, date), coords, 100);
+    this.delayUpdate(this.getRidingInfoFromRiding(ridingData, provinceData), coords, 100);
   }
 
   onClickRiding(ridingData: RidingData): void {
@@ -160,27 +120,42 @@ class Home extends React.Component<{}, State> {
     return this.state.lang === Lang.fr ? ` — élu(e) comme ${party[this.state.lang]}` : ` — elected as ${party[this.state.lang]}`;
   }
 
+  renderElectionTitle() {
+    if (this.state.election === Election.Oct2015) {
+      if (this.state.lang === Lang.fr) {
+        return (
+          <span><b>42<sup>me</sup> Parlement</b> (2015-10-19 – 2019-10-20)</span>
+        );
+      } else {
+        return (
+          <span><b>42<sup>nd</sup> Parliament</b> (2015-10-19 – 2019-10-20)</span>
+        );
+      }
+    } else {
+      if (this.state.lang === Lang.fr) {
+        return (
+          <span><b>43<sup>me</sup> Parlement</b> (2019-10-21 – Aujourd’hui)</span>
+        );
+      } else {
+        return (
+          <span><b>43<sup>rd</sup> Parliament</b> (2019-10-21 – Today)</span>
+        );
+      }
+    }
+  }
+
   renderSummary() {
-    const partyIds = Object.keys(this.summaryByParty).sort((a, b) => {
-      return this.summaryByParty[b] - this.summaryByParty[a];
+    const summary = getSummaryByParty(this.state.election);
+    const partyIds = Object.keys(summary).sort((a, b) => {
+      return summary[b] - summary[a];
     });
-    const total = partyIds.reduce((subtotal, partyId) => subtotal + this.summaryByParty[partyId], 0);
+    const total = partyIds.reduce((subtotal, partyId) => subtotal + summary[partyId], 0);
     return (
       <div>
         <table>
           <thead>
             <tr>
-              <td colSpan={2}>
-                {this.state.lang === Lang.fr ? (
-                  <span>
-                    <b>42<sup>me</sup> Parlement</b> (2015-10-19—2019-10-20)
-                  </span>
-                ) : (
-                  <span>
-                    <b>42<sup>nd</sup> Parliament</b> (2015-10-19—2019-10-20)
-                  </span>
-                )}
-              </td>
+              <td colSpan={2}>{this.renderElectionTitle()}</td>
             </tr>
           </thead>
           <tbody>
@@ -189,7 +164,7 @@ class Home extends React.Component<{}, State> {
               return (
                 <tr key={partyId}>
                   <td>{this.renderPartyInfo(party)}</td>
-                  <td align="right">{this.summaryByParty[partyId]}</td>
+                  <td align="right">{summary[partyId]}</td>
                 </tr>
               );
             })}
@@ -216,7 +191,7 @@ class Home extends React.Component<{}, State> {
 
   renderInfo(ridingInfo: CurrentRidingInfo) {
     const candidate = ridingInfo.candidate.replace(/ \*\*$/, "");
-    const elected = / \*\*$/.test(ridingInfo.candidate) ? this.labelForReElected(ridingInfo.date) : this.labelForElected(ridingInfo.date);
+    const elected = this.labelForElected(ridingInfo.date);
     const ridingName = ridingInfo.riding.replace(/\/.+$/, "");
     const party = Party.findByRawName(ridingInfo.party);
     const originalParty = ridingInfo.originalParty ? Party.findByRawName(ridingInfo.originalParty) : null;
@@ -245,10 +220,11 @@ class Home extends React.Component<{}, State> {
   }
 
   renderVoteSummary(votePercentage: number, majorityPercentage: number) {
+    const majorityAsString = majorityPercentage.toFixed(1);
     if (this.state.lang === Lang.fr) {
-      return `${votePercentage} % du vote (+${majorityPercentage === 1 ? "point" : "points"} en avant)`;
+      return `${votePercentage} % du vote (${majorityAsString} ${majorityPercentage === 1 ? "point" : "points"} en avant)`;
     } else {
-      return `${votePercentage}% of vote (${majorityPercentage === 1 ? "point" : "points"} ahead)`;
+      return `${votePercentage}% of vote (${majorityAsString} ${majorityPercentage === 1 ? "point" : "points"} ahead)`;
     }
   }
 
@@ -315,7 +291,7 @@ class Home extends React.Component<{}, State> {
   }
 
   getRidingInfoFromRiding(riding: RidingData, province: ProvinceData): CurrentRidingInfo | null {
-    const result = findWinnerFor(riding.index);
+    const result = findWinnerFor(riding.index, this.state.election);
     if (result) {
       return {
         province: province[this.state.lang],
@@ -367,6 +343,18 @@ class Home extends React.Component<{}, State> {
     } else {
       return results.slice(0, 10);
     }
+  }
+
+  setElection2015(): void {
+    this.setState({
+      election: Election.Oct2015
+    });
+  }
+
+  setElection2019(): void {
+    this.setState({
+      election: Election.Oct2019
+    });
   }
 
   renderSearchResult(riding: RidingData) {
@@ -426,6 +414,7 @@ class Home extends React.Component<{}, State> {
     const ridingInfoFromSearch = (sortedResults.length === 1) ?
       this.getRidingInfoFromRiding(sortedResults[0], searchProvinces[0]) : null;
     const ridingInfo = ridingInfoFromSearch || this.state.currentRiding;
+    const thisYear = new Date().getFullYear();
     return (
       <div>
         <Head>
@@ -450,12 +439,14 @@ class Home extends React.Component<{}, State> {
             <span>{title} </span>
           </h1>
           <div id="langButtons" className="radioButtons">
-            <button className={`radio ${this.state.lang === Lang.en ? "active" : ""}`} type="button" onClick={() => this.setEnglish()}>English</button>
-            <button className={`radio ${this.state.lang === Lang.fr ? "active" : ""}`} type="button" onClick={() => this.setFrench()}>Français</button>
+            <button className={`radio ${this.state.lang === Lang.en ? "active" : ""}`} type="button" onClick={() => this.setEnglish()}>En</button>
+            <button className={`radio ${this.state.lang === Lang.fr ? "active" : ""}`} type="button" onClick={() => this.setFrench()}>Fr</button>
           </div>
           <div id="electionButtons" className="radioButtons">
-            <button className={`radio ${this.state.election === 2015 ? "active" : ""}`} type="button" onClick={() => {}}>2015</button>
-            <button title={this.state.lang === Lang.fr ? "À venir" : "Coming soon"} className={`radio ${this.state.election === 2019 ? "active" : ""}`} type="button" onClick={() => {}} disabled={true}>2019</button>
+            <button className={`radio ${this.state.election === Election.Oct2015 ? "active" : ""}`} type="button" onClick={() => this.setElection2015()}>2015–19</button>
+            <button className={`radio ${this.state.election === Election.Oct2019 ? "active" : ""}`} type="button" onClick={() => this.setElection2019()}>{
+              thisYear === 2019 ? "2019" : `2019–${thisYear - 2000}`
+            }</button>
           </div>
           <div id="search">
             <input
@@ -479,6 +470,7 @@ class Home extends React.Component<{}, State> {
               onHoverOn={(r, p, rs, d, c) => this.onHoverOn(r, p, rs, d, c)}
               onHoverOff={() => this.onHoverOff()}
               lang={this.state.lang}
+              election={this.state.election}
               searchText={this.state.searchText}
             />
             {this.state.currentRiding ? this.renderTooltip(this.state.currentRiding) : null}

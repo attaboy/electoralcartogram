@@ -1,3 +1,9 @@
+import {preliminaryResults, PreliminaryResult} from './preliminary_data';
+import { EACCES } from 'constants';
+import { Election } from '../pages';
+import { Riding } from '../components/riding';
+import { RidingData } from './riding_data';
+
 export interface Result {
   "index": number
   "candidate": string
@@ -12,6 +18,10 @@ export interface Result {
 export interface DateResults {
   "date": string
   "results": Result[]
+}
+
+export interface Summary {
+  [partyId: string]: number
 }
 
 const results20151019: Result[] = [
@@ -17214,6 +17224,9 @@ const resultsSet: DateResults[] = [{
 }, {
   date: "2019-05-06T12:00:00.000Z",
   results: results20190506
+}, {
+  date: "2019-10-21T12:00:00.000Z",
+  results: convertPreliminaryResults(preliminaryResults)
 }];
 
 interface DateResult {
@@ -17221,11 +17234,40 @@ interface DateResult {
   date: string
 }
 
-function findWinnerFor(ridingIndex: number): DateResult | null {
+function convertPreliminaryResults(prelims: PreliminaryResult[]): Result[] {
+  return prelims.map((outer) => {
+    const ridingSortedDescending = prelims.filter((inner) => inner.index === outer.index).sort((a, b) => b.votes - a.votes);
+    const totalForRiding = ridingSortedDescending.reduce((subtotal, next) => subtotal + next.votes, 0);
+    const isWinner = ridingSortedDescending[0] === outer;
+    const challenger = isWinner ? ridingSortedDescending[1] : null;
+    const majority = isWinner && challenger ? outer.votes - challenger.votes : 0;
+    const majorityPercentage = isWinner && challenger ? outer.votePercentage - challenger.votePercentage : 0;
+    return {
+      index: outer.index,
+      candidate: `${outer.firstName} ${outer.lastName}`,
+      party: `${outer.partyEn}/${outer.partyFr}`,
+      votes: outer.votes,
+      votePercentage: outer.votePercentage,
+      majority: majority,
+      majorityPercentage: majorityPercentage
+    };
+  });
+}
+
+function getResultsFor(election: Election): DateResults[] {
+  return resultsSet.filter((ea) => {
+    const resultDate = new Date(ea.date);
+    return resultDate <= new Date(election);
+  });
+}
+
+function findWinnerFor(ridingIndex: number, election: Election): DateResult | null {
   let winner: Result | undefined;
   let date: string | undefined;
-  resultsSet.forEach((dateResults) => {
+  const allResults = getResultsFor(election);
+  allResults.forEach((dateResults, index) => {
     const resultWinner = dateResults.results.find((ea) => ea.index === ridingIndex && ea.majority > 0);
+    const prevWinner = allResults[index - 1] ? allResults[index - 1].results.find((ea) => ea.index === ridingIndex && ea.majority > 0) : null;
     if (resultWinner) {
       winner = resultWinner;
       date = dateResults.date;
@@ -17237,4 +17279,33 @@ function findWinnerFor(ridingIndex: number): DateResult | null {
   } : null;
 }
 
-export { resultsSet, findWinnerFor }
+function getSummaryByParty(election: Election): Summary {
+  const partyByRiding: { [ridingId: string]: string } = {};
+  const byParty: { [partyId: string]: number } = {};
+  getResultsFor(election).forEach((dateResults) => {
+    dateResults.results.forEach((result) => {
+      if (result.majority > 0) {
+        const party = result.currentParty || result.party;
+        partyByRiding[`${result.index}`] = party;
+      }
+    });
+  });
+  Object.keys(partyByRiding).forEach((ridingId) => {
+    const party = partyByRiding[ridingId];
+    if (typeof byParty[party] !== "number") {
+      byParty[party] = 0;
+    }
+    byParty[party] = byParty[party] + 1;
+  });
+  return byParty;
+}
+
+function getResultsForRiding(riding: RidingData, election: Election): DateResults[] {
+  return getResultsFor(election).map((dateResults) => {
+    return Object.assign({}, dateResults, {
+      results: dateResults.results.filter((result) => result.index === riding.index)
+    });
+  });
+}
+
+export { findWinnerFor, getSummaryByParty, getResultsForRiding }
