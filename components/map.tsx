@@ -2,8 +2,8 @@ import React, { CSSProperties } from 'react';
 import { Province } from './province';
 import { Riding, Coordinates } from './riding';
 import {ridingDataSet, RidingData, ProvinceData} from "../data/riding_data";
-import {resultsSet, DateResults, Result} from '../data/result_data';
-import { Lang } from '../pages';
+import {DateResults, Result, getResultsForRiding} from '../data/result_data';
+import { Lang, Election } from '../pages';
 
 interface Labels {
   "Lake": string
@@ -48,16 +48,9 @@ class Map extends React.PureComponent<{
   onHoverOn: (riding: RidingData, province: ProvinceData, result: Result | undefined, date: string | undefined, coords: Coordinates) => void
   onHoverOff: () => void
   lang: Lang
+  election: Election
   searchText: string
 }> {
-  getResultsForRiding(riding: RidingData): DateResults[] {
-    return resultsSet.map((dateResults) => {
-      return Object.assign({}, dateResults, {
-        results: dateResults.results.filter((result) => result.index === riding.index)
-      });
-    });
-  }
-
   getLabelFor<K extends keyof Labels>(key: K): Labels[K] {
     const forLang = labels[this.props.lang];
     return forLang && forLang[key] ? forLang[key] : key;
@@ -176,7 +169,7 @@ class Map extends React.PureComponent<{
             {ridingDataSet.map(province => (
               <Province key={province.id} id={province.id} label={province.en} transform={province.transform}>
                 {province.ridings.map(riding => {
-                  const results = this.getResultsForRiding(riding);
+                  const results = getResultsForRiding(riding, this.props.election);
                   return (
                     <Riding
                       key={riding.id}
