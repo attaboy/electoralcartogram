@@ -46,17 +46,6 @@ class Riding extends React.PureComponent<Props, State> {
     e.stopPropagation();
   }
 
-  colorForParty(result: Result | undefined): string {
-    const partyId = result ? (result.currentParty || result.party) : "";
-    const party = Party.findByRawName(partyId);
-    const color = party.color;
-    if (this.props.searchText === this.props.data[this.props.lang]) {
-      return "white";
-    } else {
-      return color;
-    }
-  }
-
   getResult(): {
     winner: Result | undefined,
     date: string | undefined
@@ -77,9 +66,19 @@ class Riding extends React.PureComponent<Props, State> {
   }
 
   ridingStyle(result: Result | undefined): CSSProperties {
-    return {
-      fill: this.colorForParty(result)
-    };
+    if (this.props.searchText === this.props.data[this.props.lang]) {
+      return {
+        fill: "white"
+      }
+    } else {
+      return {};
+    }
+  }
+
+  ridingClassName(result: Result | undefined): string {
+    const partyId = result ? (result.currentParty || result.party) : "";
+    const party = Party.findByRawName(partyId);
+    return party.className;
   }
 
   render() {
@@ -93,7 +92,7 @@ class Riding extends React.PureComponent<Props, State> {
         onMouseOut={() => this.onHoverOff()}
         onClick={(e) => this.onClick(e)}
       >
-        <path className="ridingPath" d={this.props.data.pathD} style={this.ridingStyle(result.winner)} />
+        <path className={`ridingPath ${this.ridingClassName(result.winner)}`} d={this.props.data.pathD} style={this.ridingStyle(result.winner)} />
       </g>
     );
   }
