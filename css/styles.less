@@ -1,19 +1,31 @@
 @accentColor: white;
+
 @oceanBlue: hsl(209, 61%, 86%);
 @oceanBlueDark: hsl(209, 61%, 80%);
 
 @liberalRed: hsla(359, 78%, 47%, 1.0);
-@liberalRedBright: hsla(359, 88%, 67%, 1.0);
+@liberalRedBright: #f46063;
 
-@ndpOrange: hsla(34, 96%, 45%, 1.0);
+@ndpOrange: hsla(34, 96%, 46%, 1.0);
 @ndpOrangeBright: hsla(34, 96%, 65%, 1.0);
 
-@conservativeBlue: hsla(214, 63%, 35%, 1.0);
-@green: hsla(116, 49%, 41%, 1.0);
+@conservativeBlue: hsla(214, 63%, 34%, 1.0);
+@conservativeBlueBright: hsla(214, 63%, 54%, 1.0);
+
+@green: hsla(116, 49%, 37%, 1.0);
+@greenBright: hsla(116, 49%, 61%, 1.0);
+
 @blocBlue: hsla(200, 80%, 46%, 1.0);
+@blocBlueBright: hsla(200, 80%, 66%, 1.0);
+
 @ppcPurple: hsla(285, 65%, 58%, 1.0);
+@ppcPurpleBright: hsla(285, 65%, 78%, 1.0);
+
 @independentBeige: hsla(45, 20%, 65%, 1.0);
+@independentBeigeBright: hsla(45, 20%, 77%, 1.0);
+
 @otherGray: hsla(0, 0%, 53%, 1.0);
+@otherGrayBright: hsla(0, 0%, 73%, 1.0);
 
 body, input, button {
   font-family: 'Barlow', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -252,6 +264,60 @@ footer {
   &:hover {
     background-color: @ndpOrangeBright;
     fill: @ndpOrangeBright;
+  }
+}
+
+.conservative {
+  background-color: @conservativeBlue;
+  fill: @conservativeBlue;
+  &:hover {
+    background-color: @conservativeBlueBright;
+    fill: @conservativeBlueBright;
+  }
+}
+
+.green {
+  background-color: @green;
+  fill: @green;
+  &:hover {
+    background-color: @greenBright;
+    fill: @greenBright;
+  }
+}
+
+.bloc {
+  background-color: @blocBlue;
+  fill: @blocBlue;
+  &:hover {
+    background-color: @blocBlueBright;
+    fill: @blocBlueBright;
+  }
+}
+
+.ppc {
+  background-color: @ppcPurple;
+  fill: @ppcPurple;
+  &:hover {
+    background-color: @ppcPurpleBright;
+    fill: @ppcPurpleBright;
+  }
+}
+
+.independent {
+  background-color: @independentBeige;
+  fill: @independentBeige;
+  &:hover {
+    background-color: @independentBeigeBright;
+    fill: @independentBeigeBright;
+  }
+}
+
+.other {
+  background-color: @otherGray;
+  fill: @otherGray;
+  &:hover {
+    background-color: @otherGrayBright;
+    fill: @otherGrayBright;
   }
 }
 
