@@ -45,7 +45,7 @@ const labels: LabelLookup = {
 
 class Map extends React.PureComponent<{
   onClick: (riding: RidingData) => void
-  onHoverOn: (riding: RidingData, province: ProvinceData, result: Result | undefined, date: string | undefined, coords: Coordinates) => void
+  onHoverOn: (riding: RidingData, province: ProvinceData, coords: Coordinates) => void
   onHoverOff: () => void
   lang: Lang
   election: Election
@@ -176,10 +176,11 @@ class Map extends React.PureComponent<{
                       data={riding}
                       results={results}
                       onClick={this.props.onClick}
-                      onMouseOver={(result, date, coords) => this.props.onHoverOn(riding, province, result, date, coords)}
+                      onMouseOver={(coords) => this.props.onHoverOn(riding, province, coords)}
                       onMouseOut={this.props.onHoverOff}
                       searchText={this.props.searchText}
                       lang={this.props.lang}
+                      election={this.props.election}
                     />
                   )
                 })}

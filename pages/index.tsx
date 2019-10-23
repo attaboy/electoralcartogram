@@ -79,7 +79,7 @@ class Home extends React.Component<{}, State> {
     }
   }
 
-  onHoverOn(ridingData: RidingData, provinceData: ProvinceData, result: Result | undefined, date: string | undefined, coords: Coordinates): void {
+  onHoverOn(ridingData: RidingData, provinceData: ProvinceData, coords: Coordinates): void {
     this.delayUpdate(this.getRidingInfoFromRiding(ridingData, provinceData), coords, 100);
   }
 
@@ -467,7 +467,7 @@ class Home extends React.Component<{}, State> {
           <div className="map" onClick={() => this.onClickNoRiding()}>
             <Map
               onClick={(r) => this.onClickRiding(r)}
-              onHoverOn={(r, p, rs, d, c) => this.onHoverOn(r, p, rs, d, c)}
+              onHoverOn={(r, p, c) => this.onHoverOn(r, p, c)}
               onHoverOff={() => this.onHoverOff()}
               lang={this.state.lang}
               election={this.state.election}

@@ -1,17 +1,18 @@
 import React, { CSSProperties } from 'react';
-import { DateResults, Result } from '../data/result_data';
+import { DateResults, Result, findWinnerFor } from '../data/result_data';
 import { RidingData } from '../data/riding_data';
-import { Lang } from '../pages';
+import { Lang, Election } from '../pages';
 import Party from '../data/party';
 
 interface Props {
   data: RidingData
   results: DateResults[]
-  onMouseOver: (result: Result | undefined, date: string | undefined, coords: Coordinates) => void
+  onMouseOver: (coords: Coordinates) => void
   onClick: (data: RidingData) => void
   onMouseOut: () => void
   searchText: string
   lang: Lang
+  election: Election
 }
 
 interface State {
@@ -31,9 +32,9 @@ class Riding extends React.PureComponent<Props, State> {
     };
   }
 
-  onHoverOn(result: Result | undefined, date: string | undefined, coords: Coordinates): void {
+  onHoverOn(coords: Coordinates): void {
     this.setState({ hover: true });
-    this.props.onMouseOver(result, date, coords);
+    this.props.onMouseOver(coords);
   }
 
   onHoverOff(): void {
@@ -44,25 +45,6 @@ class Riding extends React.PureComponent<Props, State> {
   onClick(e: React.MouseEvent<SVGGElement>): void {
     this.props.onClick(this.props.data);
     e.stopPropagation();
-  }
-
-  getResult(): {
-    winner: Result | undefined,
-    date: string | undefined
-  } {
-    let winner: Result | undefined;
-    let date: string | undefined;
-    this.props.results.forEach((dateResults) => {
-      const resultWinner = dateResults.results.find((ea) => ea.majority > 0);
-      if (resultWinner) {
-        winner = resultWinner;
-        date = dateResults.date;
-      }
-    });
-    return {
-      winner: winner,
-      date: date
-    };
   }
 
   ridingStyle(result: Result | undefined): CSSProperties {
@@ -82,17 +64,17 @@ class Riding extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const result = this.getResult();
+    const result = findWinnerFor(this.props.data.index, this.props.election);
     return (
       <g className="riding" id={this.props.data.id} transform={this.props.data.transform}
-        onMouseOver={(event) => this.onHoverOn(result.winner, result.date, {
+        onMouseOver={(event) => this.onHoverOn({
           x: event.clientX,
           y: event.clientY
         })}
         onMouseOut={() => this.onHoverOff()}
         onClick={(e) => this.onClick(e)}
       >
-        <path className={`ridingPath ${this.ridingClassName(result.winner)}`} d={this.props.data.pathD} style={this.ridingStyle(result.winner)} />
+        <path className={`ridingPath ${result ? this.ridingClassName(result.winner) : ""}`} d={this.props.data.pathD} style={result ? this.ridingStyle(result.winner) : undefined} />
       </g>
     );
   }

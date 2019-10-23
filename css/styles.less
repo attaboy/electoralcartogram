@@ -104,6 +104,10 @@ header, footer {
   }
 }
 
+footer {
+  padding-top: 1rem;
+}
+
 header h1 {
   float: left;
   margin-right: 1em;
@@ -229,13 +233,17 @@ footer {
 .columns .column {
   float: left;
   box-sizing: border-box;
+  width: 50%;
   max-width: 30rem;
-  padding-right: 1em;
-  margin-right: 1em;
 }
 
 .columns .column:first-child {
   border-right: 1px solid white;
+  padding-right: 1em;
+}
+
+.columns .column:last-child {
+  padding-left: 1em;
 }
 
 #mapTooltip {
@@ -389,6 +397,9 @@ svg {
 @media (max-width: 64rem) {
   .columns .column {
     float: none;
+    width: auto;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   .columns .column:first-child {
