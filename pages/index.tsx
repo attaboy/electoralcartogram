@@ -10,6 +10,7 @@ import { Coordinates } from '../components/riding';
 interface CurrentRidingInfo {
   province: string
   flag: string
+  flagDescription: string
   riding: string
   candidate: string
   party: string
@@ -198,7 +199,10 @@ class Home extends React.Component<{}, State> {
     return (
       <div>
         <h5>
-          <img src={ridingInfo.flag} style={{ height: "24px", marginRight: "0.5em", verticalAlign: "bottom" }} />
+          <img src={ridingInfo.flag}
+            style={{ height: "24px", marginRight: "0.5em", verticalAlign: "bottom" }}
+            alt={ridingInfo.flagDescription}
+          />
           {ridingName === ridingInfo.province ? null : (
             <span>{ridingInfo.province}</span>
           )}
@@ -293,9 +297,11 @@ class Home extends React.Component<{}, State> {
   getRidingInfoFromRiding(riding: RidingData, province: ProvinceData): CurrentRidingInfo | null {
     const result = findWinnerFor(riding.index, this.state.election);
     if (result) {
+      const flagDescriptionKey = this.state.lang === Lang.fr ? "flagDescription-fr" : "flagDescription-en";
       return {
         province: province[this.state.lang],
         flag: province.flagUrl,
+        flagDescription: province[flagDescriptionKey],
         riding: riding[this.state.lang],
         candidate: result.winner.candidate,
         party: result.winner.currentParty || result.winner.party,
@@ -439,7 +445,10 @@ class Home extends React.Component<{}, State> {
         </Head>
         <header>
           <h1>
-            <img src="/images/flags/Flag_of_Canada.png" style={{ height: "0.8em", paddingBottom: "0.2em", marginRight: "0.4em", verticalAlign: "bottom" }} />
+            <img src="/images/flags/Flag_of_Canada.png"
+              alt={this.state.lang === Lang.fr ? "Le drapeau du Canada" : "Flag of Canada"}
+              style={{ height: "0.8em", paddingBottom: "0.2em", marginRight: "0.4em", verticalAlign: "bottom" }}
+            />
             <span>{title} </span>
           </h1>
           <div id="langButtons" className="radioButtons">

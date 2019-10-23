@@ -17,8 +17,10 @@ export interface RidingData extends PoliticalData {
 }
 
 export interface ProvinceData extends PoliticalData {
-  flagUrl: string
-  ridings: RidingData[]
+  "flagUrl": string
+  "flagDescription-en": string
+  "flagDescription-fr": string
+  "ridings": RidingData[]
 }
 
 const ridingDataSet: ProvinceData[] = [
@@ -27,6 +29,8 @@ const ridingDataSet: ProvinceData[] = [
     "flagUrl": "/images/flags/Flag_of_British_Columbia.png",
     "en": "British Columbia",
     "fr": "Colombie-Britannique",
+    "flagDescription-en": "Flag of British Columbia",
+    "flagDescription-fr": "Le drapeau de la Colombie-Britannique",
     "transform": "matrix(0.926829,0,0,0.98,-215.168,10.5658)",
     "index": 59,
     "ridings": [
@@ -373,6 +377,8 @@ const ridingDataSet: ProvinceData[] = [
     "flagUrl": "/images/flags/Flag_of_Alberta.png",
     "en": "Alberta",
     "fr": "Alberta",
+    "flagDescription-en": "Flag of Alberta",
+    "flagDescription-fr": "Le drapeau de l’Alberta",
     "transform": "matrix(0.926829,0,0,0.98,-242.973,-125.654)",
     "index": 48,
     "ridings": [
@@ -655,6 +661,8 @@ const ridingDataSet: ProvinceData[] = [
     "flagUrl": "/images/flags/Flag_of_Saskatchewan.png",
     "en": "Saskatchewan",
     "fr": "Saskatchewan",
+    "flagDescription-en": "Flag of Saskatchewan",
+    "flagDescription-fr": "Le drapeau de la Saskatchewan",
     "transform": "matrix(0.926829,0,0,0.98,-187.363,-125.654)",
     index: 47,
     "ridings": [
@@ -777,6 +785,8 @@ const ridingDataSet: ProvinceData[] = [
     "flagUrl": "/images/flags/Flag_of_Manitoba.png",
     "en": "Manitoba",
     "fr": "Manitoba",
+    "flagDescription-en": "Flag of Manitoba",
+    "flagDescription-fr": "Le drapeau du Manitoba",
     "transform": "matrix(0.926829,0,0,0.98,-131.754,-125.654)",
     "index": 46,
     "ridings": [
@@ -899,6 +909,8 @@ const ridingDataSet: ProvinceData[] = [
     "flagUrl": "/images/flags/Flag_of_Ontario.png",
     "en": "Ontario",
     "fr": "Ontario",
+    "flagDescription-en": "Flag of Ontario",
+    "flagDescription-fr": "Le drapeau de l’Ontario",
     "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
     "index": 35,
     "ridings": [
@@ -1877,6 +1889,8 @@ const ridingDataSet: ProvinceData[] = [
     "flagUrl": "/images/flags/Flag_of_Quebec.png",
     "en": "Quebec",
     "fr": "Québec",
+    "flagDescription-en": "Flag of Quebec",
+    "flagDescription-fr": "Le drapeau du Québec",
     "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
     "index": 24,
     "ridings": [
@@ -2511,6 +2525,8 @@ const ridingDataSet: ProvinceData[] = [
     "flagUrl": "/images/flags/Flag_of_New_Brunswick.png",
     "en": "New Brunswick",
     "fr": "Nouveau-Brunswick",
+    "flagDescription-en": "Flag of New Brunswick",
+    "flagDescription-fr": "Le drapeau du Nouveau-Brunswick",
     "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
     "index": 13,
     "ridings": [
@@ -2601,6 +2617,8 @@ const ridingDataSet: ProvinceData[] = [
     "flagUrl": "/images/flags/Flag_of_Nova_Scotia.png",
     "en": "Nova Scotia",
     "fr": "Nouvelle-Écosse",
+    "flagDescription-en": "Flag of Nova Scotia",
+    "flagDescription-fr": "Le drapeau de la Nouvelle-Écosse",
     "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
     "index": 12,
     "ridings": [
@@ -2699,6 +2717,8 @@ const ridingDataSet: ProvinceData[] = [
     "flagUrl": "/images/flags/Flag_of_Prince_Edward_Island.png",
     "en": "Prince Edward Island",
     "fr": "Île-du-Prince-Édouard",
+    "flagDescription-en": "Flag of Prince Edward Island",
+    "flagDescription-fr": "Le drapeau de l’Île-du-Prince-Édouard",
     "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
     "index": 11,
     "ridings": [
@@ -2741,6 +2761,8 @@ const ridingDataSet: ProvinceData[] = [
     "flagUrl": "/images/flags/Flag_of_Newfoundland_and_Labrador.png",
     "en": "Newfoundland and Labrador",
     "fr": "Terre-Neuve-et-Labrador",
+    "flagDescription-en": "Flag of Newfoundland and Labrador",
+    "flagDescription-fr": "Le drapeau de Terre-Neuve-et-Labrador",
     "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
     "index": 10,
     "ridings": [
@@ -2807,6 +2829,8 @@ const ridingDataSet: ProvinceData[] = [
     "flagUrl": "/images/flags/Flag_of_Nunavut.png",
     "en": "Nunavut",
     "fr": "Nunavut",
+    "flagDescription-en": "Flag of Nunavut",
+    "flagDescription-fr": "Le drapeau du Nunavut",
     "transform": "matrix(0.926829,0,0,0.98,21.0341,-194.902)",
     "index": 62,
     "ridings": [
@@ -2825,6 +2849,8 @@ const ridingDataSet: ProvinceData[] = [
     "flagUrl": "/images/flags/Flag_of_Yukon.png",
     "en": "Yukon",
     "fr": "Yukon",
+    "flagDescription-en": "Flag of Yukon",
+    "flagDescription-fr": "Le drapeau du Yukon",
     "transform": "matrix(0.926829,0,0,0.98,-145.517,-155.898)",
     "index": 60,
     "ridings": [
@@ -2841,8 +2867,10 @@ const ridingDataSet: ProvinceData[] = [
   {
     "id": "Northwest-Territories",
     "flagUrl": "/images/flags/Flag_of_the_Northwest_Territories.png",
-    "en": "Northwest Territories",
+    "en": "The Northwest Territories",
     "fr": "Territoires du Nord-Ouest",
+    "flagDescription-en": "Flag of the Northwest Territories",
+    "flagDescription-fr": "Le drapeau des Territoires du Nord-Ouest",
     "transform": "matrix(0.926829,0,0,0.98,-62.1191,-155.898)",
     "index": 61,
     "ridings": [
