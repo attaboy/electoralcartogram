@@ -419,6 +419,11 @@ class Home extends React.Component<{}, State> {
       <div>
         <Head>
           <title>{title}</title>
+          <meta name="description"
+            content="Federal election results for Canada displayed visually in a cartogram map which emphasizes population distribution rather than vast, empty spaces. Each electoral district is represented by a single hexagon of the same size."
+          />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+
           <link href="https://fonts.googleapis.com/css?family=Barlow:300,400,600&display=swap" rel="stylesheet" />
           {/* Global site tag (gtag.js) - Google Analytics */}
           <script async src="https://www.googletagmanager.com/gtag/js?id=UA-615474-5" />
@@ -431,7 +436,6 @@ class Home extends React.Component<{}, State> {
           gtag('config', 'UA-615474-5');
           `
           }}></script>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         <header>
           <h1>
