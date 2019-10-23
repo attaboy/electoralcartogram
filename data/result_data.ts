@@ -17255,9 +17255,10 @@ function convertPreliminaryResults(prelims: PreliminaryResult[]): Result[] {
 }
 
 function getResultsFor(election: Election): DateResults[] {
+  const electionDate = new Date(election);
   return resultsSet.filter((ea) => {
     const resultDate = new Date(ea.date);
-    return resultDate <= new Date(election);
+    return resultDate <= electionDate;
   });
 }
 
