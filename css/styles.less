@@ -1,7 +1,10 @@
 @accentColor: white;
 
 @oceanBlue: hsl(209, 61%, 86%);
-@oceanBlueDark: hsl(209, 61%, 80%);
+@oceanBlueDark: hsl(209, 66%, 79%);
+
+@foreignLandGray: hsl(207, 17%, 74%);
+@canadaLandGreen: hsl(168, 30%, 74%);
 
 @liberalRed: hsla(359, 78%, 47%, 1.0);
 @liberalRedBright: #f46063;
@@ -59,6 +62,7 @@ sup {
 h1, h2, h3, h4, h5, h6 { margin: 0 }
 
 h4 {
+  color: @foreignLandGray;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -69,7 +73,10 @@ h1 {
   font-weight: 300
 }
 
-h5 { text-transform: uppercase; margin-bottom: 0.5em }
+h5 {
+  text-transform: uppercase;
+  margin-bottom: 0.5em
+}
 
 table {
   border-collapse: collapse;
@@ -354,17 +361,17 @@ svg {
   }
 
   .foreignLand {
-    fill: hsl(207, 17%, 74%);
+    fill: @foreignLandGray;
   }
 
   .foreignLandBorder {
     fill: none;
-    stroke: hsl(207, 17%, 74%);
+    stroke: @foreignLandGray;
     stroke-width: 2px;
   }
 
   .canadaLand {
-    fill: hsl(168, 30%, 74%);
+    fill: @canadaLandGreen;
   }
 
   .internationalBorder {
