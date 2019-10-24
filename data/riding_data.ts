@@ -31,7 +31,7 @@ const ridingDataSet: ProvinceData[] = [
     "fr": "Colombie-Britannique",
     "flagDescription-en": "Flag of British Columbia",
     "flagDescription-fr": "Le drapeau de la Colombie-Britannique",
-    "transform": "matrix(0.926829,0,0,0.98,-215.168,10.5658)",
+    "transform": "matrix(0.926829,0,0,1.06522,-215.168,7.13672)",
     "index": 59,
     "ridings": [
       {
@@ -379,7 +379,7 @@ const ridingDataSet: ProvinceData[] = [
     "fr": "Alberta",
     "flagDescription-en": "Flag of Alberta",
     "flagDescription-fr": "Le drapeau de l’Alberta",
-    "transform": "matrix(0.926829,0,0,0.98,-242.973,-125.654)",
+    "transform": "matrix(0.926829,0,0,1.06522,-242.973,-140.928)",
     "index": 48,
     "ridings": [
       {
@@ -663,7 +663,7 @@ const ridingDataSet: ProvinceData[] = [
     "fr": "Saskatchewan",
     "flagDescription-en": "Flag of Saskatchewan",
     "flagDescription-fr": "Le drapeau de la Saskatchewan",
-    "transform": "matrix(0.926829,0,0,0.98,-187.363,-125.654)",
+    "transform": "matrix(0.926829,0,0,1.06522,-187.363,-140.928)",
     index: 47,
     "ridings": [
       {
@@ -787,14 +787,14 @@ const ridingDataSet: ProvinceData[] = [
     "fr": "Manitoba",
     "flagDescription-en": "Flag of Manitoba",
     "flagDescription-fr": "Le drapeau du Manitoba",
-    "transform": "matrix(0.926829,0,0,0.98,-131.754,-125.654)",
+    "transform": "matrix(0.926829,0,0,1.06522,-131.754,-140.928)",
     "index": 46,
     "ridings": [
       {
         "id": "Winnipeg-South-Centre---Winnipeg-Centre-Sud",
         "en": "Winnipeg South-Centre",
         "fr": "Winnipeg-Centre-Sud",
-        "transform": "matrix(1,0,0,1,14.95,29.239)",
+        "transform": "matrix(1,0,0,1,14.95,9.239)",
         "pathD": "M560.1,350L550.1,350L545.1,360L550.1,370L560.1,370L565.1,360L560.1,350Z",
         "index": 46014
       },
@@ -818,7 +818,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Winnipeg-Centre---Winnipeg-Centre",
         "en": "Winnipeg Centre",
         "fr": "Winnipeg-Centre",
-        "transform": "matrix(1,0,0,1,30.05,18.987)",
+        "transform": "matrix(1,0,0,1,60.05,19.239)",
         "pathD": "M545,340L535,340L530,350L535,360L545,360L550,350L545,340Z",
         "index": 46011
       },
@@ -826,7 +826,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Selkirk---Interlake---Eastman",
         "en": "Selkirk — Interlake — Eastman",
         "fr": "Selkirk — Interlake — Eastman",
-        "transform": "matrix(1,0,0,1,44.85,9.239)",
+        "transform": "matrix(1,0,0,1,29.85,-20.761)",
         "pathD": "M575.2,340L565.2,340L560.2,350L565.2,360L575.2,360L580.2,350L575.2,340Z",
         "index": 46010
       },
@@ -834,7 +834,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Saint-Boniface---Saint-Vital---Saint-Boniface---Saint-Vital",
         "en": "Saint Boniface — Saint Vital",
         "fr": "Saint Boniface — Saint-Vital",
-        "transform": "matrix(1,0,0,1,44.85,-10.661)",
+        "transform": "matrix(1,0,0,1,29.85,-40.661)",
         "pathD": "M575.2,379.9L565.2,379.9L560.2,389.9L565.2,399.9L575.2,399.9L580.2,389.9L575.2,379.9Z",
         "index": 46009
       },
@@ -850,7 +850,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Portage---Lisgar",
         "en": "Portage — Lisgar",
         "fr": "Portage — Lisgar",
-        "transform": "matrix(1,0,0,1,14.952,9.339)",
+        "transform": "matrix(1,0,0,1,14.952,-10.661)",
         "pathD": "M560.1,389.9L550.1,389.9L545.1,399.9L550.1,409.9L560.1,409.9L565.1,399.9L560.1,389.9Z",
         "index": 46007
       },
@@ -858,7 +858,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Kildonan---St.-Paul",
         "en": "Kildonan — St. Paul",
         "fr": "Kildonan — St. Paul",
-        "transform": "matrix(1,0,0,1,29.85,-20.761)",
+        "transform": "matrix(1,0,0,1,14.85,-30.493)",
         "pathD": "M575.2,360L565.2,360L560.2,370L565.2,380L575.2,380L580.2,370L575.2,360Z",
         "index": 46006
       },
@@ -866,7 +866,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Elmwood---Transcona",
         "en": "Elmwood — Transcona",
         "fr": "Elmwood — Transcona",
-        "transform": "matrix(1,0,0,1,44.95,29.139)",
+        "transform": "matrix(1,0,0,1,59.95,19.139)",
         "pathD": "M560.1,330.1L550.1,330.1L545.1,340.1L550.1,350.1L560.1,350.1L565.1,340.1L560.1,330.1Z",
         "index": 46005
       },
@@ -882,7 +882,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Churchill---Keewatinook-Aski",
         "en": "Churchill — Keewatinook Aski",
         "fr": "Churchill — Keewatinook Aski",
-        "transform": "matrix(1,0,0,1,59.85,19.339)",
+        "transform": "matrix(1,0,0,1,44.85,9.339)",
         "pathD": "M575.2,319.9L565.2,319.9L560.2,329.9L565.2,339.9L575.2,339.9L580.2,329.9L575.2,319.9Z",
         "index": 46003
       },
@@ -911,14 +911,14 @@ const ridingDataSet: ProvinceData[] = [
     "fr": "Ontario",
     "flagDescription-en": "Flag of Ontario",
     "flagDescription-fr": "Le drapeau de l’Ontario",
-    "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
+    "transform": "matrix(0.926829,0,0,1.06522,-159.512,-120.435)",
     "index": 35,
     "ridings": [
       {
         "id": "Humber-River---Black-Creek",
         "en": "Humber River — Black Creek",
         "fr": "Humber River — Black Creek",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0,-20)",
         "pathD": "M665.1,479.9L655.1,479.9L650.1,489.9L655.1,499.9L665.1,499.9L670.1,489.9L665.1,479.9Z",
         "index": 35121
       },
@@ -926,7 +926,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "York-South---Weston---York-Sud---Weston",
         "en": "York South — Weston",
         "fr": "York-Sud — Weston",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0,-20)",
         "pathD": "M665,499.9L655,499.9L650,509.9L655,519.9L665,519.9L670,509.9L665,499.9Z",
         "index": 35120
       },
@@ -934,7 +934,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "York---Simcoe",
         "en": "York — Simcoe",
         "fr": "York — Simcoe",
-        "transform": "matrix(1,0,0,1,-0.1,-20)",
+        "transform": "matrix(1,0,0,1,-0.1,-40)",
         "pathD": "M680.1,430L670.1,430L665.1,440L670.1,450L680.1,450L685.1,440L680.1,430Z",
         "index": 35119
       },
@@ -942,7 +942,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "York-Centre---York-Centre",
         "en": "York Centre",
         "fr": "York-Centre",
-        "transform": "matrix(1,0,0,1,0.1,-19.9)",
+        "transform": "matrix(1,0,0,1,0.1,-39.9)",
         "pathD": "M679.9,489.9L669.9,489.9L664.9,499.9L669.9,509.9L679.9,509.9L684.9,499.9L679.9,489.9Z",
         "index": 35118
       },
@@ -950,7 +950,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Windsor-West---Windsor-Ouest",
         "en": "Windsor West",
         "fr": "Windsor-Ouest",
-        "transform": "matrix(1,0,0,1,60.2,0.1)",
+        "transform": "matrix(1,0,0,1,15.2,-50.154)",
         "pathD": "M529.8,609.9L519.8,609.9L514.8,619.9L519.8,629.9L529.8,629.9L534.8,619.9L529.8,609.9Z",
         "index": 35117
       },
@@ -958,7 +958,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Windsor---Tecumseh",
         "en": "Windsor — Tecumseh",
         "fr": "Windsor — Tecumseh",
-        "transform": "matrix(1,0,0,1,60.2,0.1)",
+        "transform": "matrix(1,0,0,1,15.2,-50.154)",
         "pathD": "M529.8,589.9L519.8,589.9L514.8,599.9L519.8,609.9L529.8,609.9L534.8,599.9L529.8,589.9Z",
         "index": 35116
       },
@@ -966,7 +966,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Willowdale",
         "en": "Willowdale",
         "fr": "Willowdale",
-        "transform": "matrix(1,0,0,1,0.4,0.1)",
+        "transform": "matrix(1,0,0,1,0.4,-19.9)",
         "pathD": "M694.6,459.9L684.6,459.9L679.6,469.9L684.6,479.9L694.6,479.9L699.6,469.9L694.6,459.9Z",
         "index": 35115
       },
@@ -982,7 +982,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Wellington---Halton-Hills",
         "en": "Wellington — Halton Hills",
         "fr": "Wellington — Halton Hills",
-        "transform": "matrix(1,0,0,1,30,40.1)",
+        "transform": "matrix(1,0,0,1,5.68434e-14,-19.9)",
         "pathD": "M605,519.9L595,519.9L590,529.9L595,539.9L605,539.9L610,529.9L605,519.9Z",
         "index": 35113
       },
@@ -998,7 +998,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Vaughan---Woodbridge",
         "en": "Vaughan — Woodbridge",
         "fr": "Vaughan — Woodbridge",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0,-20)",
         "pathD": "M650,469.9L640,469.9L635,479.9L640,489.9L650,489.9L655,479.9L650,469.9Z",
         "index": 35111
       },
@@ -1006,7 +1006,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "University---Rosedale",
         "en": "University — Rosedale",
         "fr": "University — Rosedale",
-        "transform": "matrix(1,0,0,1,0.1,-20.1)",
+        "transform": "matrix(1,0,0,1,0.1,-40.1)",
         "pathD": "M694.9,520.1L684.9,520.1L679.9,530.1L684.9,540.1L694.9,540.1L699.9,530.1L694.9,520.1Z",
         "index": 35110
       },
@@ -1014,7 +1014,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Toronto---Danforth",
         "en": "Toronto — Danforth",
         "fr": "Toronto — Danforth",
-        "transform": "matrix(1,0,0,1,0,-20.2)",
+        "transform": "matrix(1,0,0,1,0,-40.45)",
         "pathD": "M710,510.2L700,510.2L695,520.2L700,530.2L710,530.2L715,520.2L710,510.2Z",
         "index": 35109
       },
@@ -1022,7 +1022,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Toronto-Centre---Toronto-Centre",
         "en": "Toronto Centre",
         "fr": "Toronto-Centre",
-        "transform": "matrix(1,0,0,1,0,-20)",
+        "transform": "matrix(1,0,0,1,0,-40.25)",
         "pathD": "M710,529.9L700,529.9L695,539.9L700,549.9L710,549.9L715,539.9L710,529.9Z",
         "index": 35108
       },
@@ -1030,7 +1030,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Timmins---James-Bay---TImmins---Baie-James",
         "en": "Timmins — James Bay",
         "fr": "TImmins — Baie James",
-        "transform": "matrix(1,0,0,1,60,0.1)",
+        "transform": "matrix(1,0,0,1,60,-19.9)",
         "pathD": "M605,379.9L595,379.9L590,389.9L595,399.9L605,399.9L610,389.9L605,379.9Z",
         "index": 35107
       },
@@ -1038,7 +1038,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Thunder-Bay---Superior-North---Thunder-Bay---Supérieur-Nord",
         "en": "Thunder Bay — Superior North",
         "fr": "Thunder Bay — Supérieur-Nord",
-        "transform": "matrix(1,0,0,1,30,0.1)",
+        "transform": "matrix(1,0,0,1,45,-29.9)",
         "pathD": "M605,399.9L595,399.9L590,409.9L595,419.9L605,419.9L610,409.9L605,399.9Z",
         "index": 35106
       },
@@ -1046,7 +1046,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Thunder-Bay---Rainy-River",
         "en": "Thunder Bay — Rainy River",
         "fr": "Thunder Bay — Rainy River",
-        "transform": "matrix(1,0,0,1,59.8,-19.9)",
+        "transform": "matrix(1,0,0,1,44.8,-29.9)",
         "pathD": "M590.2,409.9L580.2,409.9L575.2,419.9L580.2,429.9L590.2,429.9L595.2,419.9L590.2,409.9Z",
         "index": 35105
       },
@@ -1054,7 +1054,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Thornhill",
         "en": "Thornhill",
         "fr": "Thornhill",
-        "transform": "matrix(1,0,0,1,0.2,-19.9)",
+        "transform": "matrix(1,0,0,1,0.2,-39.9)",
         "pathD": "M679.8,469.9L669.8,469.9L664.8,479.9L669.8,489.9L679.8,489.9L684.8,479.9L679.8,469.9Z",
         "index": 35104
       },
@@ -1062,7 +1062,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Sudbury",
         "en": "Sudbury",
         "fr": "Sudbury",
-        "transform": "matrix(1,0,0,1,30.1,0.3)",
+        "transform": "matrix(1,0,0,1,30.1,-19.7)",
         "pathD": "M619.9,409.7L609.9,409.7L604.9,419.7L609.9,429.7L619.9,429.7L624.9,419.7L619.9,409.7Z",
         "index": 35103
       },
@@ -1078,7 +1078,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Spadina---Fort-York",
         "en": "Spadina — Fort York",
         "fr": "Spadina — Fort York",
-        "transform": "matrix(1,0,0,1,0.1,-19.9)",
+        "transform": "matrix(1,0,0,1,0.1,-39.9)",
         "pathD": "M694.9,539.9L684.9,539.9L679.9,549.9L684.9,559.9L694.9,559.9L699.9,549.9L694.9,539.9Z",
         "index": 35101
       },
@@ -1086,7 +1086,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Simcoe-North---Simcoe-Nord",
         "en": "Simcoe North",
         "fr": "Simcoe-Nord",
-        "transform": "matrix(1,0,0,1,0.1,20)",
+        "transform": "matrix(1,0,0,1,0.1,1.7053e-13)",
         "pathD": "M649.9,430L639.9,430L634.9,440L639.9,450L649.9,450L654.9,440L649.9,430Z",
         "index": 35100
       },
@@ -1094,7 +1094,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Simcoe---Grey",
         "en": "Simcoe — Grey",
         "fr": "Simcoe — Grey",
-        "transform": "matrix(1,0,0,1,-15,10)",
+        "transform": "matrix(1,0,0,1,-15,-10)",
         "pathD": "M620,450L610,450L605,460L610,470L620,470L625,460L620,450Z",
         "index": 35099
       },
@@ -1102,7 +1102,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Scarborough-Southwest---Scarborough-Sud-Ouest",
         "en": "Scarborough Southwest",
         "fr": "Scarborough-Sud-Ouest",
-        "transform": "matrix(1,0,0,1,0,-20)",
+        "transform": "matrix(1,0,0,1,0,-40.2)",
         "pathD": "M739.9,490.2L729.9,490.2L724.9,500.2L729.9,510.2L739.9,510.2L744.9,500.2L739.9,490.2Z",
         "index": 35098
       },
@@ -1118,7 +1118,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Scarborough-North---Scarborough-Nord",
         "en": "Scarborough North",
         "fr": "Scarborough-Nord",
-        "transform": "matrix(1,0,0,1,0,-20)",
+        "transform": "matrix(1,0,0,1,0,-40.2)",
         "pathD": "M739.9,450.1L729.9,450.1L724.9,460.1L729.9,470.1L739.9,470.1L744.9,460.1L739.9,450.1Z",
         "index": 35096
       },
@@ -1134,7 +1134,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Scarborough-Centre---Scarborough-Centre",
         "en": "Scarborough Centre",
         "fr": "Scarborough-Centre",
-        "transform": "matrix(1,0,0,1,14.986,-10)",
+        "transform": "matrix(1,0,0,1,14.986,-30.2)",
         "pathD": "M724.9,460.1L714.9,460.1L709.9,470.1L714.9,480.1L724.9,480.1L729.9,470.1L724.9,460.1Z",
         "index": 35094
       },
@@ -1142,7 +1142,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Scarborough---Agincourt",
         "en": "Scarborough — Agincourt",
         "fr": "Scarborough — Agincourt",
-        "transform": "matrix(1,0,0,1,0,0.1)",
+        "transform": "matrix(1,0,0,1,0,-20.1)",
         "pathD": "M725,439.9L715,439.9L710,449.9L715,459.9L725,459.9L730,449.9L725,439.9Z",
         "index": 35093
       },
@@ -1150,7 +1150,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Sault-Ste.-Marie",
         "en": "Sault Ste. Marie",
         "fr": "Sault Ste. Marie",
-        "transform": "matrix(1,0,0,1,15.133,10.1)",
+        "transform": "matrix(1,0,0,1,15.133,-9.9)",
         "pathD": "M605,419.9L595,419.9L590,429.9L595,439.9L605,439.9L610,429.9L605,419.9Z",
         "index": 35092
       },
@@ -1158,7 +1158,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Sarnia---Lambton",
         "en": "Sarnia — Lambton",
         "fr": "Sarnia — Lambton",
-        "transform": "matrix(1,0,0,1,45.2,9.9)",
+        "transform": "matrix(1,0,0,1,30.2,-19.9)",
         "pathD": "M544.8,539.9L534.8,539.9L529.8,549.9L534.8,559.9L544.8,559.9L549.8,549.9L544.8,539.9Z",
         "index": 35091
       },
@@ -1166,7 +1166,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Toronto---St.-Paul-s",
         "en": "Toronto — St. Paul’s",
         "fr": "Toronto — St. Paul’s",
-        "transform": "matrix(1,0,0,1,0.1,-20.2)",
+        "transform": "matrix(1,0,0,1,0.1,-40.2)",
         "pathD": "M694.9,500.2L684.9,500.2L679.9,510.2L684.9,520.2L694.9,520.2L699.9,510.2L694.9,500.2Z",
         "index": 35090
       },
@@ -1174,7 +1174,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "St.-Catharines",
         "en": "St. Catharines",
         "fr": "St. Catharines",
-        "transform": "matrix(1,0,0,1,75.208,-9.9)",
+        "transform": "matrix(1,0,0,1,45.2,-30.154)",
         "pathD": "M649.8,589.9L639.8,589.9L634.8,599.9L639.8,609.9L649.8,609.9L654.8,599.9L649.8,589.9Z",
         "index": 35089
       },
@@ -1190,7 +1190,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Richmond-Hill",
         "en": "Richmond Hill",
         "fr": "Richmond Hill",
-        "transform": "matrix(1,0,0,1,15,-9.9)",
+        "transform": "matrix(1,0,0,1,15,-29.9)",
         "pathD": "M680,449.9L670,449.9L665,459.9L670,469.9L680,469.9L685,459.9L680,449.9Z",
         "index": 35087
       },
@@ -1206,7 +1206,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Peterborough---Kawartha",
         "en": "Peterborough — Kawartha",
         "fr": "Peterborough — Kawartha",
-        "transform": "matrix(1,0,0,1,-14.9,10)",
+        "transform": "matrix(1,0,0,1,-14.9,-10.2)",
         "pathD": "M754.9,400L744.9,400L739.9,410L744.9,420L754.9,420L759.9,410L754.9,400Z",
         "index": 35084
       },
@@ -1222,7 +1222,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Perth---Wellington",
         "en": "Perth — Wellington",
         "fr": "Perth — Wellington",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0,-0.1)",
         "pathD": "M590,490.1L580,490.1L575,500.1L580,510.1L590,510.1L595,500.1L590,490.1Z",
         "index": 35083
       },
@@ -1230,7 +1230,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Parry-Sound---Muskoka",
         "en": "Parry Sound — Muskoka",
         "fr": "Parry Sound — Muskoka",
-        "transform": "matrix(1,0,0,1,15.1,10.3)",
+        "transform": "matrix(1,0,0,1,15.1,-9.7)",
         "pathD": "M634.9,419.7L624.9,419.7L619.9,429.7L624.9,439.7L634.9,439.7L639.9,429.7L634.9,419.7Z",
         "index": 35082
       },
@@ -1238,7 +1238,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Parkdale---High-Park",
         "en": "Parkdale — High Park",
         "fr": "Parkdale — High Park",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0,-20)",
         "pathD": "M680.1,529.9L670.1,529.9L665.1,539.9L670.1,549.9L680.1,549.9L685.1,539.9L680.1,529.9Z",
         "index": 35081
       },
@@ -1246,7 +1246,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Oxford",
         "en": "Oxford",
         "fr": "Oxford",
-        "transform": "matrix(1,0,0,1,75.1,30.1)",
+        "transform": "matrix(1,0,0,1,0.1,-39.9)",
         "pathD": "M589.9,589.9L579.9,589.9L574.9,599.9L579.9,609.9L589.9,609.9L594.9,599.9L589.9,589.9Z",
         "index": 35080
       },
@@ -1302,7 +1302,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Oakville-North---Burlington---Oakville-Nord---Burlington",
         "en": "Oakville North — Burlington",
         "fr": "Oakville-Nord — Burlington",
-        "transform": "matrix(1,0,0,1,30,0.1)",
+        "transform": "matrix(1,0,0,1,15,-9.9)",
         "pathD": "M620,549.9L610,549.9L605,559.9L610,569.9L620,569.9L625,559.9L620,549.9Z",
         "index": 35073
       },
@@ -1310,7 +1310,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Oakville",
         "en": "Oakville",
         "fr": "Oakville",
-        "transform": "matrix(1,0,0,1,15,10)",
+        "transform": "matrix(1,0,0,1,-0.1,-19.9)",
         "pathD": "M650.1,549.9L640.1,549.9L635.1,559.9L640.1,569.9L650.1,569.9L655.1,559.9L650.1,549.9Z",
         "index": 35072
       },
@@ -1326,7 +1326,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Nipissing---Timiskaming",
         "en": "Nipissing — Timiskaming",
         "fr": "Nipissing — Timiskaming",
-        "transform": "matrix(1,0,0,1,30.1,-19.9)",
+        "transform": "matrix(1,0,0,1,30.1,-39.9)",
         "pathD": "M649.9,409.9L639.9,409.9L634.9,419.9L639.9,429.9L649.9,429.9L654.9,419.9L649.9,409.9Z",
         "index": 35070
       },
@@ -1334,7 +1334,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Nickel-Belt",
         "en": "Nickel Belt",
         "fr": "Nickel Belt",
-        "transform": "matrix(1,0,0,1,30.1,0.3)",
+        "transform": "matrix(1,0,0,1,30.1,-19.7)",
         "pathD": "M634.9,399.7L624.9,399.7L619.9,409.7L624.9,419.7L634.9,419.7L639.9,409.7L634.9,399.7Z",
         "index": 35069
       },
@@ -1342,7 +1342,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Niagara-West---Niagara-Ouest",
         "en": "Niagara West",
         "fr": "Niagara-Ouest",
-        "transform": "matrix(1,0,0,1,75.1,-9.9)",
+        "transform": "matrix(1,0,0,1,45.1,-30.154)",
         "pathD": "M634.9,599.9L624.9,599.9L619.9,609.9L624.9,619.9L634.9,619.9L639.9,609.9L634.9,599.9Z",
         "index": 35068
       },
@@ -1350,7 +1350,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Niagara-Falls",
         "en": "Niagara Falls",
         "fr": "Niagara Falls",
-        "transform": "matrix(1,0,0,1,74.9,10.1)",
+        "transform": "matrix(1,0,0,1,44.9,-10.154)",
         "pathD": "M665.1,579.9L655.1,579.9L650.1,589.9L655.1,599.9L665.1,599.9L670.1,589.9L665.1,579.9Z",
         "index": 35067
       },
@@ -1358,7 +1358,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Niagara-Centre---Niagara-Centre",
         "en": "Niagara Centre",
         "fr": "Niagara-Centre",
-        "transform": "matrix(1,0,0,1,75.208,-9.9)",
+        "transform": "matrix(1,0,0,1,45.2,-30.662)",
         "pathD": "M649.8,609.9L639.8,609.9L634.8,619.9L639.8,629.9L649.8,629.9L654.8,619.9L649.8,609.9Z",
         "index": 35066
       },
@@ -1366,7 +1366,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Newmarket---Aurora",
         "en": "Newmarket — Aurora",
         "fr": "Newmarket — Aurora",
-        "transform": "matrix(1,0,0,1,14.9,-10.2)",
+        "transform": "matrix(1,0,0,1,14.9,-30.2)",
         "pathD": "M665.1,440.2L655.1,440.2L650.1,450.2L655.1,460.2L665.1,460.2L670.1,450.2L665.1,440.2Z",
         "index": 35065
       },
@@ -1382,7 +1382,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Mississauga---Streetsville",
         "en": "Mississauga — Streetsville",
         "fr": "Mississauga — Streetsville",
-        "transform": "matrix(1,0,0,1,-0.1,0.1)",
+        "transform": "matrix(1,0,0,1,-0.1,-19.9)",
         "pathD": "M620.1,529.9L610.1,529.9L605.1,539.9L610.1,549.9L620.1,549.9L625.1,539.9L620.1,529.9Z",
         "index": 35063
       },
@@ -1390,7 +1390,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Mississauga---Malton",
         "en": "Mississauga — Malton",
         "fr": "Mississauga — Malton",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0,-20)",
         "pathD": "M635.1,499.9L625.1,499.9L620.1,509.9L625.1,519.9L635.1,519.9L640.1,509.9L635.1,499.9Z",
         "index": 35062
       },
@@ -1398,7 +1398,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Mississauga---Lakeshore",
         "en": "Mississauga — Lakeshore",
         "fr": "Mississauga — Lakeshore",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,-15.1,-29.9)",
         "pathD": "M665.1,539.9L655.1,539.9L650.1,549.9L655.1,559.9L665.1,559.9L670.1,549.9L665.1,539.9Z",
         "index": 35061
       },
@@ -1406,7 +1406,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Mississauga---Erin-Mills",
         "en": "Mississauga — Erin Mills",
         "fr": "Mississauga — Erin Mills",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,-15.1,-9.9)",
         "pathD": "M635.1,539.9L625.1,539.9L620.1,549.9L625.1,559.9L635.1,559.9L640.1,549.9L635.1,539.9Z",
         "index": 35060
       },
@@ -1414,7 +1414,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Mississauga-East---Cooksville---Mississauga-Est---Cooksville",
         "en": "Mississauga East — Cooksville",
         "fr": "Mississauga-Est — Cooksville",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,-15.131,-29.9)",
         "pathD": "M650,529.9L640,529.9L635,539.9L640,549.9L650,549.9L655,539.9L650,529.9Z",
         "index": 35059
       },
@@ -1422,7 +1422,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Mississauga-Centre---Mississauga-Centre",
         "en": "Mississauga Centre",
         "fr": "Mississauga-Centre",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,-0.1,0.1)",
         "pathD": "M635.1,519.9L625.1,519.9L620.1,529.9L625.1,539.9L635.1,539.9L640.1,529.9L635.1,519.9Z",
         "index": 35058
       },
@@ -1430,7 +1430,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Milton",
         "en": "Milton",
         "fr": "Milton",
-        "transform": "matrix(1,0,0,1,45,30.1)",
+        "transform": "matrix(1,0,0,1,15,10.1)",
         "pathD": "M605,539.9L595,539.9L590,549.9L595,559.9L605,559.9L610,549.9L605,539.9Z",
         "index": 35057
       },
@@ -1438,7 +1438,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Markham---Unionville",
         "en": "Markham — Unionville",
         "fr": "Markham — Unionville",
-        "transform": "matrix(1,0,0,1,0.1,-19.9)",
+        "transform": "matrix(1,0,0,1,0.1,-39.9)",
         "pathD": "M694.9,439.9L684.9,439.9L679.9,449.9L684.9,459.9L694.9,459.9L699.9,449.9L694.9,439.9Z",
         "index": 35056
       },
@@ -1446,7 +1446,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Markham---Thornhill",
         "en": "Markham — Thornhill",
         "fr": "Markham — Thornhill",
-        "transform": "matrix(1,0,0,1,0.2,-19.9)",
+        "transform": "matrix(1,0,0,1,0.2,-40.15)",
         "pathD": "M709.8,449.9L699.8,449.9L694.8,459.9L699.8,469.9L709.8,469.9L714.8,459.9L709.8,449.9Z",
         "index": 35055
       },
@@ -1454,7 +1454,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Markham---Stouffville",
         "en": "Markham — Stouffville",
         "fr": "Markham — Stouffville",
-        "transform": "matrix(1,0,0,1,15,-9.5)",
+        "transform": "matrix(1,0,0,1,15,-29.7)",
         "pathD": "M710,429.5L700,429.5L695,439.5L700,449.5L710,449.5L715,439.5L710,429.5Z",
         "index": 35054
       },
@@ -1462,7 +1462,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "London-West---London-Ouest",
         "en": "London West",
         "fr": "London-Ouest",
-        "transform": "matrix(1,0,0,1,75.2,30.1)",
+        "transform": "matrix(1,0,0,1,15.2,10.1)",
         "pathD": "M559.8,549.9L549.8,549.9L544.8,559.9L549.8,569.9L559.8,569.9L564.8,559.9L559.8,549.9Z",
         "index": 35053
       },
@@ -1470,7 +1470,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "London-North-Centre---London-Centre-Nord",
         "en": "London North Centre",
         "fr": "London-Centre-Nord",
-        "transform": "matrix(1,0,0,1,60.1,40.1)",
+        "transform": "matrix(1,0,0,1,0.1,-19.9)",
         "pathD": "M574.9,559.9L564.9,559.9L559.9,569.9L564.9,579.9L574.9,579.9L579.9,569.9L574.9,559.9Z",
         "index": 35052
       },
@@ -1478,7 +1478,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "London---Fanshawe",
         "en": "London — Fanshawe",
         "fr": "London — Fanshawe",
-        "transform": "matrix(1,0,0,1,60.1,40.1)",
+        "transform": "matrix(1,0,0,1,15.1,-9.9)",
         "pathD": "M574.9,579.9L564.9,579.9L559.9,589.9L564.9,599.9L574.9,599.9L579.9,589.9L574.9,579.9Z",
         "index": 35051
       },
@@ -1502,7 +1502,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Lambton---Kent---Middlesex",
         "en": "Lambton — Kent — Middlesex",
         "fr": "Lambton — Kent — Middlesex",
-        "transform": "matrix(1,0,0,1,60.2,20.1)",
+        "transform": "matrix(1,0,0,1,0.2,-39.9)",
         "pathD": "M559.8,569.9L549.8,569.9L544.8,579.9L549.8,589.9L559.8,589.9L564.8,579.9L559.8,569.9Z",
         "index": 35048
       },
@@ -1510,7 +1510,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Kitchener-South---Hespeler---Kitchener-Sud---Hespeler",
         "en": "Kitchener South — Hespeler",
         "fr": "Kitchener-Sud — Hespeler",
-        "transform": "matrix(1,0,0,1,30,40.1)",
+        "transform": "matrix(1,0,0,1,15,30.1)",
         "pathD": "M590,529.9L580,529.9L575,539.9L580,549.9L590,549.9L595,539.9L590,529.9Z",
         "index": 35047
       },
@@ -1518,7 +1518,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Kitchener---Conestaga",
         "en": "Kitchener — Conestaga",
         "fr": "Kitchener — Conestaga",
-        "transform": "matrix(1,0,0,1,45,10.1)",
+        "transform": "matrix(1,0,0,1,30,0.1)",
         "pathD": "M560,529.9L550,529.9L545,539.9L550,549.9L560,549.9L565,539.9L560,529.9Z",
         "index": 35046
       },
@@ -1526,7 +1526,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Kitchener-Centre---Kitchener-Centre",
         "en": "Kitchener Centre",
         "fr": "Kitchener-Centre",
-        "transform": "matrix(1,0,0,1,45.1,10.1)",
+        "transform": "matrix(1,0,0,1,30.1,-0.154)",
         "pathD": "M574.9,539.9L564.9,539.9L559.9,549.9L564.9,559.9L574.9,559.9L579.9,549.9L574.9,539.9Z",
         "index": 35045
       },
@@ -1542,7 +1542,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "King---Vaughan",
         "en": "King — Vaughan",
         "fr": "King — Vaughan",
-        "transform": "matrix(1,0,0,1,0.1,1.13687e-13)",
+        "transform": "matrix(1,0,0,1,0.1,-20)",
         "pathD": "M634.9,460L624.9,460L619.9,470L624.9,480L634.9,480L639.9,470L634.9,460Z",
         "index": 35043
       },
@@ -1550,7 +1550,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Kenora",
         "en": "Kenora",
         "fr": "Kenora",
-        "transform": "matrix(1,0,0,1,59.8,-19.9)",
+        "transform": "matrix(1,0,0,1,59.8,-39.9)",
         "pathD": "M590.2,389.9L580.2,389.9L575.2,399.9L580.2,409.9L590.2,409.9L595.2,399.9L590.2,389.9Z",
         "index": 35042
       },
@@ -1566,7 +1566,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Huron---Bruce",
         "en": "Huron — Bruce",
         "fr": "Huron — Bruce",
-        "transform": "matrix(1,0,0,1,-15,10)",
+        "transform": "matrix(1,0,0,1,-14.5,10)",
         "pathD": "M590,470L580,470L575,480L580,490L590,490L595,480L590,470Z",
         "index": 35040
       },
@@ -1582,7 +1582,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Hamilton-West---Ancaster---Dundas---Hamilton-Ouest---Ancaster---Dundas",
         "en": "Hamilton West — Ancaster — Dundas",
         "fr": "Hamilton-Ouest — Ancaster — Dundas",
-        "transform": "matrix(1,0,0,1,75,30.1)",
+        "transform": "matrix(1,0,0,1,45,-9.9)",
         "pathD": "M605,579.9L595,579.9L590,589.9L595,599.9L605,599.9L610,589.9L605,579.9Z",
         "index": 35038
       },
@@ -1590,7 +1590,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Hamilton-Mountain",
         "en": "Hamilton Mountain",
         "fr": "Hamilton Mountain",
-        "transform": "matrix(1,0,0,1,90.1,0)",
+        "transform": "matrix(1,0,0,1,60.1,-20.408)",
         "pathD": "M604.9,599.9L594.9,599.9L589.9,609.9L594.9,619.9L604.9,619.9L609.9,609.9L604.9,599.9Z",
         "index": 35037
       },
@@ -1598,7 +1598,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Hamilton-East---Stoney-Creek---Hamilton-Est---Stoney-Creek",
         "en": "Hamilton East — Stoney Creek",
         "fr": "Hamilton-Est — Stoney Creek",
-        "transform": "matrix(1,0,0,1,75,-9.9)",
+        "transform": "matrix(1,0,0,1,60,-39.9)",
         "pathD": "M620,589.9L610,589.9L605,599.9L610,609.9L620,609.9L625,599.9L620,589.9Z",
         "index": 35036
       },
@@ -1606,7 +1606,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Hamilton-Centre---Hamilton-Centre",
         "en": "Hamilton Centre",
         "fr": "Hamilton-Centre",
-        "transform": "matrix(1,0,0,1,60,20)",
+        "transform": "matrix(1,0,0,1,45,-9.9)",
         "pathD": "M620,569.9L610,569.9L605,579.9L610,589.9L620,589.9L625,579.9L620,569.9Z",
         "index": 35035
       },
@@ -1614,7 +1614,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Haliburton---Kawartha-Lakes---Brock",
         "en": "Haliburton — Kawartha Lakes — Brock",
         "fr": "Haliburton — Kawartha Lakes — Brock",
-        "transform": "matrix(1,0,0,1,29.9,-20)",
+        "transform": "matrix(1,0,0,1,29.9,-40)",
         "pathD": "M665.1,420L655.1,420L650.1,430L655.1,440L665.1,440L670.1,430L665.1,420Z",
         "index": 35034
       },
@@ -1622,7 +1622,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Haldimand---Norfolk",
         "en": "Haldimand — Norfolk",
         "fr": "Haldimand — Norfolk",
-        "transform": "matrix(1,0,0,1,105.1,10.1)",
+        "transform": "matrix(1,0,0,1,30.1,-19.9)",
         "pathD": "M589.9,609.9L579.9,609.9L574.9,619.9L579.9,629.9L589.9,629.9L594.9,619.9L589.9,609.9Z",
         "index": 35033
       },
@@ -1630,7 +1630,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Guelph",
         "en": "Guelph",
         "fr": "Guelph",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,2.84217e-14,0.1)",
         "pathD": "M590,509.9L580,509.9L575,519.9L580,529.9L590,529.9L595,519.9L590,509.9Z",
         "index": 35032
       },
@@ -1646,7 +1646,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Flamborough---Glanbrook",
         "en": "Flamborough — Glanbrook",
         "fr": "Flamborough — Glanbrook",
-        "transform": "matrix(1,0,0,1,60,40)",
+        "transform": "matrix(1,0,0,1,30,0.1)",
         "pathD": "M605,559.9L595,559.9L590,569.9L595,579.9L605,579.9L610,569.9L605,559.9Z",
         "index": 35030
       },
@@ -1654,7 +1654,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Etobicoke-North---Etobicoke-Nord",
         "en": "Etobicoke North",
         "fr": "Etobicoke-Nord",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0,-20)",
         "pathD": "M650,489.9L640,489.9L635,499.9L640,509.9L650,509.9L655,499.9L650,489.9Z",
         "index": 35029
       },
@@ -1662,7 +1662,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Etobicoke---Lakeshore",
         "en": "Etobicoke — Lakeshore",
         "fr": "Etobicoke — Lakeshore",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0,-20)",
         "pathD": "M665.1,519.9L655.1,519.9L650.1,529.9L655.1,539.9L665.1,539.9L670.1,529.9L665.1,519.9Z",
         "index": 35028
       },
@@ -1670,7 +1670,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Etobicoke-Centre---Etobicoke-Centre",
         "en": "Etobicoke Centre",
         "fr": "Etobicoke-Centre",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0,-20)",
         "pathD": "M650,509.9L640,509.9L635,519.9L640,529.9L650,529.9L655,519.9L650,509.9Z",
         "index": 35027
       },
@@ -1678,7 +1678,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Essex",
         "en": "Essex",
         "fr": "Essex",
-        "transform": "matrix(1,0,0,1,60.3,-0.154)",
+        "transform": "matrix(1,0,0,1,15.3,-49.9)",
         "pathD": "M544.7,599.9L534.7,599.9L529.7,609.9L534.7,619.9L544.7,619.9L549.7,609.9L544.7,599.9Z",
         "index": 35026
       },
@@ -1686,7 +1686,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Elgin---Middlesex---London",
         "en": "Elgin — Middlesex — London",
         "fr": "Elgin — Middlesex — London",
-        "transform": "matrix(1,0,0,1,75.188,30.1)",
+        "transform": "matrix(1,0,0,1,30.1,-19.9)",
         "pathD": "M574.9,599.9L564.9,599.9L559.9,609.9L564.9,619.9L574.9,619.9L579.9,609.9L574.9,599.9Z",
         "index": 35025
       },
@@ -1694,7 +1694,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Eglinton---Lawrence",
         "en": "Eglinton — Lawrence",
         "fr": "Eglinton — Lawrence",
-        "transform": "matrix(1,0,0,1,-14.6,10.1)",
+        "transform": "matrix(1,0,0,1,-14.6,-9.9)",
         "pathD": "M694.6,479.9L684.6,479.9L679.6,489.9L684.6,499.9L694.6,499.9L699.6,489.9L694.6,479.9Z",
         "index": 35024
       },
@@ -1710,7 +1710,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Dufferin---Caledon",
         "en": "Dufferin — Caledon",
         "fr": "Dufferin — Caledon",
-        "transform": "matrix(1,0,0,1,0.1,0.4)",
+        "transform": "matrix(1,0,0,1,0.1,-19.6)",
         "pathD": "M619.9,469.6L609.9,469.6L604.9,479.6L609.9,489.6L619.9,489.6L624.9,479.6L619.9,469.6Z",
         "index": 35022
       },
@@ -1718,7 +1718,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Don-Valley-West---Don-Valley-Ouest",
         "en": "Don Valley West",
         "fr": "Don Valley-Ouest",
-        "transform": "matrix(1,0,0,1,0.2,-19.9)",
+        "transform": "matrix(1,0,0,1,0.2,-40.15)",
         "pathD": "M709.8,489.9L699.8,489.9L694.8,499.9L699.8,509.9L709.8,509.9L714.8,499.9L709.8,489.9Z",
         "index": 35021
       },
@@ -1726,7 +1726,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Don-Valley-North---Don-Valley-Nord",
         "en": "Don Valley North",
         "fr": "Don Valley-Nord",
-        "transform": "matrix(1,0,0,1,0,-20)",
+        "transform": "matrix(1,0,0,1,0,-40.25)",
         "pathD": "M709.8,469.9L699.8,469.9L694.8,479.9L699.8,489.9L709.8,489.9L714.8,479.9L709.8,469.9Z",
         "index": 35020
       },
@@ -1734,7 +1734,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Don-Valley-East---Don-Valley-Est",
         "en": "Don Valley East",
         "fr": "Don Valley-Est",
-        "transform": "matrix(1,0,0,1,0,-20)",
+        "transform": "matrix(1,0,0,1,0,-40.2)",
         "pathD": "M724.9,480.1L714.9,480.1L709.9,490.1L714.9,500.1L724.9,500.1L729.9,490.1L724.9,480.1Z",
         "index": 35019
       },
@@ -1742,7 +1742,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Davenport",
         "en": "Davenport",
         "fr": "Davenport",
-        "transform": "matrix(1,0,0,1,0.2,-0.2)",
+        "transform": "matrix(1,0,0,1,0.2,-20.2)",
         "pathD": "M679.8,510.2L669.8,510.2L664.8,520.2L669.8,530.2L679.8,530.2L684.8,520.2L679.8,510.2Z",
         "index": 35018
       },
@@ -1750,7 +1750,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Chatham-Kent---Leamington",
         "en": "Chatham-Kent — Leamington",
         "fr": "Chatham-Kent — Leamington",
-        "transform": "matrix(1,0,0,1,59.978,20.1)",
+        "transform": "matrix(1,0,0,1,0.1,-19.9)",
         "pathD": "M559.9,589.9L549.9,589.9L544.9,599.9L549.9,609.9L559.9,609.9L564.9,599.9L559.9,589.9Z",
         "index": 35017
       },
@@ -1758,7 +1758,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Cambridge",
         "en": "Cambridge",
         "fr": "Cambridge",
-        "transform": "matrix(1,0,0,1,60,40.1)",
+        "transform": "matrix(1,0,0,1,30,20.1)",
         "pathD": "M590,549.9L580,549.9L575,559.9L580,569.9L590,569.9L595,559.9L590,549.9Z",
         "index": 35016
       },
@@ -1766,7 +1766,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Burlington",
         "en": "Burlington",
         "fr": "Burlington",
-        "transform": "matrix(1,0,0,1,29.9,20.1)",
+        "transform": "matrix(1,0,0,1,14.9,-9.9)",
         "pathD": "M635.1,559.9L625.1,559.9L620.1,569.9L625.1,579.9L635.1,579.9L640.1,569.9L635.1,559.9Z",
         "index": 35015
       },
@@ -1774,7 +1774,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Bruce---Grey---Owen-Sound",
         "en": "Bruce — Grey — Owen Sound",
         "fr": "Bruce — Grey — Owen Sound",
-        "transform": "matrix(1,0,0,1,-15,10)",
+        "transform": "matrix(1,0,0,1,-15,-10)",
         "pathD": "M604.9,459.9L594.9,459.9L589.9,469.9L594.9,479.9L604.9,479.9L609.9,469.9L604.9,459.9Z",
         "index": 35014
       },
@@ -1782,7 +1782,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Brantford---Brant",
         "en": "Brantford — Brant",
         "fr": "Brantford — Brant",
-        "transform": "matrix(1,0,0,1,60,40.1)",
+        "transform": "matrix(1,0,0,1,45,10.1)",
         "pathD": "M590,569.9L580,569.9L575,579.9L580,589.9L590,589.9L595,579.9L590,569.9Z",
         "index": 35013
       },
@@ -1790,7 +1790,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Brampton-West---Brampton-Ouest",
         "en": "Brampton West",
         "fr": "Brampton-Ouest",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0,-20)",
         "pathD": "M605,499.9L595,499.9L590,509.9L595,519.9L605,519.9L610,509.9L605,499.9Z",
         "index": 35012
       },
@@ -1798,7 +1798,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Brampton-South---Brampton-Sud",
         "en": "Brampton South",
         "fr": "Brampton-Sud",
-        "transform": "matrix(1,0,0,1,0,0.1)",
+        "transform": "matrix(1,0,0,1,0,-19.9)",
         "pathD": "M620,509.9L610,509.9L605,519.9L610,529.9L620,529.9L625,519.9L620,509.9Z",
         "index": 35011
       },
@@ -1806,7 +1806,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Brampton-North---Brampton-Nord",
         "en": "Brampton North",
         "fr": "Brampton-Nord",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0,-20)",
         "pathD": "M605,479.9L595,479.9L590,489.9L595,499.9L605,499.9L610,489.9L605,479.9Z",
         "index": 35010
       },
@@ -1814,7 +1814,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Brampton-East---Brampton-Est",
         "en": "Brampton East",
         "fr": "Brampton-Est",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0,-20)",
         "pathD": "M634.8,479.9L624.8,479.9L619.8,489.9L624.8,499.9L634.8,499.9L639.8,489.9L634.8,479.9Z",
         "index": 35009
       },
@@ -1822,7 +1822,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Brampton-Centre---Brampton-Centre",
         "en": "Brampton Centre",
         "fr": "Brampton-Centre",
-        "transform": "matrix(1,0,0,1,0,0.1)",
+        "transform": "matrix(1,0,0,1,0,-19.9)",
         "pathD": "M620,489.9L610,489.9L605,499.9L610,509.9L620,509.9L625,499.9L620,489.9Z",
         "index": 35008
       },
@@ -1830,7 +1830,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Beaches---East-York",
         "en": "Beaches — East York",
         "fr": "Beaches — East York",
-        "transform": "matrix(1,0,0,1,0,-20)",
+        "transform": "matrix(1,0,0,1,0,-40.2)",
         "pathD": "M724.9,499.9L714.9,499.9L709.9,509.9L714.9,519.9L724.9,519.9L729.9,509.9L724.9,499.9Z",
         "index": 35007
       },
@@ -1846,7 +1846,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Barrie---Springwater---Oro-Medonte",
         "en": "Barrie — Springwater — Oro-Medonte",
         "fr": "Barrie — Springwater — Oro-Medonte",
-        "transform": "matrix(1,0,0,1,30.1,-19.8)",
+        "transform": "matrix(1,0,0,1,30.1,-39.8)",
         "pathD": "M634.9,439.8L624.9,439.8L619.9,449.8L624.9,459.8L634.9,459.8L639.9,449.8L634.9,439.8Z",
         "index": 35005
       },
@@ -1854,7 +1854,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Barrie---Innisfil",
         "en": "Barrie — Innisfil",
         "fr": "Barrie — Innisfil",
-        "transform": "matrix(1,0,0,1,15.1,-10.2)",
+        "transform": "matrix(1,0,0,1,15.1,-30.2)",
         "pathD": "M649.9,450.2L639.9,450.2L634.9,460.2L639.9,470.2L649.9,470.2L654.9,460.2L649.9,450.2Z",
         "index": 35004
       },
@@ -1862,7 +1862,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Aurora---Oak-Ridges---Richmond-Hill",
         "en": "Aurora — Oak Ridges — Richmond Hill",
         "fr": "Aurora — Oak Ridges — Richmond Hill",
-        "transform": "",
+        "transform": "matrix(1,0,0,1,0,-20)",
         "pathD": "M665.1,459.9L655.1,459.9L650.1,469.9L655.1,479.9L665.1,479.9L670.1,469.9L665.1,459.9Z",
         "index": 35003
       },
@@ -1870,7 +1870,7 @@ const ridingDataSet: ProvinceData[] = [
         "id": "Algoma---Manitoulin---Kapuskasing",
         "en": "Algoma — Manitoulin — Kapuskasing",
         "fr": "Algoma — Manitoulin — Kapuskasing",
-        "transform": "matrix(1,0,0,1,15.1,30.2)",
+        "transform": "matrix(1,0,0,1,15.1,10.2)",
         "pathD": "M619.9,389.8L609.9,389.8L604.9,399.8L609.9,409.8L619.9,409.8L624.9,399.8L619.9,389.8Z",
         "index": 35002
       },
@@ -1891,7 +1891,7 @@ const ridingDataSet: ProvinceData[] = [
     "fr": "Québec",
     "flagDescription-en": "Flag of Quebec",
     "flagDescription-fr": "Le drapeau du Québec",
-    "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
+    "transform": "matrix(0.926829,0,0,1.06522,-159.512,-120.435)",
     "index": 24,
     "ridings": [
       {
@@ -2527,7 +2527,7 @@ const ridingDataSet: ProvinceData[] = [
     "fr": "Nouveau-Brunswick",
     "flagDescription-en": "Flag of New Brunswick",
     "flagDescription-fr": "Le drapeau du Nouveau-Brunswick",
-    "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
+    "transform": "matrix(0.926829,0,0,1.06522,-159.512,-120.435)",
     "index": 13,
     "ridings": [
       {
@@ -2619,7 +2619,7 @@ const ridingDataSet: ProvinceData[] = [
     "fr": "Nouvelle-Écosse",
     "flagDescription-en": "Flag of Nova Scotia",
     "flagDescription-fr": "Le drapeau de la Nouvelle-Écosse",
-    "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
+    "transform": "matrix(0.926829,0,0,1.06522,-159.512,-120.435)",
     "index": 12,
     "ridings": [
       {
@@ -2719,7 +2719,7 @@ const ridingDataSet: ProvinceData[] = [
     "fr": "Île-du-Prince-Édouard",
     "flagDescription-en": "Flag of Prince Edward Island",
     "flagDescription-fr": "Le drapeau de l’Île-du-Prince-Édouard",
-    "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
+    "transform": "matrix(0.926829,0,0,1.06522,-159.512,-120.435)",
     "index": 11,
     "ridings": [
       {
@@ -2763,7 +2763,7 @@ const ridingDataSet: ProvinceData[] = [
     "fr": "Terre-Neuve-et-Labrador",
     "flagDescription-en": "Flag of Newfoundland and Labrador",
     "flagDescription-fr": "Le drapeau de Terre-Neuve-et-Labrador",
-    "transform": "matrix(0.926829,0,0,0.98,-159.512,-106.8)",
+    "transform": "matrix(0.926829,0,0,1.06522,-159.512,-120.435)",
     "index": 10,
     "ridings": [
       {
@@ -2831,7 +2831,7 @@ const ridingDataSet: ProvinceData[] = [
     "fr": "Nunavut",
     "flagDescription-en": "Flag of Nunavut",
     "flagDescription-fr": "Le drapeau du Nunavut",
-    "transform": "matrix(0.926829,0,0,0.98,21.0341,-194.902)",
+    "transform": "matrix(0.926829,0,0,1.06522,21.0341,-216.198)",
     "index": 62,
     "ridings": [
       {
@@ -2851,7 +2851,7 @@ const ridingDataSet: ProvinceData[] = [
     "fr": "Yukon",
     "flagDescription-en": "Flag of Yukon",
     "flagDescription-fr": "Le drapeau du Yukon",
-    "transform": "matrix(0.926829,0,0,0.98,-145.517,-155.898)",
+    "transform": "matrix(0.926829,0,0,1.06522,-145.517,-173.802)",
     "index": 60,
     "ridings": [
       {
@@ -2871,7 +2871,7 @@ const ridingDataSet: ProvinceData[] = [
     "fr": "Territoires du Nord-Ouest",
     "flagDescription-en": "Flag of the Northwest Territories",
     "flagDescription-fr": "Le drapeau des Territoires du Nord-Ouest",
-    "transform": "matrix(0.926829,0,0,0.98,-62.1191,-155.898)",
+    "transform": "matrix(0.926829,0,0,1.06522,-76.0215,-184.446)",
     "index": 61,
     "ridings": [
       {
