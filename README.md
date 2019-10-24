@@ -7,3 +7,13 @@ This site interactively shows federal election results for Canada from 2011 to 2
 The original map was drawn by hand using [Affinity Designer](https://affinity.serif.com/en-us/designer/), and then converted to SVG format. The site was coded in [Typescript](https://www.typescriptlang.org) with the [Next.js](https://nextjs.org) framework.
 
 Election results for [recent](https://enr.elections.ca/National.aspx?lang=e) and [past elections](https://elections.ca/content.aspx?section=ele&dir=pas&document=index&lang=e) were copied from [Elections Canada](https://elections.ca) under their terms and conditions for non-commercial reproduction of data.
+
+## Development
+
+This package uses NPM for dependencies.
+
+To install dependencies: `npm install`
+
+To run the development server: `npm run dev`
+
+To export the site to static HTML (in the `out` directory): `npm run export`
