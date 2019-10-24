@@ -184,7 +184,7 @@ class Home extends React.Component<{}, State> {
   renderPartyInfo(party: Party, content?: React.ReactNode) {
     return (
       <span>
-        <span className={party.className} style={{ display: "inline-block", width: "1rem", height: "1rem", verticalAlign: "top", marginTop: "0.15rem", marginRight: "0.4em", border: "1px solid black" }}></span>
+        <span className={party.className} style={{ display: "inline-block", width: "1em", height: "1em", verticalAlign: "top", marginTop: "0.05em", marginRight: "0.4em", border: "1px solid black" }}></span>
         <span>{party[this.state.lang]}</span>
       </span>
     )
