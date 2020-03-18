@@ -1,34 +1,34 @@
-@accentColor: white;
+$accentColor: white;
 
-@oceanBlue: hsl(209, 61%, 86%);
-@oceanBlueDark: hsl(209, 66%, 79%);
+$oceanBlue: hsl(209, 61%, 86%);
+$oceanBlueDark: hsl(209, 66%, 79%);
 
-@foreignLandGray: hsl(207, 17%, 74%);
-@canadaLandGreen: hsl(168, 30%, 74%);
+$foreignLandGray: hsl(207, 17%, 74%);
+$canadaLandGreen: hsl(168, 30%, 74%);
 
-@liberalRed: hsla(359, 78%, 47%, 1.0);
-@liberalRedBright: #f46063;
+$liberalRed: hsla(359, 78%, 47%, 1.0);
+$liberalRedBright: #f46063;
 
-@ndpOrange: hsla(34, 96%, 46%, 1.0);
-@ndpOrangeBright: hsla(34, 96%, 65%, 1.0);
+$ndpOrange: hsla(34, 96%, 46%, 1.0);
+$ndpOrangeBright: hsla(34, 96%, 65%, 1.0);
 
-@conservativeBlue: hsla(214, 63%, 34%, 1.0);
-@conservativeBlueBright: hsla(214, 63%, 54%, 1.0);
+$conservativeBlue: hsla(214, 63%, 34%, 1.0);
+$conservativeBlueBright: hsla(214, 63%, 54%, 1.0);
 
-@green: hsla(116, 49%, 37%, 1.0);
-@greenBright: hsla(116, 49%, 61%, 1.0);
+$green: hsla(116, 49%, 37%, 1.0);
+$greenBright: hsla(116, 49%, 61%, 1.0);
 
-@blocBlue: hsla(200, 80%, 46%, 1.0);
-@blocBlueBright: hsla(200, 80%, 66%, 1.0);
+$blocBlue: hsla(200, 80%, 46%, 1.0);
+$blocBlueBright: hsla(200, 80%, 66%, 1.0);
 
-@ppcPurple: hsla(285, 65%, 58%, 1.0);
-@ppcPurpleBright: hsla(285, 65%, 78%, 1.0);
+$ppcPurple: hsla(285, 65%, 58%, 1.0);
+$ppcPurpleBright: hsla(285, 65%, 78%, 1.0);
 
-@independentBeige: hsla(45, 20%, 65%, 1.0);
-@independentBeigeBright: hsla(45, 20%, 77%, 1.0);
+$independentBeige: hsla(45, 20%, 65%, 1.0);
+$independentBeigeBright: hsla(45, 20%, 77%, 1.0);
 
-@otherGray: hsla(0, 0%, 53%, 1.0);
-@otherGrayBright: hsla(0, 0%, 73%, 1.0);
+$otherGray: hsla(0, 0%, 53%, 1.0);
+$otherGrayBright: hsla(0, 0%, 73%, 1.0);
 
 body, input, button {
   font-family: 'Barlow', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -42,7 +42,7 @@ body {
 }
 
 a:link, a:visited {
-  color: @oceanBlueDark;
+  color: $oceanBlueDark;
   text-decoration: none;
 }
 
@@ -62,7 +62,7 @@ sup {
 h1, h2, h3, h4, h5, h6 { margin: 0 }
 
 h4 {
-  color: @foreignLandGray;
+  color: $foreignLandGray;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -159,7 +159,7 @@ footer h4 {
   vertical-align: middle;
   display: inline-block;
   white-space: nowrap;
-  border: 1px solid @accentColor;
+  border: 1px solid $accentColor;
   border-radius: 3px;
   padding: 2px;
 }
@@ -181,13 +181,13 @@ button.radio {
   cursor: pointer;
 
   &:focus, &:active {
-    border-color: @accentColor;
+    border-color: $accentColor;
     outline: none;
   }
 
   &.active {
-    background-color: @accentColor;
-    border-color: @accentColor;
+    background-color: $accentColor;
+    border-color: $accentColor;
     color: black;
   }
 
@@ -271,74 +271,74 @@ footer {
 }
 
 .liberal {
-  background-color: @liberalRed;
-  fill: @liberalRed;
+  background-color: $liberalRed;
+  fill: $liberalRed;
   &:hover {
-    background-color: @liberalRedBright;
-    fill: @liberalRedBright;
+    background-color: $liberalRedBright;
+    fill: $liberalRedBright;
   }
 }
 
 .ndp {
-  background-color: @ndpOrange;
-  fill: @ndpOrange;
+  background-color: $ndpOrange;
+  fill: $ndpOrange;
   &:hover {
-    background-color: @ndpOrangeBright;
-    fill: @ndpOrangeBright;
+    background-color: $ndpOrangeBright;
+    fill: $ndpOrangeBright;
   }
 }
 
 .conservative {
-  background-color: @conservativeBlue;
-  fill: @conservativeBlue;
+  background-color: $conservativeBlue;
+  fill: $conservativeBlue;
   &:hover {
-    background-color: @conservativeBlueBright;
-    fill: @conservativeBlueBright;
+    background-color: $conservativeBlueBright;
+    fill: $conservativeBlueBright;
   }
 }
 
 .green {
-  background-color: @green;
-  fill: @green;
+  background-color: $green;
+  fill: $green;
   &:hover {
-    background-color: @greenBright;
-    fill: @greenBright;
+    background-color: $greenBright;
+    fill: $greenBright;
   }
 }
 
 .bloc {
-  background-color: @blocBlue;
-  fill: @blocBlue;
+  background-color: $blocBlue;
+  fill: $blocBlue;
   &:hover {
-    background-color: @blocBlueBright;
-    fill: @blocBlueBright;
+    background-color: $blocBlueBright;
+    fill: $blocBlueBright;
   }
 }
 
 .ppc {
-  background-color: @ppcPurple;
-  fill: @ppcPurple;
+  background-color: $ppcPurple;
+  fill: $ppcPurple;
   &:hover {
-    background-color: @ppcPurpleBright;
-    fill: @ppcPurpleBright;
+    background-color: $ppcPurpleBright;
+    fill: $ppcPurpleBright;
   }
 }
 
 .independent {
-  background-color: @independentBeige;
-  fill: @independentBeige;
+  background-color: $independentBeige;
+  fill: $independentBeige;
   &:hover {
-    background-color: @independentBeigeBright;
-    fill: @independentBeigeBright;
+    background-color: $independentBeigeBright;
+    fill: $independentBeigeBright;
   }
 }
 
 .other {
-  background-color: @otherGray;
-  fill: @otherGray;
+  background-color: $otherGray;
+  fill: $otherGray;
   &:hover {
-    background-color: @otherGrayBright;
-    fill: @otherGrayBright;
+    background-color: $otherGrayBright;
+    fill: $otherGrayBright;
   }
 }
 
@@ -357,21 +357,21 @@ svg {
   }
 
   .ocean {
-    fill: @oceanBlue;
+    fill: $oceanBlue;
   }
 
   .foreignLand {
-    fill: @foreignLandGray;
+    fill: $foreignLandGray;
   }
 
   .foreignLandBorder {
     fill: none;
-    stroke: @foreignLandGray;
+    stroke: $foreignLandGray;
     stroke-width: 2px;
   }
 
   .canadaLand {
-    fill: @canadaLandGreen;
+    fill: $canadaLandGreen;
   }
 
   .internationalBorder {
@@ -449,15 +449,20 @@ svg {
   html {
     font-size: 14px;
   }
+
+  h1 {
+    font-size: 1.4rem;
+    line-height: 1.4em;
+  }
 }
 
 @media (min-width: 1200px) {
   html {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
-@media (max-aspect-ratio: ~"8/9") {
+@media (max-aspect-ratio: "8/9") {
   .overlay {
     position: static;
     width: auto;

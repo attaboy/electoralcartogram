@@ -4,7 +4,6 @@ import {Map} from '../components/map';
 import { RidingData, ProvinceData, ridingDataSet } from '../data/riding_data';
 import { DateResults, Result, findWinnerFor, getSummaryByParty, Summary } from '../data/result_data';
 import Party from '../data/party';
-import "../css/styles.less";
 import { Coordinates } from '../components/riding';
 
 interface CurrentRidingInfo {

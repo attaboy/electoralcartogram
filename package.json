@@ -4,16 +4,15 @@
   "description": "Electoral Cartogram of Canada",
   "main": "index.js",
   "dependencies": {
-    "@zeit/next-less": "^1.0.1",
-    "less": "^3.10.3",
-    "next": "^9.2.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "next": "^9.3.1",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "sass": "^1.26.3"
   },
   "devDependencies": {
     "@types/node": "^12.12.25",
-    "@types/react": "^16.9.17",
-    "typescript": "^3.7.5"
+    "@types/react": "^16.9.23",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "dev": "next",
