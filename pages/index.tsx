@@ -61,6 +61,8 @@ const ElectionTypes: ElectionTypes = {
   "by-election": ["2018-12-03", "2019-02-25", "2019-05-06", "2020-10-26"]
 };
 
+interface Props {}
+
 interface State {
   election: Election
   currentRiding: CurrentRidingInfo | null
@@ -70,10 +72,10 @@ interface State {
   lang: Lang
 }
 
-class Home extends React.Component<{}, State> {
+class Home extends React.Component<Props, State> {
   updateTimer: number | undefined;
   searchResultsTimer: number | undefined;
-  constructor(props: {}) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       election: Elections[Elections.length - 1],
@@ -568,7 +570,7 @@ class Home extends React.Component<{}, State> {
                 <p>Édition précédente: <a href="/2011/">2011</a></p>
 
                 {process.env.buildTimestamp ? (
-                  <p>Dernière modification: {this.formatDate(new Date(process.env.buildTimestamp))}</p>
+                  <p>v{process.env.version}, dernière modification: {this.formatDate(new Date(process.env.buildTimestamp))}</p>
                 ) : null}
               </div>
             </div>
@@ -599,7 +601,7 @@ class Home extends React.Component<{}, State> {
                 <p>Previous edition: <a href="/2011/">2011</a></p>
 
                 {process.env.buildTimestamp ? (
-                  <p>Last modified: {this.formatDate(new Date(process.env.buildTimestamp))}</p>
+                  <p>v{process.env.version}, last modified: {this.formatDate(new Date(process.env.buildTimestamp))}</p>
                 ) : null}
               </div>
             </div>
