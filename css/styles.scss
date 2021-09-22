@@ -1,3 +1,14 @@
+:root {
+  --liberal-color: $liberalRed;
+  --ndp-color: $ndpOrange;
+  --conservative-color: $conservativeBlue;
+  --green-color: $green;
+  --bloc-color: $block;
+  --ppc-color: $ppcPurple;
+  --independent-color: $independentBeige;
+  --other-color: $otherGray;
+}
+
 $accentColor: white;
 
 $oceanBlue: hsl(209, 61%, 86%);
@@ -129,12 +140,12 @@ footer h4 {
   margin-top: 0;
 }
 
-#langButtons, #electionButtons, #search {
+#langButtons, #electionSelector, #search {
   float: right;
   margin-top: 0.125em;
 }
 
-#langButtons, #electionButtons {
+#langButtons, #electionSelector {
   margin-left: 0.5rem;
 }
 
@@ -196,6 +207,31 @@ button.radio {
   &[disabled] {
     color: hsla(0, 0%, 100%, 0.5);
   }
+}
+
+.selectContainer {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    content: "▾";
+    right: 0.33rem;
+    top: 0.25rem;
+  }
+}
+
+select.select {
+  font-size: 1rem;
+  line-height: 1.2rem;
+  position: relative;
+  display: block;
+  margin: 0;
+  -webkit-appearance: none;
+  border-radius: 5px;
+  padding: 5px 1em 4px 0.5em;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
 }
 
 #search {
@@ -476,7 +512,7 @@ svg {
     float: none;
   }
 
-  #langButtons, #electionButtons, #search {
+  #langButtons, #electionSelector, #search {
     margin-top: 0.75em;
     margin-left: 0;
     margin-right: 1em;

@@ -1,6 +1,6 @@
 {
   "name": "electoralcartogram",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Electoral Cartogram of Canada",
   "main": "index.js",
   "dependencies": {
