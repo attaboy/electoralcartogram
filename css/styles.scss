@@ -30,7 +30,7 @@ $independentBeigeBright: hsla(45, 20%, 77%, 1.0);
 $otherGray: hsla(0, 0%, 53%, 1.0);
 $otherGrayBright: hsla(0, 0%, 73%, 1.0);
 
-body, input, button {
+body, input, button, select {
   font-family: 'Barlow', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
@@ -129,12 +129,12 @@ footer h4 {
   margin-top: 0;
 }
 
-#langButtons, #electionButtons, #search {
+#langButtons, #electionSelector, #search {
   float: right;
   margin-top: 0.125em;
 }
 
-#langButtons, #electionButtons {
+#langButtons, #electionSelector {
   margin-left: 0.5rem;
 }
 
@@ -198,6 +198,41 @@ button.radio {
   }
 }
 
+.selectContainer {
+  display: block;
+  position: relative;
+
+  &::after {
+    z-index: 0;
+    position: absolute;
+    content: "▾";
+    right: 0.5rem;
+    top: 0.25rem;
+  }
+}
+
+select.select {
+  position: relative;
+  z-index: 1;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  position: relative;
+  display: block;
+  margin: 0;
+  -webkit-appearance: none;
+  border-radius: 5px;
+  padding: 5px 24px 4px 8px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+
+  &:focus, &:active {
+    border-width: 2px;
+    padding: 4px 23px 3px 7px;
+    outline: none;
+  }
+}
+
 #search {
   position: relative;
   input {
@@ -209,7 +244,7 @@ button.radio {
     height: 1.5rem;
     background-color: black;
     color: white;
-    padding: 1px 2px;
+    padding: 1px 4px 3px;
     -webkit-appearance: none;
     width: 18em;
   }
@@ -217,7 +252,7 @@ button.radio {
   input:focus {
     border: 2px solid white;
     outline: none;
-    padding: 0 4px;
+    padding: 0 3px 2px;
   }
 }
 
@@ -476,10 +511,10 @@ svg {
     float: none;
   }
 
-  #langButtons, #electionButtons, #search {
-    margin-top: 0.75em;
+  #langButtons, #electionSelector, #search {
+    margin-top: 0.5em;
     margin-left: 0;
-    margin-right: 1em;
+    margin-right: 0.5em;
     float: left;
   }
 

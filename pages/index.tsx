@@ -5,6 +5,8 @@ import { RidingData, ProvinceData, ridingDataSet } from '../data/riding_data';
 import { DateResults, Result, findWinnerFor, getSummaryByParty, Summary } from '../data/result_data';
 import Party from '../data/party';
 import { Coordinates } from '../components/riding';
+import { Utils } from '../data/utils';
+import { Parliaments } from '../data/parliaments';
 
 interface CurrentRidingInfo {
   province: string
@@ -14,6 +16,7 @@ interface CurrentRidingInfo {
   candidate: string
   party: string
   originalParty: string | undefined
+  changedDate: string | undefined
   date: string
   votePercentage: number
   majorityPercentage: number
@@ -23,10 +26,42 @@ export enum Lang {
   en="en", fr="fr"
 }
 
-export enum Election {
-  Oct2015="2019-10-20T12:00:00.000Z",
-  Oct2019="2019-10-21T12:00:00.000Z"
+const Elections = [
+  "2015-10-19",
+  "2016-05-31",
+  "2016-10-24",
+  "2017-04-03",
+  "2017-10-23",
+  "2017-12-11",
+  "2018-05-11",
+  "2018-06-18",
+  "2018-09-14",
+  "2018-09-17",
+  "2018-11-07",
+  "2018-11-30",
+  "2018-12-03",
+  "2019-02-25",
+  "2019-03-20",
+  "2019-04-02",
+  "2019-05-06",
+  "2019-08-16",
+  "2019-10-21",
+  "2020-10-26"
+] as const;
+
+export type Election = typeof Elections[number]
+
+interface ElectionTypes {
+  "general": ReadonlyArray<Election>
+  "by-election": ReadonlyArray<Election>
 }
+
+const ElectionTypes: ElectionTypes = {
+  "general": ["2015-10-19", "2019-10-21"],
+  "by-election": ["2018-12-03", "2019-02-25", "2019-05-06", "2020-10-26"]
+};
+
+interface Props {}
 
 interface State {
   election: Election
@@ -37,13 +72,13 @@ interface State {
   lang: Lang
 }
 
-class Home extends React.Component<{}, State> {
+class Home extends React.Component<Props, State> {
   updateTimer: number | undefined;
   searchResultsTimer: number | undefined;
-  constructor(props: {}) {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      election: Election.Oct2019,
+      election: Elections[Elections.length - 1],
       currentRiding: null,
       coords: { x: 0, y: 0 },
       searchText: "",
@@ -116,29 +151,34 @@ class Home extends React.Component<{}, State> {
     }
   }
 
-  electedAs(party: Party): string {
-    return this.state.lang === Lang.fr ? ` — élu(e) comme ${party[this.state.lang]}` : ` — elected as ${party[this.state.lang]}`;
+  electedAs(party: Party, changedDate: string | undefined): string {
+    if (this.state.lang === Lang.fr) {
+      return ` — élu(e) comme ${party[this.state.lang]}${changedDate ? `, changé(e) ${changedDate}` : ""}`;
+    } else {
+      return ` — elected as ${party[this.state.lang]}${changedDate ? `, changed ${changedDate}` : ""}`;
+    }
   }
 
   renderElectionTitle() {
-    if (this.state.election === Election.Oct2015) {
+    const electionDate = Utils.electionToDate(this.state.election);
+    if (electionDate >= Utils.electionToDate(Parliaments.P43)) {
       if (this.state.lang === Lang.fr) {
         return (
-          <span><b>42<sup>me</sup> Parlement</b> (2015-10-19 – 2019-10-20)</span>
+          <span><b>43<sup>me</sup> Parlement</b> ({this.state.election})</span>
         );
       } else {
         return (
-          <span><b>42<sup>nd</sup> Parliament</b> (2015-10-19 – 2019-10-20)</span>
+          <span><b>43<sup>rd</sup> Parliament</b> ({this.state.election})</span>
         );
       }
     } else {
       if (this.state.lang === Lang.fr) {
         return (
-          <span><b>43<sup>me</sup> Parlement</b> (2019-10-21 – Aujourd’hui)</span>
+          <span><b>42<sup>me</sup> Parlement</b> ({this.state.election})</span>
         );
       } else {
         return (
-          <span><b>43<sup>rd</sup> Parliament</b> (2019-10-21 – Today)</span>
+          <span><b>42<sup>nd</sup> Parliament</b> ({this.state.election})</span>
         );
       }
     }
@@ -211,7 +251,7 @@ class Home extends React.Component<{}, State> {
         <div style={{ marginBottom: "0.25em" }}>
           <b>{this.renderPartyInfo(party)} </b>
           {originalParty ? (
-            <i>{this.electedAs(originalParty)}</i>
+            <i>{this.electedAs(originalParty, ridingInfo.changedDate)}</i>
           ) : null}
         </div>
         <div style={{ fontSize: "0.9rem" }}>
@@ -297,14 +337,17 @@ class Home extends React.Component<{}, State> {
     const result = findWinnerFor(riding.index, this.state.election);
     if (result) {
       const flagDescriptionKey = this.state.lang === Lang.fr ? "flagDescription-fr" : "flagDescription-en";
+      const changedPartyDate = result.winner.changedParty ? Utils.electionToDate(result.winner.changedParty) : undefined;
+      const changedParty = changedPartyDate ? changedPartyDate <= Utils.electionToDate(this.state.election) : undefined;
       return {
         province: province[this.state.lang],
         flag: province.flagUrl,
         flagDescription: province[flagDescriptionKey],
         riding: riding[this.state.lang],
         candidate: result.winner.candidate,
-        party: result.winner.currentParty || result.winner.party,
-        originalParty: result.winner.currentParty ? result.winner.party : undefined,
+        party: changedParty && result.winner.currentParty ? result.winner.currentParty : result.winner.party,
+        originalParty: changedParty && result.winner.currentParty ?  result.winner.party : undefined,
+        changedDate: changedPartyDate ? this.formatDate(changedPartyDate) : undefined,
         date: this.formatDate(new Date(result.date)),
         votePercentage: result.winner.votePercentage,
         majorityPercentage: result.winner.majorityPercentage
@@ -350,16 +393,20 @@ class Home extends React.Component<{}, State> {
     }
   }
 
-  setElection2015(): void {
+  setElection(election: Election): void {
     this.setState({
-      election: Election.Oct2015
+      election
     });
   }
 
-  setElection2019(): void {
-    this.setState({
-      election: Election.Oct2019
-    });
+  getElectionTypeFor(election: Election): string {
+    if (ElectionTypes.general.includes(election)) {
+      return this.state.lang === Lang.en ? "General election" : "élection générale";
+    } else if (ElectionTypes['by-election'].includes(election)) {
+      return this.state.lang === Lang.en ? "By-election" : "élection partielle";
+    } else {
+      return this.state.lang === Lang.en ? "Party change" : "changement de parti";
+    }
   }
 
   renderSearchResult(riding: RidingData) {
@@ -454,11 +501,20 @@ class Home extends React.Component<{}, State> {
             <button className={`radio ${this.state.lang === Lang.en ? "active" : ""}`} type="button" onClick={() => this.setEnglish()}>En</button>
             <button className={`radio ${this.state.lang === Lang.fr ? "active" : ""}`} type="button" onClick={() => this.setFrench()}>Fr</button>
           </div>
-          <div id="electionButtons" className="radioButtons">
-            <button className={`radio ${this.state.election === Election.Oct2015 ? "active" : ""}`} type="button" onClick={() => this.setElection2015()}>2015–19</button>
-            <button className={`radio ${this.state.election === Election.Oct2019 ? "active" : ""}`} type="button" onClick={() => this.setElection2019()}>{
-              thisYear === 2019 ? "2019" : `2019–${thisYear - 2000}`
-            }</button>
+          <div id="electionSelector">
+            <label htmlFor="electionSelectorSelect" className="selectContainer">
+              <select className="select"
+                id="electionSelectorSelect"
+                value={this.state.election}
+                onChange={(evt) => this.setElection(evt.currentTarget.value as Election)}>
+                {Elections.map((election) => {
+                  const electionType = this.getElectionTypeFor(election);
+                  return (
+                    <option key={election} value={election}>{election} {electionType}</option>
+                  )}
+                )}
+              </select>
+            </label>
           </div>
           <div id="search">
             <input
@@ -519,7 +575,7 @@ class Home extends React.Component<{}, State> {
                 <p>Édition précédente: <a href="/2011/">2011</a></p>
 
                 {process.env.buildTimestamp ? (
-                  <p>Dernière modification: {this.formatDate(new Date(process.env.buildTimestamp))}</p>
+                  <p>v{process.env.version}, dernière modification: {this.formatDate(new Date(process.env.buildTimestamp))}</p>
                 ) : null}
               </div>
             </div>
@@ -550,7 +606,7 @@ class Home extends React.Component<{}, State> {
                 <p>Previous edition: <a href="/2011/">2011</a></p>
 
                 {process.env.buildTimestamp ? (
-                  <p>Last modified: {this.formatDate(new Date(process.env.buildTimestamp))}</p>
+                  <p>v{process.env.version}, last modified: {this.formatDate(new Date(process.env.buildTimestamp))}</p>
                 ) : null}
               </div>
             </div>
