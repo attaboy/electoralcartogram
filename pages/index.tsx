@@ -401,7 +401,7 @@ class Home extends React.Component<Props, State> {
 
   getElectionTypeFor(election: Election): string {
     if (ElectionTypes.general.includes(election)) {
-      return this.state.lang === Lang.en ? "Election" : "élection";
+      return this.state.lang === Lang.en ? "General election" : "élection générale";
     } else if (ElectionTypes['by-election'].includes(election)) {
       return this.state.lang === Lang.en ? "By-election" : "élection partielle";
     } else {
@@ -501,15 +501,20 @@ class Home extends React.Component<Props, State> {
             <button className={`radio ${this.state.lang === Lang.en ? "active" : ""}`} type="button" onClick={() => this.setEnglish()}>En</button>
             <button className={`radio ${this.state.lang === Lang.fr ? "active" : ""}`} type="button" onClick={() => this.setFrench()}>Fr</button>
           </div>
-          <div id="electionSelector" className="selectContainer">
-            <select className="select" value={this.state.election} onChange={(evt) => this.setElection(evt.currentTarget.value as Election)}>
-              {Elections.map((election) => {
-                const electionType = this.getElectionTypeFor(election);
-                return (
-                  <option key={election} value={election}>{election} ({electionType})</option>
+          <div id="electionSelector">
+            <label htmlFor="electionSelectorSelect" className="selectContainer">
+              <select className="select"
+                id="electionSelectorSelect"
+                value={this.state.election}
+                onChange={(evt) => this.setElection(evt.currentTarget.value as Election)}>
+                {Elections.map((election) => {
+                  const electionType = this.getElectionTypeFor(election);
+                  return (
+                    <option key={election} value={election}>{election} {electionType}</option>
+                  )}
                 )}
-              )}
-            </select>
+              </select>
+            </label>
           </div>
           <div id="search">
             <input
