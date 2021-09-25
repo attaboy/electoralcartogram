@@ -1,3 +1,9 @@
+## 1.2.0
+
+- Added preliminary data for the 2021-09-20 general election, using the original TSV format supplied by Elections Canada
+- Added additional data for party changes prior to the election
+- Re-arranged data into separate files for each election
+
 ## 1.1.0
 
 - Added final data from 2019 general election and results from by-election in 2020
@@ -14,5 +20,5 @@
 - Update vulnerable dependencies
 
 ## 1.0.0
-  
+
 - Initial release with results from the 2015 and 2019 elections

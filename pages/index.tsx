@@ -46,7 +46,12 @@ const Elections = [
   "2019-05-06",
   "2019-08-16",
   "2019-10-21",
-  "2020-10-26"
+  "2020-10-26",
+  "2020-11-09",
+  "2021-01-20",
+  "2021-01-25",
+  "2021-06-10",
+  "2021-09-20"
 ] as const;
 
 export type Election = typeof Elections[number]
@@ -57,7 +62,7 @@ interface ElectionTypes {
 }
 
 const ElectionTypes: ElectionTypes = {
-  "general": ["2015-10-19", "2019-10-21"],
+  "general": ["2015-10-19", "2019-10-21", "2021-09-20"],
   "by-election": ["2018-12-03", "2019-02-25", "2019-05-06", "2020-10-26"]
 };
 
@@ -161,10 +166,20 @@ class Home extends React.Component<Props, State> {
 
   renderElectionTitle() {
     const electionDate = Utils.electionToDate(this.state.election);
-    if (electionDate >= Utils.electionToDate(Parliaments.P43)) {
+    if (electionDate >= Utils.electionToDate(Parliaments.P44)) {
       if (this.state.lang === Lang.fr) {
         return (
-          <span><b>43<sup>me</sup> Parlement</b> ({this.state.election})</span>
+          <span><b>Le 44<sup>e</sup> Parlement</b> ({this.state.election})</span>
+        );
+      } else {
+        return (
+          <span><b>44<sup>th</sup> Parliament</b> ({this.state.election})</span>
+        );
+      }
+    } else if (electionDate >= Utils.electionToDate(Parliaments.P43)) {
+      if (this.state.lang === Lang.fr) {
+        return (
+          <span><b>Le 43<sup>e</sup> Parlement</b> ({this.state.election})</span>
         );
       } else {
         return (
@@ -174,7 +189,7 @@ class Home extends React.Component<Props, State> {
     } else {
       if (this.state.lang === Lang.fr) {
         return (
-          <span><b>42<sup>me</sup> Parlement</b> ({this.state.election})</span>
+          <span><b>Le 42<sup>e</sup> Parlement</b> ({this.state.election})</span>
         );
       } else {
         return (
@@ -348,7 +363,7 @@ class Home extends React.Component<Props, State> {
         party: changedParty && result.winner.currentParty ? result.winner.currentParty : result.winner.party,
         originalParty: changedParty && result.winner.currentParty ?  result.winner.party : undefined,
         changedDate: changedPartyDate ? this.formatDate(changedPartyDate) : undefined,
-        date: this.formatDate(new Date(result.date)),
+        date: this.formatDate(result.date),
         votePercentage: result.winner.votePercentage,
         majorityPercentage: result.winner.majorityPercentage
       };
@@ -553,7 +568,7 @@ class Home extends React.Component<Props, State> {
               <div className="column">
                 <h4>C’est quoi ça?</h4>
 
-                <p>Au Canada, chaqun des 338 membres du Parlement à <a href="https://www.ourcommons.ca/fr">la Chambre des communes</a> représente une circonscription. Pour la plupart, les circonscriptions sont réparties uniformément par la population au lieu de la géographie.* En 2019, la population moyenne d’une circonscription est d’environ 111&nbsp;200.</p>
+                <p>Au Canada, chaqun des 338 membres du Parlement à <a href="https://www.ourcommons.ca/fr">la Chambre des communes</a> représente une circonscription. Pour la plupart, les circonscriptions sont réparties uniformément par la population au lieu de la géographie.* En 2021, la population moyenne d’une circonscription est d’environ 112&nbsp;800.</p>
 
                 <p>Ce <a href="https://fr.wikipedia.org/wiki/Cartogramme">cartogramme</a> fait chaque circonscription la même taille et la même forme. L’accent est mis sur la répartition de la population. En général, les circonscriptions voisines sont proches les unes des autres, et la forme du pays reste évidente.</p>
 
@@ -584,7 +599,7 @@ class Home extends React.Component<Props, State> {
               <div className="column">
                 <h4>What’s this?</h4>
 
-                <p>In Canada, each of the 338 Members of Parliament in the <a href="https://www.ourcommons.ca/en">House of Commons</a> represent a riding (also known as an electoral district). In general, the ridings are divided evenly by population rather than geographical size.* As of 2019, the average population of a riding is approximately 111,200.</p>
+                <p>In Canada, each of the 338 Members of Parliament in the <a href="https://www.ourcommons.ca/en">House of Commons</a> represent a riding (also known as an electoral district). In general, the ridings are divided evenly by population rather than geographical size.* As of 2021, the average population of a riding is approximately 112,800.</p>
 
                 <p>In this <a href="https://en.wikipedia.org/wiki/Cartogram">cartogram</a>, each riding is the same size and shape, so population distribution is emphasized. In general, ridings that border each other geographically are shown near each other, with the rough shape of the country preserved.</p>
 
