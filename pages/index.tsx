@@ -47,6 +47,10 @@ const Elections = [
   "2019-08-16",
   "2019-10-21",
   "2020-10-26",
+  "2020-11-09",
+  "2021-01-20",
+  "2021-01-25",
+  "2021-06-10",
   "2021-09-20"
 ] as const;
 
@@ -359,7 +363,7 @@ class Home extends React.Component<Props, State> {
         party: changedParty && result.winner.currentParty ? result.winner.currentParty : result.winner.party,
         originalParty: changedParty && result.winner.currentParty ?  result.winner.party : undefined,
         changedDate: changedPartyDate ? this.formatDate(changedPartyDate) : undefined,
-        date: this.formatDate(new Date(result.date)),
+        date: this.formatDate(result.date),
         votePercentage: result.winner.votePercentage,
         majorityPercentage: result.winner.majorityPercentage
       };
