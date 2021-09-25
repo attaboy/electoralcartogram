@@ -165,7 +165,7 @@ class Home extends React.Component<Props, State> {
     if (electionDate >= Utils.electionToDate(Parliaments.P44)) {
       if (this.state.lang === Lang.fr) {
         return (
-          <span><b>44<sup>me</sup> Parelement</b> ({this.state.election})</span>
+          <span><b>Le 44<sup>e</sup> Parlement</b> ({this.state.election})</span>
         );
       } else {
         return (
@@ -175,7 +175,7 @@ class Home extends React.Component<Props, State> {
     } else if (electionDate >= Utils.electionToDate(Parliaments.P43)) {
       if (this.state.lang === Lang.fr) {
         return (
-          <span><b>43<sup>me</sup> Parlement</b> ({this.state.election})</span>
+          <span><b>Le 43<sup>e</sup> Parlement</b> ({this.state.election})</span>
         );
       } else {
         return (
@@ -185,7 +185,7 @@ class Home extends React.Component<Props, State> {
     } else {
       if (this.state.lang === Lang.fr) {
         return (
-          <span><b>42<sup>me</sup> Parlement</b> ({this.state.election})</span>
+          <span><b>Le 42<sup>e</sup> Parlement</b> ({this.state.election})</span>
         );
       } else {
         return (
