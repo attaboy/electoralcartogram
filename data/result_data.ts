@@ -1,6 +1,5 @@
-import { PreliminaryResult } from './preliminary_data';
+import { PreliminaryResult, prelimResults20211020TSV } from './preliminary_data';
 import { Election } from '../pages';
-import { Riding } from '../components/riding';
 import { RidingData } from './riding_data';
 import { Utils } from './utils';
 
@@ -37034,6 +37033,9 @@ const resultsSet: DateResults[] = [{
 }, {
   date: "2020-10-26T12:00:00.000Z",
   results: results20201026
+}, {
+  date: "2021-09-20T12:00:00.000Z",
+  results: convertPreliminaryResults(PreliminaryResult.fromRows(prelimResults20211020TSV.split("\n")))
 }];
 
 interface DateResult {
@@ -37051,7 +37053,7 @@ function convertPreliminaryResults(prelims: PreliminaryResult[]): Result[] {
     const majorityPercentage = isWinner && challenger ? outer.votePercentage - challenger.votePercentage : 0;
     return {
       index: outer.index,
-      candidate: `${outer.firstName} ${outer.lastName}`,
+      candidate: outer.name,
       party: `${outer.partyEn}/${outer.partyFr}`,
       votes: outer.votes,
       votePercentage: outer.votePercentage,

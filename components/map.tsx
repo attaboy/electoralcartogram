@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { Province } from './province';
 import { Riding, Coordinates } from './riding';
-import {ridingDataSet, RidingData, ProvinceData} from "../data/riding_data";
+import { ridingDataSet, RidingData, ProvinceData } from "../data/riding_data";
 import { getResultsForRiding } from '../data/result_data';
 import { Lang, Election } from '../pages';
 
