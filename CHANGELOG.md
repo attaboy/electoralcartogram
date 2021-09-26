@@ -1,3 +1,7 @@
+## 1.2.1
+
+- Fixed layout issues at smaller window widths, especially en français
+
 ## 1.2.0
 
 - Added preliminary data for the 2021-09-20 general election, using the original TSV format supplied by Elections Canada
