@@ -480,14 +480,33 @@ svg {
   }
 }
 
+@media (max-width: 77rem) {
+  h1 {
+    margin-top: 0.05em;
+    font-size: 1.4rem;
+    line-height: 1.3em;
+  }
+
+  #search input {
+    width: 15em;
+  }
+}
+
 @media (max-width: 1023px) {
   html {
     font-size: 14px;
   }
+}
 
+@media (max-width: 65rem) {
   h1 {
-    font-size: 1.4rem;
-    line-height: 1.4em;
+    margin-top: 0.3em;
+    font-size: 1.2rem;
+    line-height: 1.3em;
+  }
+
+  h1[lang=fr] {
+    letter-spacing: -0.02em;
   }
 }
 
@@ -517,5 +536,17 @@ svg {
     margin-right: 0.5em;
     float: left;
   }
+}
 
+@media (max-width: 56rem) {
+  header h1 {
+    float: none;
+  }
+
+  #langButtons, #electionSelector, #search {
+    margin-top: 0.5em;
+    margin-left: 0;
+    margin-right: 0.5em;
+    float: left;
+  }
 }

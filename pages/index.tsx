@@ -505,7 +505,7 @@ class Home extends React.Component<Props, State> {
           }}></script>
         </Head>
         <header>
-          <h1>
+          <h1 lang={this.state.lang}>
             <img src="/images/flags/Flag_of_Canada.png"
               alt={this.state.lang === Lang.fr ? "Le drapeau du Canada" : "Flag of Canada"}
               style={{ height: "0.8em", paddingBottom: "0.2em", marginRight: "0.4em", verticalAlign: "bottom" }}
