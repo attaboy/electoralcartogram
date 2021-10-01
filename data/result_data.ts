@@ -1,4 +1,4 @@
-import { PreliminaryResult, prelimResults20211020TSV } from './preliminary_data';
+import { PreliminaryResult } from './preliminary_data';
 import { Election } from '../pages';
 import { RidingData } from './riding_data';
 import { Utils } from './utils';
@@ -13,6 +13,7 @@ import { results20190225 } from './results20190225';
 import { results20190506 } from './results20190506';
 import { results20191021 } from './results20191021';
 import { results20201026 } from './results20201026';
+import { prelimResults20210920TSV } from './results20210920';
 
 export interface Result {
   "index": number
@@ -70,7 +71,7 @@ const resultsSet: DateResults[] = [{
   results: results20201026
 }, {
   date: "2021-09-20",
-  results: convertPreliminaryResults(PreliminaryResult.fromRows(prelimResults20211020TSV.split("\n")))
+  results: convertPreliminaryResults(PreliminaryResult.fromRows(prelimResults20210920TSV.split("\n")))
 }];
 
 interface DateResult {
