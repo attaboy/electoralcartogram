@@ -1,3 +1,7 @@
+## 1.2.2
+
+- Updated with latest preliminary data from Elections Canada as of Oct 1, 2021
+
 ## 1.2.1
 
 - Fixed layout issues at smaller window widths, especially en français
