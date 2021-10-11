@@ -331,6 +331,14 @@ export const prelimResults20210920TSV =
 24001	Abitibi--Baie-James--Nunavik--Eeyou	Abitibi--Baie-James--Nunavik--Eeyou	preliminary	préliminaires	Lameboy		Pauline	NDP-New Democratic Party	NPD-Nouveau Parti démocratique	3307	11.7	0	28327
 24001	Abitibi--Baie-James--Nunavik--Eeyou	Abitibi--Baie-James--Nunavik--Eeyou	preliminary	préliminaires	Levesque		Jimmy	Marijuana Party	Parti Marijuana	324	1.1	0	28327
 24001	Abitibi--Baie-James--Nunavik--Eeyou	Abitibi--Baie-James--Nunavik--Eeyou	preliminary	préliminaires	Pilon		Didier	Green Party	Parti Vert	438	1.5	0	28327
+24001	Abitibi--Baie-James--Nunavik--Eeyou	Abitibi--Baie-James--Nunavik--Eeyou	validated	validés	Brazeau		Cédric	Free Party Canada	Parti Libre Canada	594	2.1	856	29292
+24001	Abitibi--Baie-James--Nunavik--Eeyou	Abitibi--Baie-James--Nunavik--Eeyou	validated	validés	Bérubé		Sylvie	Bloc Québécois	Bloc Québécois	10784	37.9	856	29292
+24001	Abitibi--Baie-James--Nunavik--Eeyou	Abitibi--Baie-James--Nunavik--Eeyou	validated	validés	Cloutier		Michaël	People's Party - PPC	Parti populaire - PPC	1072	3.8	856	29292
+24001	Abitibi--Baie-James--Nunavik--Eeyou	Abitibi--Baie-James--Nunavik--Eeyou	validated	validés	Corriveau		Steve	Conservative	Conservateur	4508	15.9	856	29292
+24001	Abitibi--Baie-James--Nunavik--Eeyou	Abitibi--Baie-James--Nunavik--Eeyou	validated	validés	Kistabish		Lise	Liberal	Libéral	7384	26	856	29292
+24001	Abitibi--Baie-James--Nunavik--Eeyou	Abitibi--Baie-James--Nunavik--Eeyou	validated	validés	Lameboy		Pauline	NDP-New Democratic Party	NPD-Nouveau Parti démocratique	3323	11.7	856	29292
+24001	Abitibi--Baie-James--Nunavik--Eeyou	Abitibi--Baie-James--Nunavik--Eeyou	validated	validés	Levesque		Jimmy	Marijuana Party	Parti Marijuana	329	1.2	856	29292
+24001	Abitibi--Baie-James--Nunavik--Eeyou	Abitibi--Baie-James--Nunavik--Eeyou	validated	validés	Pilon		Didier	Green Party	Parti Vert	442	1.6	856	29292
 24002	Abitibi--Témiscamingue	Abitibi--Témiscamingue	preliminary	préliminaires	Chartrand		Martin	Green Party	Parti Vert	748	1.6	0	45670
 24002	Abitibi--Témiscamingue	Abitibi--Témiscamingue	preliminary	préliminaires	Gonzalez Venegas		Luis Henry	Conservative	Conservateur	5339	11.7	0	45670
 24002	Abitibi--Témiscamingue	Abitibi--Témiscamingue	preliminary	préliminaires	Goulet		Dany	Free Party Canada	Parti Libre Canada	857	1.9	0	45670
@@ -607,6 +615,14 @@ export const prelimResults20210920TSV =
 24020	Beauport-Côte-de-Beaupré-Île d'Orléans-Charlevoix	Beauport-Côte-de-Beaupré-Île d'Orléans-Charlevoix	validated	validés	Laprise		Véronique	Conservative	Conservateur	15969	31.9	902	51038
 24020	Beauport-Côte-de-Beaupré-Île d'Orléans-Charlevoix	Beauport-Côte-de-Beaupré-Île d'Orléans-Charlevoix	validated	validés	Lefrançois		Jenniefer	People's Party - PPC	Parti populaire - PPC	881	1.8	902	51038
 24020	Beauport-Côte-de-Beaupré-Île d'Orléans-Charlevoix	Beauport-Côte-de-Beaupré-Île d'Orléans-Charlevoix	validated	validés	Lépine		Vicky	Independent	Indépendant(e)	227	.5	902	51038
+24021	Châteauguay--Lacolle	Châteauguay--Lacolle	judicially certified	dépouillement judiciaire	Benoit		Jeff	People's Party - PPC	Parti populaire - PPC	1821	3.7	1061	49744
+24021	Châteauguay--Lacolle	Châteauguay--Lacolle	judicially certified	dépouillement judiciaire	Bournaki		Pierre	Conservative	Conservateur	5538	11.4	1061	49744
+24021	Châteauguay--Lacolle	Châteauguay--Lacolle	judicially certified	dépouillement judiciaire	Gagnon		Marc	Pour l'Indépendance du Québec	Pour l'Indépendance du Québec	277	.6	1061	49744
+24021	Châteauguay--Lacolle	Châteauguay--Lacolle	judicially certified	dépouillement judiciaire	Lafrance		André	Free Party Canada	Parti Libre Canada	448	.9	1061	49744
+24021	Châteauguay--Lacolle	Châteauguay--Lacolle	judicially certified	dépouillement judiciaire	O'Hara		Patrick	Bloc Québécois	Bloc Québécois	18017	37	1061	49744
+24021	Châteauguay--Lacolle	Châteauguay--Lacolle	judicially certified	dépouillement judiciaire	Olivier		Frédéric	Green Party	Parti Vert	801	1.6	1061	49744
+24021	Châteauguay--Lacolle	Châteauguay--Lacolle	judicially certified	dépouillement judiciaire	Shanahan		Brenda	Liberal	Libéral	18029	37	1061	49744
+24021	Châteauguay--Lacolle	Châteauguay--Lacolle	judicially certified	dépouillement judiciaire	Wolker		Hannah	NDP-New Democratic Party	NPD-Nouveau Parti démocratique	3752	7.7	1061	49744
 24021	Châteauguay--Lacolle	Châteauguay--Lacolle	preliminary	préliminaires	Benoit		Jeff	People's Party - PPC	Parti populaire - PPC	1870	3.8	0	49171
 24021	Châteauguay--Lacolle	Châteauguay--Lacolle	preliminary	préliminaires	Bournaki		Pierre	Conservative	Conservateur	5534	11.3	0	49171
 24021	Châteauguay--Lacolle	Châteauguay--Lacolle	preliminary	préliminaires	Gagnon		Marc	Pour l'Indépendance du Québec	Pour l'Indépendance du Québec	295	.6	0	49171
@@ -1391,6 +1407,13 @@ export const prelimResults20210920TSV =
 24075	Terrebonne	Terrebonne	validated	validés	Mayba		Luke	NDP-New Democratic Party	NPD-Nouveau Parti démocratique	3913	6.6	1355	60304
 24075	Terrebonne	Terrebonne	validated	validés	Sinclair-Desgagné		Nathalie	Bloc Québécois	Bloc Québécois	24270	41.2	1355	60304
 24075	Terrebonne	Terrebonne	validated	validés	Stinziani		Louis	People's Party - PPC	Parti populaire - PPC	1594	2.7	1355	60304
+24076	Trois-Rivières	Trois-Rivières	judicially certified	dépouillement judiciaire	Brodeur		Gilles	Free Party Canada	Parti Libre Canada	735	1.3	1214	59324
+24076	Trois-Rivières	Trois-Rivières	judicially certified	dépouillement judiciaire	Francoeur		Martin	Liberal	Libéral	16637	28.6	1214	59324
+24076	Trois-Rivières	Trois-Rivières	judicially certified	dépouillement judiciaire	Holman		Andrew	Green Party	Parti Vert	754	1.3	1214	59324
+24076	Trois-Rivières	Trois-Rivières	judicially certified	dépouillement judiciaire	Landry		Jean	People's Party - PPC	Parti populaire - PPC	1115	1.9	1214	59324
+24076	Trois-Rivières	Trois-Rivières	judicially certified	dépouillement judiciaire	Levesque		Yves	Conservative	Conservateur	17053	29.3	1214	59324
+24076	Trois-Rivières	Trois-Rivières	judicially certified	dépouillement judiciaire	Simidzija		Adis	NDP-New Democratic Party	NPD-Nouveau Parti démocratique	4680	8.1	1214	59324
+24076	Trois-Rivières	Trois-Rivières	judicially certified	dépouillement judiciaire	Villemure		René	Bloc Québécois	Bloc Québécois	17136	29.5	1214	59324
 24076	Trois-Rivières	Trois-Rivières	preliminary	préliminaires	Brodeur		Gilles	Free Party Canada	Parti Libre Canada	733	1.3	0	57990
 24076	Trois-Rivières	Trois-Rivières	preliminary	préliminaires	Francoeur		Martin	Liberal	Libéral	16560	28.6	0	57990
 24076	Trois-Rivières	Trois-Rivières	preliminary	préliminaires	Holman		Andrew	Green Party	Parti Vert	780	1.3	0	57990
@@ -4008,4 +4031,7 @@ export const prelimResults20210920TSV =
 62001	Nunavut	Nunavut	preliminary	préliminaires	Angnakak		Pat	Liberal	Libéral	2588	35.6	0	7276
 62001	Nunavut	Nunavut	preliminary	préliminaires	Idlout		Lori	NDP-New Democratic Party	NPD-Nouveau Parti démocratique	3483	47.9	0	7276
 62001	Nunavut	Nunavut	preliminary	préliminaires	Mackenzie		Laura	Conservative	Conservateur	1205	16.6	0	7276
+62001	Nunavut	Nunavut	validated	validés	Angnakak		Pat	Liberal	Libéral	2578	35.9	78	7267
+62001	Nunavut	Nunavut	validated	validés	Idlout		Lori	NDP-New Democratic Party	NPD-Nouveau Parti démocratique	3427	47.7	78	7267
+62001	Nunavut	Nunavut	validated	validés	Mackenzie		Laura	Conservative	Conservateur	1184	16.5	78	7267
 `;
