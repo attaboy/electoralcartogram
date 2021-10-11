@@ -8,18 +8,31 @@ import { Coordinates } from '../components/riding';
 import { Utils } from '../data/utils';
 import { Parliaments } from '../data/parliaments';
 
+interface RidingWinner {
+  candidate: string
+  party: string
+  originalParty: string | undefined
+  changedDate: string | undefined
+  votes: number
+  votePercentage: number
+  majorityPercentage: number
+}
+
+interface RidingLoser {
+  candidate: string
+  party: string
+  votes: number
+  votePercentage: number
+}
+
 interface CurrentRidingInfo {
   province: string
   flag: string
   flagDescription: string
   riding: string
-  candidate: string
-  party: string
-  originalParty: string | undefined
-  changedDate: string | undefined
+  winner: RidingWinner
+  losers: RidingLoser[]
   date: string
-  votePercentage: number
-  majorityPercentage: number
 }
 
 export enum Lang {
@@ -158,9 +171,9 @@ class Home extends React.Component<Props, State> {
 
   electedAs(party: Party, changedDate: string | undefined): string {
     if (this.state.lang === Lang.fr) {
-      return ` — élu(e) comme ${party[this.state.lang]}${changedDate ? `, changé(e) ${changedDate}` : ""}`;
+      return ` (changé(e) de ${party[this.state.lang]}${changedDate ? `, ${changedDate}` : ""})`;
     } else {
-      return ` — elected as ${party[this.state.lang]}${changedDate ? `, changed ${changedDate}` : ""}`;
+      return ` (changed from ${party[this.state.lang]}${changedDate ? `, ${changedDate}` : ""})`;
     }
   }
 
@@ -210,7 +223,7 @@ class Home extends React.Component<Props, State> {
         <table>
           <thead>
             <tr>
-              <td colSpan={2}>{this.renderElectionTitle()}</td>
+              <td colSpan={3}>{this.renderElectionTitle()}</td>
             </tr>
           </thead>
           <tbody>
@@ -218,16 +231,17 @@ class Home extends React.Component<Props, State> {
               const party = Party.findByRawName(partyId);
               return (
                 <tr key={partyId}>
-                  <td>{this.renderPartyInfo(party)}</td>
-                  <td align="right">{summary[partyId]}</td>
+                  <td className="partyCell">{this.renderPartyDecorator(party)}</td>
+                  <td className="candidateName">{party[this.state.lang]}</td>
+                  <td className="voteCount">{summary[partyId]}</td>
                 </tr>
               );
             })}
           </tbody>
           <tfoot>
             <tr>
-              <td><b>Total</b></td>
-              <td align="right"><b>{total}</b></td>
+              <td colSpan={2}><b>Total</b></td>
+              <td className="voteCount"><b>{total}</b></td>
             </tr>
           </tfoot>
         </table>
@@ -235,21 +249,20 @@ class Home extends React.Component<Props, State> {
     );
   }
 
-  renderPartyInfo(party: Party, content?: React.ReactNode) {
+  renderPartyDecorator(party: Party) {
     return (
-      <span>
-        <span className={party.className} style={{ display: "inline-block", width: "1em", height: "1em", verticalAlign: "top", marginTop: "0.05em", marginRight: "0.4em", border: "1px solid black" }}></span>
-        <span>{party[this.state.lang]}</span>
-      </span>
-    )
+      <span className={`partyDecorator ${party.className}`} />
+    );
   }
 
   renderInfo(ridingInfo: CurrentRidingInfo) {
-    const candidate = ridingInfo.candidate.replace(/ \*\*$/, "");
+    const winner = ridingInfo.winner.candidate.replace(/ \*\*$/, "");
     const elected = this.labelForElected(ridingInfo.date);
     const ridingName = ridingInfo.riding.replace(/\/.+$/, "");
-    const party = Party.findByRawName(ridingInfo.party);
-    const originalParty = ridingInfo.originalParty ? Party.findByRawName(ridingInfo.originalParty) : null;
+    const winningParty = Party.findByRawName(ridingInfo.winner.party);
+    const originalParty = ridingInfo.winner.originalParty ? Party.findByRawName(ridingInfo.winner.originalParty) : null;
+    const pctFormatter = Intl.NumberFormat(this.state.lang + '-CA', { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    const voteFormatter = Intl.NumberFormat(this.state.lang + '-CA', { maximumFractionDigits: 0 });
     return (
       <div>
         <h5>
@@ -261,18 +274,52 @@ class Home extends React.Component<Props, State> {
             <span>{ridingInfo.province}</span>
           )}
         </h5>
-        <h3 style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.5)", paddingBottom: "0.25em", marginBottom: "0.25em" }}>{ridingName}</h3>
-        <div>{candidate}</div>
-        <div style={{ marginBottom: "0.25em" }}>
-          <b>{this.renderPartyInfo(party)} </b>
-          {originalParty ? (
-            <i>{this.electedAs(originalParty, ridingInfo.changedDate)}</i>
-          ) : null}
-        </div>
-        <div style={{ fontSize: "0.9rem" }}>
-          <div>{elected}</div>
-          <div>{this.renderVoteSummary(ridingInfo.votePercentage, ridingInfo.majorityPercentage)}</div>
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <td colSpan={4}><h3>{ridingName}</h3></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="partyCell">{this.renderPartyDecorator(winningParty)}</td>
+              <td className="candidateName">
+                <div>
+                  <span><b>{winner}, {winningParty[this.state.lang]}</b></span>
+                </div>
+                <div style={{ fontSize: "0.9rem" }}>
+                  {elected}{originalParty ? (
+                    <i>{this.electedAs(originalParty, ridingInfo.winner.changedDate)}</i>
+                  ) : null}
+                </div>
+              </td>
+              <td className="votePctg">
+                <b>{pctFormatter.format(ridingInfo.winner.votePercentage / 100)}</b>
+              </td>
+              <td className="voteCount">
+                <b>{voteFormatter.format(ridingInfo.winner.votes)}</b>
+              </td>
+            </tr>
+            {ridingInfo.losers.filter((loser) => loser.votePercentage >= 1).map((loser) => {
+              const party = Party.findByRawName(loser.party);
+              const name = loser.candidate.replace(/ \*\*/, "");
+              return (
+                <tr>
+                  <td className="partyCell">
+                    {this.renderPartyDecorator(party)}
+                  </td>
+                  <td className="candidateName">
+                    <div>
+                      <span>{name}, {party[this.state.lang]}</span>
+                    </div>
+                  </td>
+                  <td className="votePctg">{pctFormatter.format(loser.votePercentage / 100)}</td>
+                  <td className="voteCount">{voteFormatter.format(loser.votes)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     );
   }
@@ -359,13 +406,17 @@ class Home extends React.Component<Props, State> {
         flag: province.flagUrl,
         flagDescription: province[flagDescriptionKey],
         riding: riding[this.state.lang],
-        candidate: result.winner.candidate,
-        party: changedParty && result.winner.currentParty ? result.winner.currentParty : result.winner.party,
-        originalParty: changedParty && result.winner.currentParty ?  result.winner.party : undefined,
-        changedDate: changedPartyDate ? this.formatDate(changedPartyDate) : undefined,
-        date: this.formatDate(result.date),
-        votePercentage: result.winner.votePercentage,
-        majorityPercentage: result.winner.majorityPercentage
+        winner: {
+          candidate: result.winner.candidate,
+          party: changedParty && result.winner.currentParty ? result.winner.currentParty : result.winner.party,
+          originalParty: changedParty && result.winner.currentParty ? result.winner.party : undefined,
+          changedDate: changedPartyDate ? this.formatDate(changedPartyDate) : undefined,
+          votes: result.winner.votes,
+          votePercentage: result.winner.votePercentage,
+          majorityPercentage: result.winner.majorityPercentage
+        },
+        losers: result.losers,
+        date: this.formatDate(result.date)
       };
     } else {
       return null;

@@ -3,12 +3,14 @@ class Party {
     readonly rawName: string,
     readonly en: string,
     readonly fr: string,
-    readonly className: string
+    readonly className: string,
+    readonly altName?: string
   ) {
     this.rawName = rawName;
     this.en = en;
     this.fr = fr;
     this.className = className;
+    this.altName = altName;
   }
 
   static Liberal: Party;
@@ -22,7 +24,7 @@ class Party {
   static all: Party[];
 
   static findByRawName(rawName: string): Party {
-    return Party.all.find((ea) => ea.rawName === rawName) || Party.Other;
+    return Party.all.find((ea) => ea.rawName === rawName || (ea.altName && ea.altName === rawName)) || Party.Other;
   }
 }
 
@@ -31,7 +33,7 @@ Party.NDP = new Party("NDP-New Democratic Party/NPD-Nouveau Parti démocratique"
 Party.Conservative = new Party("Conservative/Conservateur", "Conservative", "Conservateur", "conservative");
 Party.Green = new Party("Green Party/Parti Vert", "Green Party", "Parti vert", "green");
 Party.BQ = new Party("Bloc Québécois/Bloc Québécois", "Bloc Québécois", "Bloc Québécois", "bloc");
-Party.PPC = new Party("People's Party/Parti populaire", "People’s Party", "Parti populaire", "ppc");
+Party.PPC = new Party("People's Party/Parti populaire", "People’s Party", "Parti populaire", "ppc", "People's Party - PPC/Parti populaire - PPC");
 Party.Independent = new Party("Independent/Indépendant(e)", "Independent", "Indépendant(e)", "independent");
 Party.Other = new Party("Other", "Other", "Autre", "other");
 Party.all = [Party.Liberal, Party.NDP, Party.Conservative, Party.Green, Party.BQ, Party.PPC, Party.Independent, Party.Other];
