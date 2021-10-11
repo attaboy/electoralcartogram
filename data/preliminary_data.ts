@@ -11,7 +11,7 @@ enum Row {
   totalBallots=13
 }
 
-type PreliminaryResultStatus = "preliminary" | "validated";
+type PreliminaryResultStatus = "preliminary" | "validated" | "judicially certified";
 
 export class PreliminaryResult {
   index: number;
@@ -35,13 +35,21 @@ export class PreliminaryResult {
     this.totalBallots = Number.parseInt(columns[Row.totalBallots], 10);
   }
 
+  isSameCandidateAs(anotherRow: PreliminaryResult): boolean {
+    return anotherRow.index === this.index && anotherRow.name === this.name && anotherRow.partyEn === this.partyEn;
+  }
+
   static fromRows(rows: string[]): PreliminaryResult[] {
     const allRows = rows.map((row) => new PreliminaryResult(row));
-    // Filter out duplicate rows and prefer validated results over preliminary results
+    // Filter out duplicate rows and use the best results (certified > validated > preliminary)
     return allRows.filter((row) => {
-      return row.status === "validated" ||
-        !allRows.find((anotherRow) => anotherRow.status === "validated" &&
-          anotherRow.index === row.index && anotherRow.name === row.name && anotherRow.partyEn === row.partyEn);
+      if (row.status === "judicially certified") {
+        return true;
+      } else if (row.status === "validated") {
+        return !allRows.some((anotherRow) => row.isSameCandidateAs(anotherRow) && anotherRow.status === "judicially certified");
+      } else {
+        return !allRows.some((anotherRow) => row.isSameCandidateAs(anotherRow) && anotherRow.status !== "preliminary");
+      }
     });
   }
 }
