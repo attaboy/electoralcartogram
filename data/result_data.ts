@@ -36,7 +36,7 @@ export interface Summary {
   [partyId: string]: number
 }
 
-const resultsSet: DateResults[] = [{
+const sortedResultsSet: DateResults[] = [{
   date: "2015-10-19",
   results: results20151019
 }, {
@@ -76,6 +76,7 @@ const resultsSet: DateResults[] = [{
 
 interface DateResult {
   winner: Result
+  losers: Result[]
   date: Date
 }
 
@@ -101,7 +102,7 @@ function convertPreliminaryResults(prelims: PreliminaryResult[]): Result[] {
 
 function getResultsFor(election: Election): DateResults[] {
   const electionDate = new Date(Utils.electionToDate(election));
-  return resultsSet.filter((ea) => {
+  return sortedResultsSet.filter((ea) => {
     const resultDate = new Date(Utils.electionToDate(ea.date));
     return resultDate <= electionDate;
   });
@@ -110,18 +111,21 @@ function getResultsFor(election: Election): DateResults[] {
 function findWinnerFor(ridingIndex: number, election: Election): DateResult | null {
   let winner: Result | undefined;
   let date: Date | undefined;
-  const allResults = getResultsFor(election);
-  allResults.forEach((dateResults, index) => {
+  let losers: Result[] = [];
+  getResultsFor(election).forEach((dateResults) => {
     const resultWinner = dateResults.results.find((ea) => ea.index === ridingIndex && ea.majority > 0);
-    const prevWinner = allResults[index - 1] ? allResults[index - 1].results.find((ea) => ea.index === ridingIndex && ea.majority > 0) : null;
     if (resultWinner) {
       winner = resultWinner;
+      losers = dateResults.results
+        .filter((ea) => ea.index === ridingIndex && ea.majority === 0)
+        .sort((a, b) => b.votes - a.votes); // reverse sort
       date = Utils.electionToDate(dateResults.date);
     }
   });
   return winner && date ? {
-    winner: winner,
-    date: date
+    winner,
+    losers,
+    date
   } : null;
 }
 

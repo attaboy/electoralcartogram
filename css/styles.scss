@@ -7,16 +7,16 @@ $foreignLandGray: hsl(207, 17%, 74%);
 $canadaLandGreen: hsl(168, 30%, 74%);
 
 $liberalRed: hsla(359, 78%, 47%, 1.0);
-$liberalRedBright: #f46063;
+$liberalRedBright: hsla(359, 78%, 67%, 1.0);
 
-$ndpOrange: hsla(34, 96%, 46%, 1.0);
-$ndpOrangeBright: hsla(34, 96%, 65%, 1.0);
+$ndpOrange: hsla(28, 92%, 50%, 1.0);
+$ndpOrangeBright: hsla(28, 92%, 70%, 1.0);
 
-$conservativeBlue: hsla(214, 63%, 34%, 1.0);
-$conservativeBlueBright: hsla(214, 63%, 54%, 1.0);
+$conservativeBlue: hsla(213, 69%, 29%, 1.0);
+$conservativeBlueBright: hsla(213, 69%, 49%, 1.0);
 
-$green: hsla(116, 49%, 37%, 1.0);
-$greenBright: hsla(116, 49%, 61%, 1.0);
+$green: hsla(115, 49%, 34%, 1.0);
+$greenBright: hsla(115, 49%, 48%, 1.0);
 
 $blocBlue: hsla(200, 80%, 46%, 1.0);
 $blocBlueBright: hsla(200, 80%, 66%, 1.0);
@@ -84,11 +84,30 @@ table {
 }
 
 td {
-  padding-top: 0.125em;
-  padding-right: 0.1em;
-  padding-bottom: 0.125em;
+  vertical-align: top;
+  padding-top: 0.25em;
+  padding-right: 0.5em;
+  padding-bottom: 0.25em;
   padding-left: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+td.partyCell {
+  width: 1em;
+}
+
+td.votePctg {
+  width: 1.5em;
+  text-align: right;
+}
+
+td.voteCount {
+  width: 3em;
+  text-align: right;
 }
 
 td:last-child {
@@ -303,6 +322,14 @@ footer {
   margin-top: 1.5em;
   max-width: 10em;
   text-align: center;
+}
+
+.partyDecorator {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: top;
+  margin-top: 0.1em;
 }
 
 .liberal {
