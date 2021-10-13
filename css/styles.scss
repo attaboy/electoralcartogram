@@ -252,6 +252,11 @@ select.select {
   }
 }
 
+select.select option {
+  background-color: white;
+  color: black;
+}
+
 #search {
   position: relative;
   input {
