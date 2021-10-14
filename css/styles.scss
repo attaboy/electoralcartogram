@@ -236,6 +236,12 @@ button.button-transparent {
     border-color: white;
     outline: none;
   }
+
+  &:disabled {
+    color: hsla(255, 255, 255, 0.5);
+    border-color: transparent !important;
+    cursor: default;
+  }
 }
 
 .selectContainer {

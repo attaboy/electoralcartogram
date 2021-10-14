@@ -601,9 +601,11 @@ class Home extends React.Component<Props, State> {
             <button className={`radio ${this.state.lang === Lang.fr ? "active" : ""}`} type="button" onClick={() => this.setFrench()}>Fr</button>
           </div>
           <div id="electionSelector">
-            <button className="button-transparent" type="button" title={
+            <button className="button-transparent" type="button"
+              disabled={this.state.election === Elections[0]}
+              title={
               this.state.lang === Lang.fr ? "Élection précédente" : "Previous election"
-            } onClick={() => this.setNextOrPreviousElection(-1)}>◀︎</button>
+              } onClick={() => this.setNextOrPreviousElection(-1)}>◀︎</button>
             <label htmlFor="electionSelectorSelect" className="selectContainer">
               <select ref={(el) => this.electionSelector = el}
                 className="select"
@@ -618,9 +620,11 @@ class Home extends React.Component<Props, State> {
                 )}
               </select>
             </label>
-            <button className="button-transparent" type="button" title={
-              this.state.lang === Lang.fr ? "Élection suivante" : "Next election"
-            } onClick={() => this.setNextOrPreviousElection(1)}>▶︎</button>
+            <button className="button-transparent" type="button"
+              disabled={this.state.election === Elections[Elections.length - 1]}
+              title={
+                this.state.lang === Lang.fr ? "Élection suivante" : "Next election"
+              } onClick={() => this.setNextOrPreviousElection(1)}>▶︎</button>
           </div>
           <div id="search">
             <input
