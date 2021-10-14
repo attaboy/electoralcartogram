@@ -504,7 +504,7 @@ class Home extends React.Component<Props, State> {
     } else if (ElectionTypes['by-election'].includes(election)) {
       return this.state.lang === Lang.en ? "By-election" : "élection partielle";
     } else {
-      return this.state.lang === Lang.en ? "Party change" : "changement de parti";
+      return this.state.lang === Lang.en ? "Party change" : "changement d’affiliation";
     }
   }
 

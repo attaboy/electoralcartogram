@@ -229,12 +229,17 @@ button.button-transparent {
   line-height: 1.2rem;
   border-radius: 5px;
   border: 2px solid transparent;
-  padding: 4px 4px 3px 4px;
+  padding: 4px 2px 3px 2px;
   cursor: pointer;
 
   &:focus {
     border-color: white;
     outline: none;
+  }
+
+  &:active {
+    padding-top: 5px;
+    padding-bottom: 2px;
   }
 
   &:disabled {
@@ -551,7 +556,7 @@ svg {
   }
 }
 
-@media (max-width: 1090px) {
+@media (max-width: 1125px) {
   html {
     font-size: 14px;
   }
@@ -573,7 +578,7 @@ svg {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1250px) {
   html {
     font-size: 18px;
   }
@@ -601,7 +606,7 @@ svg {
   }
 }
 
-@media (max-width: 940px) {
+@media (max-width: 960px) {
   header h1 {
     float: none;
   }
@@ -611,5 +616,16 @@ svg {
     margin-left: 0;
     margin-right: 0.5em;
     float: left;
+  }
+}
+
+@media (max-width: 414px) {
+  #langButtons button, #electionSelector button, #electionSelector select {
+    font-size: 12px;
+  }
+
+  #langButtons button {
+    padding-top: 2px;
+    padding-bottom: 2px;
   }
 }
