@@ -217,8 +217,29 @@ button.radio {
   }
 }
 
+button.button-transparent {
+  display: inline-block;
+  vertical-align: top;
+  background-color: transparent;
+  color: white;
+  margin: 0 2px;
+  width: 1.5em;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  padding: 4px 4px 3px 4px;
+  cursor: pointer;
+
+  &:focus {
+    border-color: white;
+    outline: none;
+  }
+}
+
 .selectContainer {
-  display: block;
+  display: inline-block;
   position: relative;
 
   &::after {
@@ -512,7 +533,7 @@ svg {
   }
 }
 
-@media (max-width: 77rem) {
+@media (max-width: 1300px) {
   h1 {
     margin-top: 0.05em;
     font-size: 1.4rem;
@@ -524,13 +545,11 @@ svg {
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1090px) {
   html {
     font-size: 14px;
   }
-}
 
-@media (max-width: 65rem) {
   h1 {
     margin-top: 0.3em;
     font-size: 1.2rem;
@@ -539,6 +558,12 @@ svg {
 
   h1[lang=fr] {
     letter-spacing: -0.02em;
+  }
+}
+
+@media (max-width: 1023px) {
+  html {
+    font-size: 14px;
   }
 }
 
@@ -570,7 +595,7 @@ svg {
   }
 }
 
-@media (max-width: 56rem) {
+@media (max-width: 940px) {
   header h1 {
     float: none;
   }
