@@ -93,6 +93,7 @@ interface State {
 class Home extends React.Component<Props, State> {
   updateTimer: number | undefined;
   searchResultsTimer: number | undefined;
+  electionSelector?: HTMLSelectElement | null;
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -103,6 +104,7 @@ class Home extends React.Component<Props, State> {
       searchResultsVisible: false,
       lang: Lang.en
     };
+    this.handleBodyKeyUp = this.handleBodyKeyUp.bind(this);
   }
 
   componentDidMount(): void {
@@ -111,6 +113,37 @@ class Home extends React.Component<Props, State> {
         lang: Lang.fr
       });
     }
+    document.body.addEventListener('keyup', this.handleBodyKeyUp);
+  }
+
+  componentWillUnmount(): void {
+    document.body.removeEventListener('keyup', this.handleBodyKeyUp);
+  }
+
+  handleBodyKeyUp(ev: KeyboardEvent): void {
+    if (ev.target !== document.body && ev.target !== this.electionSelector) {
+      return;
+    }
+    const key = ev.key;
+    if (key === 'ArrowLeft') {
+      this.setNextOrPreviousElection(-1);
+    } else if (key === 'ArrowRight') {
+      this.setNextOrPreviousElection(1);
+    }
+  }
+
+  setNextOrPreviousElection(nextOrPrevious: -1 | 1): void {
+    const currentElectionIndex = Elections.indexOf(this.state.election);
+    const lastElectionIndex = Elections.length - 1;
+    let newIndex: number;
+    if (currentElectionIndex === -1) {
+      throw new Error(`Current election (${this.state.election}) not found in election set`);
+    } else if (nextOrPrevious === -1) {
+      newIndex = currentElectionIndex === 0 ? lastElectionIndex : currentElectionIndex - 1;
+    } else {
+      newIndex = currentElectionIndex === lastElectionIndex ? 0 : currentElectionIndex + 1;
+    }
+    this.setElection(Elections[newIndex]);
   }
 
   delayUpdate(riding: CurrentRidingInfo | null, coords: Coordinates | null, timing: number) {
@@ -304,7 +337,7 @@ class Home extends React.Component<Props, State> {
               const party = Party.findByRawName(loser.party);
               const name = loser.candidate.replace(/ \*\*/, "");
               return (
-                <tr>
+                <tr key={`${name}-${party.rawName}`}>
                   <td className="partyCell">
                     {this.renderPartyDecorator(party)}
                   </td>
@@ -471,7 +504,7 @@ class Home extends React.Component<Props, State> {
     } else if (ElectionTypes['by-election'].includes(election)) {
       return this.state.lang === Lang.en ? "By-election" : "élection partielle";
     } else {
-      return this.state.lang === Lang.en ? "Party change" : "changement de parti";
+      return this.state.lang === Lang.en ? "Party change" : "changement d’affiliation";
     }
   }
 
@@ -568,8 +601,14 @@ class Home extends React.Component<Props, State> {
             <button className={`radio ${this.state.lang === Lang.fr ? "active" : ""}`} type="button" onClick={() => this.setFrench()}>Fr</button>
           </div>
           <div id="electionSelector">
+            <button className="button-transparent" type="button"
+              disabled={this.state.election === Elections[0]}
+              title={
+              this.state.lang === Lang.fr ? "Élection précédente" : "Previous election"
+              } onClick={() => this.setNextOrPreviousElection(-1)}>◀︎</button>
             <label htmlFor="electionSelectorSelect" className="selectContainer">
-              <select className="select"
+              <select ref={(el) => this.electionSelector = el}
+                className="select"
                 id="electionSelectorSelect"
                 value={this.state.election}
                 onChange={(evt) => this.setElection(evt.currentTarget.value as Election)}>
@@ -581,6 +620,11 @@ class Home extends React.Component<Props, State> {
                 )}
               </select>
             </label>
+            <button className="button-transparent" type="button"
+              disabled={this.state.election === Elections[Elections.length - 1]}
+              title={
+                this.state.lang === Lang.fr ? "Élection suivante" : "Next election"
+              } onClick={() => this.setNextOrPreviousElection(1)}>▶︎</button>
           </div>
           <div id="search">
             <input
