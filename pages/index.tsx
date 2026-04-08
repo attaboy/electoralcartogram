@@ -607,7 +607,7 @@ class Home extends React.Component<Props, State> {
               this.state.lang === Lang.fr ? "Élection précédente" : "Previous election"
               } onClick={() => this.setNextOrPreviousElection(-1)}>◀︎</button>
             <label htmlFor="electionSelectorSelect" className="selectContainer">
-              <select ref={(el) => this.electionSelector = el}
+              <select ref={(el) => { this.electionSelector = el; }}
                 className="select"
                 id="electionSelectorSelect"
                 value={this.state.election}
