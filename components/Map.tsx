@@ -1,9 +1,9 @@
-import React, { CSSProperties } from 'react';
-import { Province } from './province';
-import { Riding, Coordinates } from './riding';
+import { Province } from './Province';
+import { Riding, Coordinates } from './Riding';
 import { ridingDataSet, RidingData, ProvinceData } from "../data/riding_data";
+import { type Election } from '../pages';
+import { Lang, useLang } from '../hooks/useLang';
 import { getResultsForRiding } from '../data/result_data';
-import { Lang, Election } from '../pages';
 
 interface Labels {
   "Lake": string
@@ -43,21 +43,22 @@ const labels: LabelLookup = {
   }
 };
 
-class Map extends React.PureComponent<{
+interface MapProps {
   onClick: (riding: RidingData) => void
   onHoverOn: (riding: RidingData, province: ProvinceData, coords: Coordinates) => void
   onHoverOff: () => void
-  lang: Lang
   election: Election
   searchText: string
-}> {
-  getLabelFor<K extends keyof Labels>(key: K): Labels[K] {
-    const forLang = labels[this.props.lang];
-    return forLang && forLang[key] ? forLang[key] : key;
-  }
+}
 
-  render() {
-    return (
+const Map = ({ onClick, onHoverOn, onHoverOff, election, searchText }: MapProps) => {
+  const [lang] = useLang();
+  const getLabelFor = <K extends keyof Labels>(key: K): Labels[K] => {
+    const forLang = labels[lang];
+    return forLang && forLang[key] ? forLang[key] : key;
+  };
+
+  return (
 <svg width="100%" viewBox="0 0 820 460" version="1.1" xmlSpace="preserve">
   <g id="Electoral-Cartogram-of-Canada" data-label="Electoral Cartogram of Canada" transform="matrix(1.07895,0,0,0.938776,-107.895,-46.9388)">
     <rect x="100" y="50" width="760" height="490" style={{ fill: "none" }} />
@@ -81,49 +82,49 @@ class Map extends React.PureComponent<{
       </g>
       <g id="Labels" transform="matrix(0.926829,0,0,1.06522,155.61,50)">
         <g transform="matrix(1,0,0,1,8.6276,189.973)">
-          <text x="102.697px" y="235.379px" className="countryText">{this.getLabelFor("USA")}</text>
+          <text x="102.697px" y="235.379px" className="countryText">{getLabelFor("USA")}</text>
         </g>
         <g id="Water">
           <g transform="matrix(1,0,0,1,344.451,117.473)">
-            <text x="51.929px" y="229.667px" className="waterText">{this.getLabelFor("Lake")} {this.getLabelFor("Ontario")}</text>
+            <text x="51.929px" y="229.667px" className="waterText">{getLabelFor("Lake")} {getLabelFor("Ontario")}</text>
           </g>
           <g transform="matrix(1,0,0,1,139.128,19.4731)">
-            <text x="51.212px" y="229.667px" className="waterText">{this.getLabelFor("Lake")}</text>
-            <text x="42.872px" y="241.667px" className="waterText">{this.getLabelFor("Superior")}</text>
+            <text x="51.212px" y="229.667px" className="waterText">{getLabelFor("Lake")}</text>
+            <text x="42.872px" y="241.667px" className="waterText">{getLabelFor("Superior")}</text>
           </g>
           <g transform="matrix(1,0,0,1,160.143,63.3331)">
-            <text x="48.432px" y="241.667px" className="waterText">{this.getLabelFor("Lake")}</text>
-            <text x="42.872px" y="253.667px" className="waterText">{this.getLabelFor("Huron")}</text>
+            <text x="48.432px" y="241.667px" className="waterText">{getLabelFor("Lake")}</text>
+            <text x="42.872px" y="253.667px" className="waterText">{getLabelFor("Huron")}</text>
           </g>
           <g transform="matrix(1,0,0,1,77.1276,105.333)">
-            <text x="56.772px" y="229.667px" className="waterText">{this.getLabelFor("Lake")}</text>
-            <text x="42.872px" y="241.667px" className="waterText">{this.getLabelFor("Michigan")}</text>
+            <text x="56.772px" y="229.667px" className="waterText">{getLabelFor("Lake")}</text>
+            <text x="42.872px" y="241.667px" className="waterText">{getLabelFor("Michigan")}</text>
           </g>
           <g transform="matrix(1,0,0,1,296.128,-92.3114)">
-            <text x="46.847px" y="229.667px" className="waterText">{this.getLabelFor("Hudson’s Bay")}</text>
+            <text x="46.847px" y="229.667px" className="waterText">{getLabelFor("Hudson’s Bay")}</text>
           </g>
           <g transform="matrix(1,0,0,1,-87.8724,5.68857)">
             <text x="57.877px" y="229.667px" className="waterText">
-              {this.props.lang === Lang.en ? this.getLabelFor("Pacific") : this.getLabelFor("Ocean")}
+              {lang === Lang.en ? getLabelFor("Pacific") : getLabelFor("Ocean")}
             </text>
             <text x="58.237px" y="241.667px" className="waterText">
-              {this.props.lang === Lang.en ? this.getLabelFor("Ocean") : this.getLabelFor("Pacific")}
+              {lang === Lang.en ? getLabelFor("Ocean") : getLabelFor("Pacific")}
             </text>
           </g>
           <g transform="matrix(1,0,0,1,639.805,25.6886)">
             <text x="58.435px" y="229.667px" className="waterText">{
-              this.props.lang === Lang.en ? this.getLabelFor("Atlantic") : this.getLabelFor("Ocean")
+              lang === Lang.en ? getLabelFor("Atlantic") : getLabelFor("Ocean")
             }</text>
             <text x="58.435px" y="241.667px" className="waterText">{
-              this.props.lang === Lang.en ? this.getLabelFor("Ocean") : this.getLabelFor("Atlantic")
+              lang === Lang.en ? getLabelFor("Ocean") : getLabelFor("Atlantic")
             }</text>
           </g>
           <g transform="matrix(1,0,0,1,540.128,-147.527)">
-            <text x="50.967px" y="229.667px" className="waterText">{this.getLabelFor("Gulf of")}</text>
-            <text x="50.967px" y="241.667px" className="waterText">{this.getLabelFor("St. Lawrence")}</text>
+            <text x="50.967px" y="229.667px" className="waterText">{getLabelFor("Gulf of")}</text>
+            <text x="50.967px" y="241.667px" className="waterText">{getLabelFor("St. Lawrence")}</text>
           </g>
           <g transform="matrix(1,0,0,1,158.776,217.473)">
-            <text x="50.574px" y="229.667px" className="waterText">{this.getLabelFor("Lake")} {this.getLabelFor("Erie")}</text>
+            <text x="50.574px" y="229.667px" className="waterText">{getLabelFor("Lake")} {getLabelFor("Erie")}</text>
           </g>
         </g>
         <g transform="matrix(1,0,0,1,-53.2059,5)">
@@ -167,20 +168,24 @@ class Map extends React.PureComponent<{
         </g>
       </g>
       {ridingDataSet.map(province => (
-        <Province key={province.id} id={province.id} label={province.en} transform={province.transform}>
+        <Province
+          key={province.id}
+          id={province.id}
+          label={province.en}
+          transform={province.transform}
+        >
           {province.ridings.map(riding => {
-            const results = getResultsForRiding(riding, this.props.election);
+            const results = getResultsForRiding(riding, election);
             return (
               <Riding
                 key={riding.id}
                 data={riding}
                 results={results}
-                onClick={this.props.onClick}
-                onMouseOver={(coords) => this.props.onHoverOn(riding, province, coords)}
-                onMouseOut={this.props.onHoverOff}
-                searchText={this.props.searchText}
-                lang={this.props.lang}
-                election={this.props.election}
+                onClick={onClick}
+                onMouseOver={(coords: Coordinates) => onHoverOn(riding, province, coords)}
+                onMouseOut={onHoverOff}
+                searchText={searchText}
+                election={election}
               />
             )
           })}
@@ -247,8 +252,7 @@ class Map extends React.PureComponent<{
     </g>
   </g>
 </svg>
-    );
-  }
-}
+  );
+};
 
 export { Map };

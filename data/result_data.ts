@@ -1,7 +1,6 @@
 import { PreliminaryResult } from './preliminary_data';
 import { Election } from '../pages';
 import { RidingData } from './riding_data';
-import { Utils } from './utils';
 import { results20151019 } from './results20151019';
 import { results20161024 } from './results20161024';
 import { results20170403 } from './results20170403';
@@ -14,6 +13,7 @@ import { results20190506 } from './results20190506';
 import { results20191021 } from './results20191021';
 import { results20201026 } from './results20201026';
 import { prelimResults20210920TSV } from './results20210920';
+import { electionToDate } from '../utils/electionToDate';
 
 export interface Result {
   "index": number
@@ -101,9 +101,9 @@ function convertPreliminaryResults(prelims: PreliminaryResult[]): Result[] {
 }
 
 function getResultsFor(election: Election): DateResults[] {
-  const electionDate = new Date(Utils.electionToDate(election));
+  const electionDate = new Date(electionToDate(election));
   return sortedResultsSet.filter((ea) => {
-    const resultDate = new Date(Utils.electionToDate(ea.date));
+    const resultDate = new Date(electionToDate(ea.date));
     return resultDate <= electionDate;
   });
 }
@@ -119,7 +119,7 @@ function findWinnerFor(ridingIndex: number, election: Election): DateResult | nu
       losers = dateResults.results
         .filter((ea) => ea.index === ridingIndex && ea.majority === 0)
         .sort((a, b) => b.votes - a.votes); // reverse sort
-      date = Utils.electionToDate(dateResults.date);
+      date = electionToDate(dateResults.date);
     }
   });
   return winner && date ? {
@@ -135,7 +135,7 @@ function getSummaryByParty(election: Election): Summary {
   getResultsFor(election).forEach((dateResults) => {
     dateResults.results.forEach((result) => {
       if (result.majority > 0) {
-        const hasChanged = result.changedParty && Utils.electionToDate(result.changedParty) <= Utils.electionToDate(election);
+        const hasChanged = result.changedParty && electionToDate(result.changedParty) <= electionToDate(election);
         const party = hasChanged && result.currentParty ? result.currentParty : result.party;
         partyByRiding[`${result.index}`] = party;
       }
