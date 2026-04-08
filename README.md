@@ -12,6 +12,8 @@ Election results for [recent](https://enr.elections.ca/National.aspx?lang=e) and
 
 This package uses NPM for dependencies.
 
+Requires Node.js 20.9+.
+
 To install dependencies: `npm install`
 
 To run the development server: `npm run dev`

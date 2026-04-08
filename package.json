@@ -1,23 +1,28 @@
 {
   "name": "electoralcartogram",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "Electoral Cartogram of Canada",
   "main": "index.js",
   "dependencies": {
-    "next": "^11.1.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "next": "^16.2.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "sass": "^1.26.3"
   },
   "devDependencies": {
-    "@types/node": "^12.12.25",
-    "@types/react": "^17.0.24",
-    "typescript": "^4.4.3"
+    "@types/node": "^25.5.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^6.0.2"
   },
   "scripts": {
-    "dev": "next",
-    "export": "next build && next export",
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next build",
     "start": "next start"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   },
   "author": "Luke Andrews",
   "license": "MIT"
