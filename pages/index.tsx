@@ -1,43 +1,16 @@
-import Head from 'next/head';
-import * as React from 'react';
-import {Map} from '../components/map';
+import React from 'react';
+import { Map } from '../components/Map';
 import { RidingData, ProvinceData, ridingDataSet } from '../data/riding_data';
-import { DateResults, Result, findWinnerFor, getSummaryByParty, Summary } from '../data/result_data';
-import Party from '../data/party';
-import { Coordinates } from '../components/riding';
-import { Utils } from '../data/utils';
-import { Parliaments } from '../data/parliaments';
-
-interface RidingWinner {
-  candidate: string
-  party: string
-  originalParty: string | undefined
-  changedDate: string | undefined
-  votes: number
-  votePercentage: number
-  majorityPercentage: number
-}
-
-interface RidingLoser {
-  candidate: string
-  party: string
-  votes: number
-  votePercentage: number
-}
-
-interface CurrentRidingInfo {
-  province: string
-  flag: string
-  flagDescription: string
-  riding: string
-  winner: RidingWinner
-  losers: RidingLoser[]
-  date: string
-}
-
-export enum Lang {
-  en="en", fr="fr"
-}
+import { findWinnerFor } from '../data/result_data';
+import { Coordinates } from '../components/Riding';
+import { Lang, useLang } from '../hooks/useLang';
+import { getTitle } from '../utils/getTitle';
+import { formatDate } from '../utils/formatDate';
+import { electionToDate } from '../utils/electionToDate';
+import { Summary } from '../components/Summary';
+import { CurrentRidingInfo, RidingInfo } from '../components/RidingInfo';
+import { Tooltip } from '../components/Tooltip';
+import { SearchResult } from '../components/SearchResult';
 
 const Elections = [
   "2015-10-19",
@@ -85,19 +58,10 @@ const Home = () => {
   const [coords, setCoords] = React.useState<Coordinates>({ x: 0, y: 0 });
   const [searchText, setSearchText] = React.useState("");
   const [searchResultsVisible, setSearchResultsVisible] = React.useState(false);
-  const [lang, setLang] = React.useState<Lang>(Lang.en);
+  const [lang, setLang] = useLang();
   const updateTimer = React.useRef<number | undefined>(undefined);
   const searchResultsTimer = React.useRef<number | undefined>(undefined);
   const electionSelector = React.useRef<HTMLSelectElement | null>(null);
-
-  const formatDate = React.useCallback((date: Date): string => {
-    const locale = `${lang}-CA`;
-    if (Intl && Intl.DateTimeFormat.supportedLocalesOf(locale).length > 0) {
-      return Intl.DateTimeFormat(locale).format(date);
-    } else {
-      return date.toLocaleDateString();
-    }
-  }, [lang]);
 
   const getRidingInfoFromRiding = React.useCallback((riding: RidingData, province: ProvinceData): CurrentRidingInfo | null => {
     const result = findWinnerFor(riding.index, election);
@@ -105,8 +69,8 @@ const Home = () => {
       return null;
     }
     const flagDescriptionKey = lang === Lang.fr ? "flagDescription-fr" : "flagDescription-en";
-    const changedPartyDate = result.winner.changedParty ? Utils.electionToDate(result.winner.changedParty) : undefined;
-    const changedParty = changedPartyDate ? changedPartyDate <= Utils.electionToDate(election) : undefined;
+    const changedPartyDate = result.winner.changedParty ? electionToDate(result.winner.changedParty) : undefined;
+    const changedParty = changedPartyDate ? changedPartyDate <= electionToDate(election) : undefined;
     return {
       province: province[lang],
       flag: province.flagUrl,
@@ -116,13 +80,13 @@ const Home = () => {
         candidate: result.winner.candidate,
         party: changedParty && result.winner.currentParty ? result.winner.currentParty : result.winner.party,
         originalParty: changedParty && result.winner.currentParty ? result.winner.party : undefined,
-        changedDate: changedPartyDate ? formatDate(changedPartyDate) : undefined,
+        changedDate: changedPartyDate ? formatDate(changedPartyDate, lang) : undefined,
         votes: result.winner.votes,
         votePercentage: result.winner.votePercentage,
         majorityPercentage: result.winner.majorityPercentage
       },
       losers: result.losers,
-      date: formatDate(result.date)
+      date: formatDate(result.date, lang)
     };
   }, [election, formatDate, lang]);
 
@@ -188,148 +152,6 @@ const Home = () => {
 
   const onHoverOff = (): void => {
     delayUpdate(null, null, 500);
-  };
-
-  const labelForElected = (date: string): string => {
-    return lang === Lang.fr ? `Élu(e) ${date}` : `Elected ${date}`;
-  };
-
-  const electedAs = (party: Party, changedDate: string | undefined): string => {
-    if (lang === Lang.fr) {
-      return ` (changé(e) de ${party[lang]}${changedDate ? `, ${changedDate}` : ""})`;
-    }
-    return ` (changed from ${party[lang]}${changedDate ? `, ${changedDate}` : ""})`;
-  };
-
-  const renderPartyDecorator = (party: Party) => (
-    <span className={`partyDecorator ${party.className}`} />
-  );
-
-  const renderElectionTitle = () => {
-    const electionDate = Utils.electionToDate(election);
-    if (electionDate >= Utils.electionToDate(Parliaments.P44)) {
-      return lang === Lang.fr ? (
-        <span><b>Le 44<sup>e</sup> Parlement</b> ({election})</span>
-      ) : (
-        <span><b>44<sup>th</sup> Parliament</b> ({election})</span>
-      );
-    } else if (electionDate >= Utils.electionToDate(Parliaments.P43)) {
-      return lang === Lang.fr ? (
-        <span><b>Le 43<sup>e</sup> Parlement</b> ({election})</span>
-      ) : (
-        <span><b>43<sup>rd</sup> Parliament</b> ({election})</span>
-      );
-    } else {
-      return lang === Lang.fr ? (
-        <span><b>Le 42<sup>e</sup> Parlement</b> ({election})</span>
-      ) : (
-        <span><b>42<sup>nd</sup> Parliament</b> ({election})</span>
-      );
-    }
-  };
-
-  const renderSummary = () => {
-    const summary = getSummaryByParty(election);
-    const partyIds = Object.keys(summary).sort((a, b) => summary[b] - summary[a]);
-    const total = partyIds.reduce((subtotal, partyId) => subtotal + summary[partyId], 0);
-    return (
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <td colSpan={3}>{renderElectionTitle()}</td>
-            </tr>
-          </thead>
-          <tbody>
-            {partyIds.map((partyId) => {
-              const party = Party.findByRawName(partyId);
-              return (
-                <tr key={partyId}>
-                  <td className="partyCell">{renderPartyDecorator(party)}</td>
-                  <td className="candidateName">{party[lang]}</td>
-                  <td className="voteCount">{summary[partyId]}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colSpan={2}><b>Total</b></td>
-              <td className="voteCount"><b>{total}</b></td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    );
-  };
-
-  const renderInfo = (ridingInfo: CurrentRidingInfo) => {
-    const winner = ridingInfo.winner.candidate.replace(/ \*\*$/, "");
-    const elected = labelForElected(ridingInfo.date);
-    const ridingName = ridingInfo.riding.replace(/\/.+$/, "");
-    const winningParty = Party.findByRawName(ridingInfo.winner.party);
-    const originalParty = ridingInfo.winner.originalParty ? Party.findByRawName(ridingInfo.winner.originalParty) : null;
-    const pctFormatter = Intl.NumberFormat(`${lang}-CA`, { style: "percent", minimumFractionDigits: 1, maximumFractionDigits: 1 });
-    const voteFormatter = Intl.NumberFormat(`${lang}-CA`, { maximumFractionDigits: 0 });
-    return (
-      <div>
-        <h5>
-          <img src={ridingInfo.flag}
-            style={{ height: "24px", marginRight: "0.5em", verticalAlign: "bottom" }}
-            alt={ridingInfo.flagDescription}
-          />
-          {ridingName === ridingInfo.province ? null : (
-            <span>{ridingInfo.province}</span>
-          )}
-        </h5>
-        <table>
-          <thead>
-            <tr>
-              <td colSpan={4}><h3>{ridingName}</h3></td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="partyCell">{renderPartyDecorator(winningParty)}</td>
-              <td className="candidateName">
-                <div>
-                  <span><b>{winner}, {winningParty[lang]}</b></span>
-                </div>
-                <div style={{ fontSize: "0.9rem" }}>
-                  {elected}{originalParty ? (
-                    <i>{electedAs(originalParty, ridingInfo.winner.changedDate)}</i>
-                  ) : null}
-                </div>
-              </td>
-              <td className="votePctg">
-                <b>{pctFormatter.format(ridingInfo.winner.votePercentage / 100)}</b>
-              </td>
-              <td className="voteCount">
-                <b>{voteFormatter.format(ridingInfo.winner.votes)}</b>
-              </td>
-            </tr>
-            {ridingInfo.losers.filter((loser) => loser.votePercentage >= 1).map((loser) => {
-              const party = Party.findByRawName(loser.party);
-              const name = loser.candidate.replace(/ \*\*/, "");
-              return (
-                <tr key={`${name}-${party.rawName}`}>
-                  <td className="partyCell">
-                    {renderPartyDecorator(party)}
-                  </td>
-                  <td className="candidateName">
-                    <div>
-                      <span>{name}, {party[lang]}</span>
-                    </div>
-                  </td>
-                  <td className="votePctg">{pctFormatter.format(loser.votePercentage / 100)}</td>
-                  <td className="voteCount">{voteFormatter.format(loser.votes)}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    );
   };
 
   const updateSearchText = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -414,83 +236,14 @@ const Home = () => {
     }
   };
 
-  const renderSearchResult = (riding: RidingData) => {
-    const text = riding[lang];
-    const sub = searchText;
-    const onClick = () => setSearchText(text);
-    if (!sub) {
-      return (
-        <div className="searchResult" key={riding.id} onMouseDown={onClick}>{text}</div>
-      );
-    }
-    const choppedLowercase = text.toLowerCase().split(sub.toLowerCase());
-    const highlightLength = sub.length;
-    let startIndex = 0;
-    return (
-      <div className="searchResult" key={riding.id} onMouseDown={onClick}>
-        {choppedLowercase.map((lowercaseFragment, index) => {
-          const fragmentLength = lowercaseFragment.length;
-          const displayFragment = text.substr(startIndex, fragmentLength);
-          const highlighted = text.substr(startIndex + fragmentLength, highlightLength);
-          startIndex += fragmentLength + highlightLength;
-
-          return (
-            <span key={`fragment${index}`}>
-              <span>{displayFragment}</span>
-              {highlighted ? (
-                <b>{highlighted}</b>
-              ) : null}
-            </span>
-          );
-        })}
-      </div>
-    );
-  };
-
-  const renderTooltip = (nextCurrentRiding: CurrentRidingInfo) => {
-    const windowWidth = window.innerWidth;
-    const style: React.CSSProperties = {
-      top: `${coords.y}px`
-    };
-    if (coords.x > windowWidth / 2) {
-      style.right = `${windowWidth - coords.x}px`;
-    } else {
-      style.left = `${coords.x}px`;
-    }
-    return (
-      <div id="mapTooltip" style={style}>{nextCurrentRiding.riding}</div>
-    );
-  };
-
-  const title = lang === Lang.fr ? "Cartogramme électorale du Canada" : "Electoral Cartogram of Canada";
+  const title = getTitle(lang);
   const searchProvinces = getRidingsFromSearch();
   const sortedResults = sortedSearchResults(searchProvinces);
   const ridingInfoFromSearch = (sortedResults.length === 1) ?
     getRidingInfoFromRiding(sortedResults[0], searchProvinces[0]) : null;
   const ridingInfo = ridingInfoFromSearch || currentRiding;
-  const thisYear = new Date().getFullYear();
   return (
       <div>
-        <Head>
-          <title>{title}</title>
-          <meta name="description"
-            content="Federal election results for Canada displayed visually in a cartogram map which emphasizes population distribution rather than vast, empty spaces. Each electoral district is represented by a single hexagon of the same size."
-          />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-          <link href="https://fonts.googleapis.com/css?family=Barlow:300,400,600&display=swap" rel="stylesheet" />
-          {/* Global site tag (gtag.js) - Google Analytics */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-615474-5" />
-          <script dangerouslySetInnerHTML={{
-            __html:
-              `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments); }
-          gtag('js', new Date());
-          gtag('config', 'UA-615474-5');
-          `
-          }}></script>
-        </Head>
         <header>
           <h1 lang={lang}>
             <img src="/images/flags/Flag_of_Canada.png"
@@ -533,13 +286,13 @@ const Home = () => {
             <input
               type="search"
               placeholder={lang === Lang.fr ? "Rechercher par circonscription" : "Search by riding name"} onKeyUp={(e) => handleInputKeyUp(e, sortedResults)}
-              onChange={(e) => updateSearchText(e)} value={searchText}
+              onChange={updateSearchText} value={searchText}
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
             />
             {searchResultsVisible ? (
               <div id="searchResults">
-                {sortedResults.map((riding) => renderSearchResult(riding))}
+                {sortedResults.map((riding) => <SearchResult key={`searchResult-${riding.id}`} searchText={searchText} setSearchText={setSearchText} riding={riding} />)}
               </div>
             ) : null}
           </div>
@@ -547,17 +300,16 @@ const Home = () => {
         <div style={{ position: "relative" }}>
           <div className="map" onClick={onClickNoRiding}>
             <Map
-              onClick={(r) => onClickRiding(r)}
-              onHoverOn={(r, p, c) => onHoverOn(r, p, c)}
+              onClick={onClickRiding}
+              onHoverOn={onHoverOn}
               onHoverOff={onHoverOff}
-              lang={lang}
               election={election}
               searchText={searchText}
             />
-            {currentRiding ? renderTooltip(currentRiding) : null}
+            {currentRiding ? <Tooltip coords={coords} nextCurrentRiding={currentRiding} /> : null}
           </div>
           <div className="overlay">
-            {ridingInfo ? renderInfo(ridingInfo) : renderSummary()}
+            {ridingInfo ? <RidingInfo ridingInfo={ridingInfo} /> : <Summary election={election} />}
           </div>
         </div>
         <footer>
@@ -588,7 +340,7 @@ const Home = () => {
                 <p>Édition précédente: <a href="/2011/">2011</a></p>
 
                 {process.env.buildTimestamp ? (
-                  <p>v{process.env.version}, dernière modification: {formatDate(new Date(process.env.buildTimestamp))}</p>
+                  <p>v{process.env.version}, dernière modification: {formatDate(new Date(process.env.buildTimestamp), lang)}</p>
                 ) : null}
               </div>
             </div>
@@ -607,19 +359,19 @@ const Home = () => {
               <div className="column">
                 <h4>Credits</h4>
 
-                <p>Copyright &copy; 2019 <a href="https://attaboy.ca/">Luke Andrews</a></p>
+                <p>Copyright &copy; <a href="https://attaboy.ca/">Luke Andrews</a>, 2019</p>
 
                 <p>
                   <a href="https://github.com/attaboy/electoralcartogram">Source code on GitHub</a>
                   <span> · Electoral results copied from <a href="https://elections.ca/content.aspx?section=ele&dir=pas&document=index&lang=e">Elections Canada</a></span>
                 </p>
 
-                <p>Feedback welcome: <a href="https://twitter.com/attaboy">@attaboy</a></p>
+                <p>Feedback welcome: <a href="https://bsky.app/profile/attaboy.ca">@attaboy.ca on Bluesky</a></p>
 
                 <p>Previous edition: <a href="/2011/">2011</a></p>
 
                 {process.env.buildTimestamp ? (
-                  <p>v{process.env.version}, last modified: {formatDate(new Date(process.env.buildTimestamp))}</p>
+                  <p>v{process.env.version}, last modified: {formatDate(new Date(process.env.buildTimestamp), lang)}</p>
                 ) : null}
               </div>
             </div>
