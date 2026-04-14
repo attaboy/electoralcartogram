@@ -12,7 +12,14 @@ import { results20190225 } from './results20190225';
 import { results20190506 } from './results20190506';
 import { results20191021 } from './results20191021';
 import { results20201026 } from './results20201026';
-import { prelimResults20210920TSV } from './results20210920';
+import { results20210920 } from './results20210920';
+import { results20221212 } from './results20221212';
+import { results20230619 } from './results20230619';
+import { results20230724 } from './results20230724';
+import { results20240304 } from './results20240304';
+import { results20240624 } from './results20240624';
+import { results20240916 } from './results20240916';
+import { results20241216 } from './results20241216';
 import { electionToDate } from '../utils/electionToDate';
 
 export interface Result {
@@ -71,7 +78,28 @@ const sortedResultsSet: DateResults[] = [{
   results: results20201026
 }, {
   date: "2021-09-20",
-  results: convertPreliminaryResults(PreliminaryResult.fromRows(prelimResults20210920TSV.split("\n")))
+  results: results20210920
+}, {
+  date: "2022-12-12",
+  results: results20221212
+}, {
+  date: "2023-06-19",
+  results: results20230619
+}, {
+  date: "2023-07-24",
+  results: results20230724
+}, {
+  date: "2024-03-04",
+  results: results20240304
+}, {
+  date: "2024-06-24",
+  results: results20240624
+}, {
+  date: "2024-09-16",
+  results: results20240916
+}, {
+  date: "2024-12-16",
+  results: results20241216
 }];
 
 interface DateResult {
