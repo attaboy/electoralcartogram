@@ -16,8 +16,6 @@
   --bloc-blue-bright: hsla(200, 80%, 66%, 1);
   --ppc-purple: hsla(285, 65%, 58%, 1);
   --ppc-purple-bright: hsla(285, 65%, 78%, 1);
-  --independent-beige: hsla(45, 20%, 65%, 1);
-  --independent-beige-bright: hsla(45, 20%, 77%, 1);
   --other-gray: hsla(0, 0%, 53%, 1);
   --other-gray-bright: hsla(0, 0%, 73%, 1);
 }
@@ -463,22 +461,12 @@ footer {
   fill: var(--ppc-purple-bright);
 }
 
-.independent {
-  background-color: var(--independent-beige);
-  fill: var(--independent-beige);
-}
-
-.independent:hover {
-  background-color: var(--independent-beige-bright);
-  fill: var(--independent-beige-bright);
-}
-
-.other {
+.independent, .other {
   background-color: var(--other-gray);
   fill: var(--other-gray);
 }
 
-.other:hover {
+.independent:hover, .other:hover {
   background-color: var(--other-gray-bright);
   fill: var(--other-gray-bright);
 }
