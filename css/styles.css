@@ -2,6 +2,7 @@
   --accent-color: white;
   --ocean-blue: hsl(209, 61%, 86%);
   --ocean-blue-dark: hsl(209, 66%, 79%);
+  --ocean-blue-text: hsl(209, 30%, 55%);
   --foreign-land-gray: hsl(207, 17%, 74%);
   --canada-land-green: hsl(168, 30%, 74%);
   --liberal-red: hsla(359, 78%, 47%, 1);
@@ -531,7 +532,7 @@ svg .provinceText {
 svg .waterText {
   font-weight: 400;
   font-size: 10px;
-  fill: hsl(209, 51%, 62%);
+  fill: var(--ocean-blue-text);
 }
 
 @media (max-width: 64rem) {
