@@ -1,6 +1,7 @@
 import { PreliminaryResult } from './preliminary_data';
 import { Election } from '../pages';
 import { RidingData } from './riding_data';
+import { electionToDate } from "../utils/electionToDate";
 import { results20151019 } from './results20151019';
 import { results20161024 } from './results20161024';
 import { results20170403 } from './results20170403';
@@ -21,7 +22,8 @@ import { results20240624 } from './results20240624';
 import { results20240916 } from './results20240916';
 import { results20241216 } from './results20241216';
 import { results20250428 } from './results20250428';
-import { electionToDate } from '../utils/electionToDate';
+import { results20250818 } from "./results20250818";
+import { results20260413 } from "./results20260413";
 
 export interface Result {
   "index": number
@@ -44,67 +46,96 @@ export interface Summary {
   [partyId: string]: number
 }
 
-const sortedResultsSet: DateResults[] = [{
-  date: "2015-10-19",
-  results: results20151019
-}, {
-  date: "2016-10-24",
-  results: results20161024
-}, {
-  date: "2017-04-03",
-  results: results20170403
-}, {
-  date: "2017-10-23",
-  results: results20171023
-}, {
-  date: "2017-12-11",
-  results: results20171211
-}, {
-  date: "2018-06-18",
-  results: results20180618
-}, {
-  date: "2018-12-03",
-  results: results20181203
-}, {
-  date: "2019-02-25",
-  results: results20190225
-}, {
-  date: "2019-05-06",
-  results: results20190506
-}, {
-  date: "2019-10-21",
-  results: results20191021
-}, {
-  date: "2020-10-26",
-  results: results20201026
-}, {
-  date: "2021-09-20",
-  results: results20210920
-}, {
-  date: "2022-12-12",
-  results: results20221212
-}, {
-  date: "2023-06-19",
-  results: results20230619
-}, {
-  date: "2023-07-24",
-  results: results20230724
-}, {
-  date: "2024-03-04",
-  results: results20240304
-}, {
-  date: "2024-06-24",
-  results: results20240624
-}, {
-  date: "2024-09-16",
-  results: results20240916
-}, {
-  date: "2024-12-16",
-  results: results20241216
-}, {
-  date: "2025-04-25",
-  results: results20250428
-}];
+const sortedResultsSet: DateResults[] = [
+  {
+    date: "2015-10-19",
+    results: results20151019,
+  },
+  {
+    date: "2016-10-24",
+    results: results20161024,
+  },
+  {
+    date: "2017-04-03",
+    results: results20170403,
+  },
+  {
+    date: "2017-10-23",
+    results: results20171023,
+  },
+  {
+    date: "2017-12-11",
+    results: results20171211,
+  },
+  {
+    date: "2018-06-18",
+    results: results20180618,
+  },
+  {
+    date: "2018-12-03",
+    results: results20181203,
+  },
+  {
+    date: "2019-02-25",
+    results: results20190225,
+  },
+  {
+    date: "2019-05-06",
+    results: results20190506,
+  },
+  {
+    date: "2019-10-21",
+    results: results20191021,
+  },
+  {
+    date: "2020-10-26",
+    results: results20201026,
+  },
+  {
+    date: "2021-09-20",
+    results: results20210920,
+  },
+  {
+    date: "2022-12-12",
+    results: results20221212,
+  },
+  {
+    date: "2023-06-19",
+    results: results20230619,
+  },
+  {
+    date: "2023-07-24",
+    results: results20230724,
+  },
+  {
+    date: "2024-03-04",
+    results: results20240304,
+  },
+  {
+    date: "2024-06-24",
+    results: results20240624,
+  },
+  {
+    date: "2024-09-16",
+    results: results20240916,
+  },
+  {
+    date: "2024-12-16",
+    results: results20241216,
+  },
+  {
+    date: "2025-04-25",
+    results: results20250428,
+  },
+  {
+    date: "2025-08-18",
+    results: results20250818,
+  },
+  {
+    date: "2026-04-13",
+    results: results20260413,
+  },
+];
 
 interface DateResult {
   winner: Result
