@@ -97,7 +97,25 @@ tbody tr:last-child td {
 }
 
 td.partyCell {
-  width: 1em;
+  width: 1rem;
+  text-align: center;
+}
+
+.partyCellContent {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.15em;
+}
+
+.originalPartyDecorator {
+  position: relative;
+  left: -0.15em;
+}
+
+.changedPartyDecorator {
+  position: relative;
+  top: -1em;
+  left: 0.15em;
 }
 
 td.votePctg {
@@ -366,7 +384,6 @@ footer {
   width: 1em;
   height: 1em;
   vertical-align: top;
-  margin-top: 0.1em;
 }
 
 .liberal {

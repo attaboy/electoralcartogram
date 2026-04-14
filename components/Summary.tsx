@@ -27,7 +27,11 @@ export function Summary({ election }: SummaryProps) {
             const party = Party.findByRawName(partyId);
             return (
               <tr key={partyId}>
-                <td className="partyCell"><PartyDecorator party={party} /></td>
+                <td className="partyCell">
+                  <div className="partyCellContent">
+                    <PartyDecorator party={party} />
+                  </div>
+                </td>
                 <td className="candidateName">{party[lang]}</td>
                 <td className="voteCount">{summary[partyId]}</td>
               </tr>
