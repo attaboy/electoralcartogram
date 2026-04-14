@@ -1,4 +1,4 @@
-import '../css/styles.scss'
+import '../css/styles.css'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useState } from 'react'

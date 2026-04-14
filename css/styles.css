@@ -1,36 +1,30 @@
-$accentColor: white;
+:root {
+  --accent-color: white;
+  --ocean-blue: hsl(209, 61%, 86%);
+  --ocean-blue-dark: hsl(209, 66%, 79%);
+  --ocean-blue-text: hsl(209, 30%, 55%);
+  --foreign-land-gray: hsl(207, 17%, 74%);
+  --canada-land-green: hsl(168, 30%, 74%);
+  --liberal-red: hsla(359, 78%, 47%, 1);
+  --liberal-red-bright: hsla(359, 78%, 67%, 1);
+  --ndp-orange: hsla(28, 92%, 50%, 1);
+  --ndp-orange-bright: hsla(28, 92%, 70%, 1);
+  --conservative-blue: hsla(213, 69%, 29%, 1);
+  --conservative-blue-bright: hsla(213, 69%, 49%, 1);
+  --green: hsla(115, 49%, 34%, 1);
+  --green-bright: hsla(115, 49%, 48%, 1);
+  --bloc-blue: hsla(200, 80%, 46%, 1);
+  --bloc-blue-bright: hsla(200, 80%, 66%, 1);
+  --ppc-purple: hsla(285, 65%, 58%, 1);
+  --ppc-purple-bright: hsla(285, 65%, 78%, 1);
+  --other-gray: hsla(0, 0%, 53%, 1);
+  --other-gray-bright: hsla(0, 0%, 73%, 1);
+}
 
-$oceanBlue: hsl(209, 61%, 86%);
-$oceanBlueDark: hsl(209, 66%, 79%);
-
-$foreignLandGray: hsl(207, 17%, 74%);
-$canadaLandGreen: hsl(168, 30%, 74%);
-
-$liberalRed: hsla(359, 78%, 47%, 1.0);
-$liberalRedBright: hsla(359, 78%, 67%, 1.0);
-
-$ndpOrange: hsla(28, 92%, 50%, 1.0);
-$ndpOrangeBright: hsla(28, 92%, 70%, 1.0);
-
-$conservativeBlue: hsla(213, 69%, 29%, 1.0);
-$conservativeBlueBright: hsla(213, 69%, 49%, 1.0);
-
-$green: hsla(115, 49%, 34%, 1.0);
-$greenBright: hsla(115, 49%, 48%, 1.0);
-
-$blocBlue: hsla(200, 80%, 46%, 1.0);
-$blocBlueBright: hsla(200, 80%, 66%, 1.0);
-
-$ppcPurple: hsla(285, 65%, 58%, 1.0);
-$ppcPurpleBright: hsla(285, 65%, 78%, 1.0);
-
-$independentBeige: hsla(45, 20%, 65%, 1.0);
-$independentBeigeBright: hsla(45, 20%, 77%, 1.0);
-
-$otherGray: hsla(0, 0%, 53%, 1.0);
-$otherGrayBright: hsla(0, 0%, 73%, 1.0);
-
-body, input, button, select {
+body,
+input,
+button,
+select {
   font-family: 'Barlow', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
@@ -41,8 +35,9 @@ body {
   padding: 0;
 }
 
-a:link, a:visited {
-  color: $oceanBlueDark;
+a:link,
+a:visited {
+  color: var(--ocean-blue-dark);
   text-decoration: none;
 }
 
@@ -59,10 +54,17 @@ sup {
   vertical-align: text-top;
 }
 
-h1, h2, h3, h4, h5, h6 { margin: 0 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
 
 h4 {
-  color: $foreignLandGray;
+  color: var(--foreign-land-gray);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -70,12 +72,12 @@ h4 {
 
 h1 {
   font-size: 1.5rem;
-  font-weight: 300
+  font-weight: 300;
 }
 
 h5 {
   text-transform: uppercase;
-  margin-bottom: 0.5em
+  margin-bottom: 0.5em;
 }
 
 table {
@@ -137,20 +139,27 @@ thead td {
   border-bottom: 3px double white;
 }
 
-tfoot td { border-top: 3px double white; border-bottom: 0; }
+tfoot td {
+  border-top: 3px double white;
+  border-bottom: 0;
+}
 
-b { font-weight: 600; }
+b {
+  font-weight: 600;
+}
 
-header, footer {
+header,
+footer {
   position: relative;
   background-color: black;
   padding: 0.5rem 1rem;
+}
 
-  &::after {
-    clear: both;
-    display: table;
-    content: "";
-  }
+header::after,
+footer::after {
+  clear: both;
+  display: table;
+  content: "";
 }
 
 footer {
@@ -166,12 +175,15 @@ footer h4 {
   margin-top: 0;
 }
 
-#langButtons, #electionSelector, #search {
+#langButtons,
+#electionSelector,
+#search {
   float: right;
   margin-top: 0.125em;
 }
 
-#langButtons, #electionSelector {
+#langButtons,
+#electionSelector {
   margin-left: 0.5rem;
 }
 
@@ -196,7 +208,7 @@ footer h4 {
   vertical-align: middle;
   display: inline-block;
   white-space: nowrap;
-  border: 1px solid $accentColor;
+  border: 1px solid var(--accent-color);
   border-radius: 3px;
   padding: 2px;
 }
@@ -216,23 +228,26 @@ button.radio {
   border-radius: 2px;
   color: white;
   cursor: pointer;
+}
 
-  &:focus, &:active {
-    border-color: $accentColor;
-    outline: none;
-  }
+button.radio:focus,
+button.radio:active {
+  border-color: var(--accent-color);
+  outline: none;
+}
 
-  &.active {
-    background-color: $accentColor;
-    border-color: $accentColor;
-    color: black;
-  }
+button.radio.active {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: black;
+}
 
-  .button-label-short { display: none }
+button.radio .button-label-short {
+  display: none;
+}
 
-  &[disabled] {
-    color: hsla(0, 0%, 100%, 0.5);
-  }
+button.radio[disabled] {
+  color: hsla(0, 0%, 100%, 0.5);
 }
 
 button.button-transparent {
@@ -249,35 +264,35 @@ button.button-transparent {
   border: 2px solid transparent;
   padding: 4px 2px 3px 2px;
   cursor: pointer;
+}
 
-  &:focus {
-    border-color: white;
-    outline: none;
-  }
+button.button-transparent:focus {
+  border-color: white;
+  outline: none;
+}
 
-  &:active {
-    padding-top: 5px;
-    padding-bottom: 2px;
-  }
+button.button-transparent:active {
+  padding-top: 5px;
+  padding-bottom: 2px;
+}
 
-  &:disabled {
-    color: hsla(255, 255, 255, 0.5);
-    border-color: transparent !important;
-    cursor: default;
-  }
+button.button-transparent:disabled {
+  color: hsla(255, 255, 255, 0.5);
+  border-color: transparent !important;
+  cursor: default;
 }
 
 .selectContainer {
   display: inline-block;
   position: relative;
+}
 
-  &::after {
-    z-index: 0;
-    position: absolute;
-    content: "▾";
-    right: 0.5rem;
-    top: 0.25rem;
-  }
+.selectContainer::after {
+  z-index: 0;
+  position: absolute;
+  content: "\25BE";
+  right: 0.5rem;
+  top: 0.25rem;
 }
 
 select.select {
@@ -285,7 +300,6 @@ select.select {
   z-index: 1;
   font-size: 1rem;
   line-height: 1.2rem;
-  position: relative;
   display: block;
   margin: 0;
   -webkit-appearance: none;
@@ -294,12 +308,13 @@ select.select {
   border: 1px solid white;
   background-color: transparent;
   color: white;
+}
 
-  &:focus, &:active {
-    border-width: 2px;
-    padding: 4px 23px 3px 7px;
-    outline: none;
-  }
+select.select:focus,
+select.select:active {
+  border-width: 2px;
+  padding: 4px 23px 3px 7px;
+  outline: none;
 }
 
 select.select option {
@@ -309,25 +324,26 @@ select.select option {
 
 #search {
   position: relative;
-  input {
-    margin: 0;
-    border: 1px solid white;
-    border-radius: 3px;
-    box-sizing: content-box;
-    font-size: 16px;
-    height: 1.5rem;
-    background-color: black;
-    color: white;
-    padding: 1px 4px 3px;
-    -webkit-appearance: none;
-    width: 18em;
-  }
+}
 
-  input:focus {
-    border: 2px solid white;
-    outline: none;
-    padding: 0 3px 2px;
-  }
+#search input {
+  margin: 0;
+  border: 1px solid white;
+  border-radius: 3px;
+  box-sizing: content-box;
+  font-size: 16px;
+  height: 1.5rem;
+  background-color: black;
+  color: white;
+  padding: 1px 4px 3px;
+  -webkit-appearance: none;
+  width: 18em;
+}
+
+#search input:focus {
+  border: 2px solid white;
+  outline: none;
+  padding: 0 3px 2px;
 }
 
 #searchResults {
@@ -342,10 +358,10 @@ select.select option {
   padding: 0.25em 0.5em;
   background-color: hsla(0, 0, 0, 0.75);
   width: 20em;
+}
 
-  &:hover {
-    background-color: hsla(0, 0, 0, 1);
-  }
+.searchResult:hover {
+  background-color: hsla(0, 0, 0, 1);
 }
 
 footer {
@@ -387,140 +403,136 @@ footer {
 }
 
 .liberal {
-  background-color: $liberalRed;
-  fill: $liberalRed;
-  &:hover {
-    background-color: $liberalRedBright;
-    fill: $liberalRedBright;
-  }
+  background-color: var(--liberal-red);
+  fill: var(--liberal-red);
+}
+
+.liberal:hover {
+  background-color: var(--liberal-red-bright);
+  fill: var(--liberal-red-bright);
 }
 
 .ndp {
-  background-color: $ndpOrange;
-  fill: $ndpOrange;
-  &:hover {
-    background-color: $ndpOrangeBright;
-    fill: $ndpOrangeBright;
-  }
+  background-color: var(--ndp-orange);
+  fill: var(--ndp-orange);
+}
+
+.ndp:hover {
+  background-color: var(--ndp-orange-bright);
+  fill: var(--ndp-orange-bright);
 }
 
 .conservative {
-  background-color: $conservativeBlue;
-  fill: $conservativeBlue;
-  &:hover {
-    background-color: $conservativeBlueBright;
-    fill: $conservativeBlueBright;
-  }
+  background-color: var(--conservative-blue);
+  fill: var(--conservative-blue);
+}
+
+.conservative:hover {
+  background-color: var(--conservative-blue-bright);
+  fill: var(--conservative-blue-bright);
 }
 
 .green {
-  background-color: $green;
-  fill: $green;
-  &:hover {
-    background-color: $greenBright;
-    fill: $greenBright;
-  }
+  background-color: var(--green);
+  fill: var(--green);
+}
+
+.green:hover {
+  background-color: var(--green-bright);
+  fill: var(--green-bright);
 }
 
 .bloc {
-  background-color: $blocBlue;
-  fill: $blocBlue;
-  &:hover {
-    background-color: $blocBlueBright;
-    fill: $blocBlueBright;
-  }
+  background-color: var(--bloc-blue);
+  fill: var(--bloc-blue);
+}
+
+.bloc:hover {
+  background-color: var(--bloc-blue-bright);
+  fill: var(--bloc-blue-bright);
 }
 
 .ppc {
-  background-color: $ppcPurple;
-  fill: $ppcPurple;
-  &:hover {
-    background-color: $ppcPurpleBright;
-    fill: $ppcPurpleBright;
-  }
+  background-color: var(--ppc-purple);
+  fill: var(--ppc-purple);
 }
 
-.independent {
-  background-color: $independentBeige;
-  fill: $independentBeige;
-  &:hover {
-    background-color: $independentBeigeBright;
-    fill: $independentBeigeBright;
-  }
+.ppc:hover {
+  background-color: var(--ppc-purple-bright);
+  fill: var(--ppc-purple-bright);
 }
 
-.other {
-  background-color: $otherGray;
-  fill: $otherGray;
-  &:hover {
-    background-color: $otherGrayBright;
-    fill: $otherGrayBright;
-  }
+.independent, .other {
+  background-color: var(--other-gray);
+  fill: var(--other-gray);
 }
 
-svg {
-  g.riding {
-    cursor: pointer;
+.independent:hover, .other:hover {
+  background-color: var(--other-gray-bright);
+  fill: var(--other-gray-bright);
+}
 
-    .ridingPath {
-      fill-rule: nonzero;
-      stroke: black;
-      stroke-width: 0.5px;
-      stroke-linecap: butt;
-      stroke-linejoin: miter;
-      stroke-miterlimit: 10;
-    }
-  }
+svg g.riding {
+  cursor: pointer;
+}
 
-  .ocean {
-    fill: $oceanBlue;
-  }
+svg g.riding .ridingPath {
+  fill-rule: nonzero;
+  stroke: black;
+  stroke-width: 0.5px;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 10;
+}
 
-  .foreignLand {
-    fill: $foreignLandGray;
-  }
+svg .ocean {
+  fill: var(--ocean-blue);
+}
 
-  .foreignLandBorder {
-    fill: none;
-    stroke: $foreignLandGray;
-    stroke-width: 2px;
-  }
+svg .foreignLand {
+  fill: var(--foreign-land-gray);
+}
 
-  .canadaLand {
-    fill: $canadaLandGreen;
-  }
+svg .foreignLandBorder {
+  fill: none;
+  stroke: var(--foreign-land-gray);
+  stroke-width: 2px;
+}
 
-  .internationalBorder {
-    fill: none;
-    stroke: hsl(207, 17%, 12%);
-    stroke-width: 2px;
-  }
+svg .canadaLand {
+  fill: var(--canada-land-green);
+}
 
-  .provincialBorder {
-    fill: none;
-    stroke: rgb(0, 0, 0);
-    stroke-opacity: 0.75;
-    stroke-width: 2px;
-    stroke-dasharray: 4, 4, 0, 0;
-  }
+svg .internationalBorder {
+  fill: none;
+  stroke: hsl(207, 17%, 12%);
+  stroke-width: 2px;
+}
 
-  .countryText {
-    font-weight: 700;
-    font-size: 18px;
-    fill: rgba(0, 0, 0, 0.65);
-  }
+svg .provincialBorder {
+  fill: none;
+  stroke: rgb(0, 0, 0);
+  stroke-opacity: 0.75;
+  stroke-width: 2px;
+  stroke-dasharray: 4, 4, 0, 0;
+}
 
-  .provinceText {
-    font-weight: 700;
-    font-size: 14px;
-    fill: rgba(0, 0, 0, 0.65);
-  }
+svg .countryText {
+  font-weight: 700;
+  font-size: 18px;
+  fill: rgba(0, 0, 0, 0.65);
+}
 
-  .waterText {
-    font-weight: 400;
-    font-size: 10px;
-    fill: hsl(209, 51%, 62%);
-  }
+svg .provinceText {
+  font-weight: 700;
+  font-size: 14px;
+  fill: rgba(0, 0, 0, 0.65);
+}
+
+svg .waterText {
+  font-weight: 400;
+  font-size: 10px;
+  fill: var(--ocean-blue-text);
 }
 
 @media (max-width: 64rem) {
@@ -548,16 +560,18 @@ svg {
     line-height: 1.4em;
   }
 
-  button.radio {
-    .button-label-short { display: inline }
-    .button-label-long { display: none }
+  button.radio .button-label-short {
+    display: inline;
   }
 
-  svg {
-    .provincialBorder, .internationalBorder {
-      stroke-opacity: 1;
-      stroke-width: 3px;
-    }
+  button.radio .button-label-long {
+    display: none;
+  }
+
+  svg .provincialBorder,
+  svg .internationalBorder {
+    stroke-opacity: 1;
+    stroke-width: 3px;
   }
 }
 
@@ -601,7 +615,7 @@ svg {
   }
 }
 
-@media (max-aspect-ratio: "8/9") {
+@media (max-aspect-ratio: 8/9) {
   .overlay {
     position: static;
     width: auto;
@@ -615,7 +629,9 @@ svg {
     float: none;
   }
 
-  #langButtons, #electionSelector, #search {
+  #langButtons,
+  #electionSelector,
+  #search {
     margin-top: 0.5em;
     margin-left: 0;
     margin-right: 0.5em;
@@ -628,7 +644,9 @@ svg {
     float: none;
   }
 
-  #langButtons, #electionSelector, #search {
+  #langButtons,
+  #electionSelector,
+  #search {
     margin-top: 0.5em;
     margin-left: 0;
     margin-right: 0.5em;
@@ -637,7 +655,9 @@ svg {
 }
 
 @media (max-width: 414px) {
-  #langButtons button, #electionSelector button, #electionSelector select {
+  #langButtons button,
+  #electionSelector button,
+  #electionSelector select {
     font-size: 12px;
   }
 
