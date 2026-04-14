@@ -1,0 +1,184 @@
+export function Borders2025() {
+  return (
+    <g id="Borders-2025" transform="matrix(0.926829,0,0,1.06522,155.61,50)">
+      <g id="Provincial-Borders-2025" data-label="Provincial Borders">
+        <g
+          id="BC-Alberta-Border-2025"
+          data-label="BC/Alberta Border"
+          transform="matrix(1,0,0,1,-30,-10)"
+        >
+          <path
+            d="M175,210L180,200L175,190L165,190L160,180L165,170L160,160L150,160L145,150L150,140L145,130L135,130L130,120L135,110L130,100L120,100L115,90L120,80L115,70L105,70L100,60L105,50L100,40L90,40L85,50L75,50L70,40L60,40L55,30L45,30L40,20L30,20L25,29.996L15,29.996"
+            className="provincialBorder"
+          />
+        </g>
+        <g
+          id="Alberta-Sask-Border-2025"
+          data-label="Alberta/Sask Border"
+          transform="matrix(1,0,0,1,0,-10)"
+        >
+          <path
+            d="M190,220L195.05,210L190,200L195,190L190,180L195,169.697L190,160L195,150L205,150L210,140L205,130L210,120L205,110L210,100L205,90L210,80L205,70"
+            className="provincialBorder"
+          />
+        </g>
+        <g
+          id="Sask-border-2025"
+          data-label="Sask border"
+          transform="matrix(1,0,0,1,0,-10)"
+        >
+          <path
+            d="M235,230L240,220L235,210L240,200L250,200L255.05,190L250,180L255,170L250,160L255,150L265,150L270,140L265,130L270,120L280,120L285,110L280,100L285,90"
+            className="provincialBorder"
+          />
+        </g>
+        <g
+          id="Manitoba-border-2025"
+          data-label="Manitoba border"
+          transform="matrix(1,0,0,1,0,-10)"
+        >
+          <path
+            d="M280,239.71L285,230L295,229.632L300,220L295,210L300,200L310,200"
+            className="provincialBorder"
+          />
+        </g>
+        <g
+          id="Quebec-border-2025"
+          data-label="Quebec border"
+          transform="matrix(1,0,0,1,0,-10)"
+        >
+          <path
+            d="M390,200L400,200L405.3,210L415,210L420,200L430,200L435,190L445,190L450,200L460,200L465,210L475,210L480,220L475,230L465,230L460,240L465,250"
+            className="provincialBorder"
+          />
+        </g>
+        <g
+          id="Quebec-border1-2025"
+          data-label="Quebec border"
+          transform="matrix(1,0,0,1,0,-10)"
+        >
+          <path
+            d="M615,150L610,140L615,130L625,130L630,120"
+            className="provincialBorder"
+          />
+        </g>
+        <g
+          id="New-Brunswick-border-2025"
+          data-label="New Brunswick border"
+          transform="matrix(1,0,0,1,0,-10)"
+        >
+          <path d="M700,180L705,170" className="provincialBorder" />
+        </g>
+        <path
+          id="Quebec-Labrador-2025"
+          data-label="Quebec/Labrador"
+          d="M570,90L565,80L570,70"
+          className="provincialBorder"
+        />
+        <g
+          id="Yukon-NWT-2025"
+          data-label="Yukon/NWT"
+          transform="matrix(1,0,0,1,-60,0)"
+        >
+          <path d="M115,0L120,10L115,20L120,30" className="provincialBorder" />
+        </g>
+        <g id="NWT-2025" transform="matrix(1,0,0,1,-60,0)">
+          <path
+            d="M135,40L145,40L150,30L160,30L165,40L175,40L180,30L190,30L195,40L205,40L210,50L220,50L225,40L235,40L240,50L250,50L255,60L265,60L270,50L280,50L285,60L295,60L300,70L310,70L315,60L325,60L330,70L340,70L345,80L355,80L360,70L370,70L375,80L385,80L390,90"
+            className="provincialBorder"
+          />
+        </g>
+        <g
+          id="NWT-Nunavut-2025"
+          data-label="NWT/Nunavut"
+          transform="matrix(1,0,0,1,-60,0)"
+        >
+          <path
+            d="M340,70L345,60L340,50L345,40L340,30L330,30L325,20L330,10L325,0"
+            className="provincialBorder"
+          />
+        </g>
+      </g>
+      <g id="US-Border-2025" data-label="US Border">
+        <g
+          id="BC-USA-2025"
+          data-label="BC/USA"
+          transform="matrix(1,0,0,1,-30,-10)"
+        >
+          <path
+            d="M60,180L70,180L75,190L85,190L90,200L100,200L105,190L115,190L120,200L130,200L135,210L145,210L150,200L160,200L165,210L175,210"
+            className="internationalBorder"
+          />
+        </g>
+        <g
+          id="Alberta-USA-2025"
+          data-label="Alberta/USA"
+          transform="matrix(1,0,0,1,0,-10)"
+        >
+          <path
+            d="M190,220L180,220L175,210L165,210L160,220L150,220L145,210"
+            className="internationalBorder"
+          />
+        </g>
+        <g
+          id="Sask-USA-2025"
+          data-label="Sask/USA"
+          transform="matrix(1,0,0,1,0,-10)"
+        >
+          <path
+            d="M190,220L195,230L205,230L210,220L220,220L225,230L235,230"
+            className="internationalBorder"
+          />
+        </g>
+        <g
+          id="Manitoba-USA-2025"
+          data-label="Manitoba/USA"
+          transform="matrix(1,0,0,1,0,-10)"
+        >
+          <path
+            d="M235,230L240,240L250,240L255,230L265,230L270.002,240L280,240"
+            className="internationalBorder"
+          />
+        </g>
+        <path
+          id="Ontario-Michigan-2025"
+          data-label="Ontario/Michigan"
+          d="M210,370L220,370L225,360L220,350"
+          className="internationalBorder"
+        />
+        <path
+          id="Ontario-Michigan1-2025"
+          data-label="Ontario/Michigan"
+          d="M195,380L190,390L195,400L190,410L195,420"
+          className="internationalBorder"
+        />
+        <path
+          id="Ontario-NY-2025"
+          data-label="Ontario/NY"
+          d="M370,430L375,420L370,410"
+          className="internationalBorder"
+        />
+        <g
+          id="Alaska-BC-2025"
+          data-label="Alaska/BC"
+          transform="matrix(1,0,0,1,-60,0)"
+        >
+          <path
+            d="M40,70L45,60L40,50L45,40L40,30L45,20L40,10L45,0"
+            className="internationalBorder"
+          />
+        </g>
+        <g
+          id="Quebec-border2-2025"
+          data-label="Quebec border"
+          transform="matrix(1,0,0,1,0,-10)"
+        >
+          <path
+            d="M460,280L465,270L460,260L465,250L475,250L480,260L490,260L495,270L505,270L510,260L520,260L525,270L535,270L540,260L550,260L555,250L565,250L570,260L580,260L585,250L595,250L600,240L610,240L615,230L610,220L615,210L610,200L600,200L595,190L600,180L595,170L600,160L610,160L615,150L625,150L630,160L640,160L645,170L655,170L660,180"
+            className="internationalBorder"
+          />
+        </g>
+      </g>
+    </g>
+  );
+}
