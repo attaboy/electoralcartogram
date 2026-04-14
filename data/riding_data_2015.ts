@@ -694,8 +694,8 @@ export const ridingDataSet2015: ProvinceData[] = [
       },
       {
         "id": "Regina---Qu-appelle",
-        "en": "Regina — Qu’appelle",
-        "fr": "Regina — Qu’appelle",
+        "en": "Regina — Qu’Appelle",
+        "fr": "Regina — Qu’Appelle",
         "transform": "matrix(1,0,0,1,90.15,19.239)",
         "pathD": "M514.9,340L504.9,340L499.9,350L504.9,360L514.9,360L519.9,350L514.9,340Z",
         "index": 47008
