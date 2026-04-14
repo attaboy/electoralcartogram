@@ -7,5 +7,6 @@ interface Parliaments {
 export const Parliaments: Parliaments = {
   P42: "2015-10-19",
   P43: "2019-10-21",
-  P44: "2021-09-20"
-}
+  P44: "2021-09-20",
+  P45: "2025-04-25",
+};

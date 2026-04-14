@@ -20,6 +20,7 @@ import { results20240304 } from './results20240304';
 import { results20240624 } from './results20240624';
 import { results20240916 } from './results20240916';
 import { results20241216 } from './results20241216';
+import { results20250428 } from './results20250428';
 import { electionToDate } from '../utils/electionToDate';
 
 export interface Result {
@@ -100,6 +101,9 @@ const sortedResultsSet: DateResults[] = [{
 }, {
   date: "2024-12-16",
   results: results20241216
+}, {
+  date: "2025-04-25",
+  results: results20250428
 }];
 
 interface DateResult {

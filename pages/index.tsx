@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map } from '../components/Map';
-import { RidingData, ProvinceData, ridingDataSet } from '../data/riding_data';
+import { RidingData, ProvinceData } from "../data/riding_data";
+import { getRidingDatasetForElection } from "../data/ridingDatasetForElection";
 import { findWinnerFor } from '../data/result_data';
 import { Coordinates } from '../components/Riding';
 import { Lang, useLang } from '../hooks/useLang';
@@ -11,6 +12,7 @@ import { Summary } from '../components/Summary';
 import { CurrentRidingInfo, RidingInfo } from '../components/RidingInfo';
 import { Tooltip } from '../components/Tooltip';
 import { SearchResult } from '../components/SearchResult';
+import { Footer } from "../components/Footer";
 
 const Elections = [
   "2015-10-19",
@@ -48,6 +50,7 @@ const Elections = [
   "2024-06-24",
   "2024-09-16",
   "2024-12-16",
+  "2025-04-25",
 ] as const;
 
 export type Election = typeof Elections[number]
@@ -58,7 +61,7 @@ interface ElectionTypes {
 }
 
 const ElectionTypes: ElectionTypes = {
-  general: ["2015-10-19", "2019-10-21", "2021-09-20"],
+  general: ["2015-10-19", "2019-10-21", "2021-09-20", "2025-04-25"],
   "by-election": [
     "2016-10-24",
     "2017-04-03",
@@ -190,14 +193,21 @@ const Home = () => {
       return [];
     }
     const searchTokens = searchText.toLowerCase().trim().split(" ");
-    return ridingDataSet.map((province) => {
-      return Object.assign({}, province, {
-        ridings: province.ridings.filter((riding) => {
-          const ridingTokens = riding[lang].toLowerCase().trim().split(" ");
-          return searchTokens.every((searchToken) => ridingTokens.some((ridingToken) => ridingToken.includes(searchToken)));
-        })
-      });
-    }).filter((province) => province.ridings.length > 0);
+    return getRidingDatasetForElection(election)
+      .map((province) => ({
+        ...province,
+        ...{
+          ridings: province.ridings.filter((riding) => {
+            const ridingTokens = riding[lang].toLowerCase().trim().split(" ");
+            return searchTokens.every((searchToken) =>
+              ridingTokens.some((ridingToken) =>
+                ridingToken.includes(searchToken),
+              ),
+            );
+          }),
+        },
+      }))
+      .filter((province) => province.ridings.length > 0);
   };
 
   const sortedSearchResults = (provinces: ProvinceData[]): RidingData[] => {
@@ -270,142 +280,133 @@ const Home = () => {
     getRidingInfoFromRiding(sortedResults[0], searchProvinces[0]) : null;
   const ridingInfo = ridingInfoFromSearch || currentRiding;
   return (
-      <div>
-        <header>
-          <h1 lang={lang}>
-            <img src="/images/flags/Flag_of_Canada.png"
-              alt={lang === Lang.fr ? "Le drapeau du Canada" : "Flag of Canada"}
-              style={{ height: "0.8em", paddingBottom: "0.2em", marginRight: "0.4em", verticalAlign: "bottom" }}
-            />
-            <span>{title} </span>
-          </h1>
-          <div id="langButtons" className="radioButtons">
-            <button className={`radio ${lang === Lang.en ? "active" : ""}`} type="button" onClick={() => setLang(Lang.en)}>En</button>
-            <button className={`radio ${lang === Lang.fr ? "active" : ""}`} type="button" onClick={() => setLang(Lang.fr)}>Fr</button>
-          </div>
-          <div id="electionSelector">
-            <button className="button-transparent" type="button"
-              disabled={election === Elections[0]}
-              title={
-              lang === Lang.fr ? "Élection précédente" : "Previous election"
-              } onClick={() => setNextOrPreviousElection(-1)}>◀︎</button>
-            <label htmlFor="electionSelectorSelect" className="selectContainer">
-              <select ref={electionSelector}
-                className="select"
-                id="electionSelectorSelect"
-                value={election}
-                onChange={(evt) => setElection(evt.currentTarget.value as Election)}>
-                {Elections.map((election) => {
-                  const electionType = getElectionTypeFor(election);
-                  return (
-                    <option key={election} value={election}>{election} {electionType}</option>
-                  )}
-                )}
-              </select>
-            </label>
-            <button className="button-transparent" type="button"
-              disabled={election === Elections[Elections.length - 1]}
-              title={
-                lang === Lang.fr ? "Élection suivante" : "Next election"
-              } onClick={() => setNextOrPreviousElection(1)}>▶︎</button>
-          </div>
-          <div id="search">
-            <input
-              type="search"
-              placeholder={lang === Lang.fr ? "Rechercher par circonscription" : "Search by riding name"} onKeyUp={(e) => handleInputKeyUp(e, sortedResults)}
-              onChange={updateSearchText} value={searchText}
-              onFocus={handleInputFocus}
-              onBlur={handleInputBlur}
-            />
-            {searchResultsVisible ? (
-              <div id="searchResults">
-                {sortedResults.map((riding) => <SearchResult key={`searchResult-${riding.id}`} searchText={searchText} setSearchText={setSearchText} riding={riding} />)}
-              </div>
-            ) : null}
-          </div>
-        </header>
-        <div style={{ position: "relative" }}>
-          <div className="map" onClick={onClickNoRiding}>
-            <Map
-              onClick={onClickRiding}
-              onHoverOn={onHoverOn}
-              onHoverOff={onHoverOff}
-              election={election}
-              searchText={searchText}
-            />
-            {currentRiding ? <Tooltip coords={coords} nextCurrentRiding={currentRiding} /> : null}
-          </div>
-          <div className="overlay">
-            {ridingInfo ? <RidingInfo ridingInfo={ridingInfo} /> : <Summary election={election} />}
-          </div>
+    <div>
+      <header>
+        <h1 lang={lang}>
+          <img
+            src="/images/flags/Flag_of_Canada.png"
+            alt={lang === Lang.fr ? "Le drapeau du Canada" : "Flag of Canada"}
+            style={{
+              height: "0.8em",
+              paddingBottom: "0.2em",
+              marginRight: "0.4em",
+              verticalAlign: "bottom",
+            }}
+          />
+          <span>{title} </span>
+        </h1>
+        <div id="langButtons" className="radioButtons">
+          <button
+            className={`radio ${lang === Lang.en ? "active" : ""}`}
+            type="button"
+            onClick={() => setLang(Lang.en)}
+          >
+            En
+          </button>
+          <button
+            className={`radio ${lang === Lang.fr ? "active" : ""}`}
+            type="button"
+            onClick={() => setLang(Lang.fr)}
+          >
+            Fr
+          </button>
         </div>
-        <footer>
-          {lang === Lang.fr ? (
-            <div className="columns">
-              <div className="column">
-                <h4>C’est quoi ça?</h4>
-
-                <p>Au Canada, chaqun des 338 membres du Parlement à <a href="https://www.ourcommons.ca/fr">la Chambre des communes</a> représente une circonscription. Pour la plupart, les circonscriptions sont réparties uniformément par la population au lieu de la géographie.* En 2021, la population moyenne d’une circonscription est d’environ 112&nbsp;800.</p>
-
-                <p>Ce <a href="https://fr.wikipedia.org/wiki/Cartogramme">cartogramme</a> fait chaque circonscription la même taille et la même forme. L’accent est mis sur la répartition de la population. En général, les circonscriptions voisines sont proches les unes des autres, et la forme du pays reste évidente.</p>
-
-                <p><small>*Certaines zones rurales, les trois territoires, et l’Île-du-Prince-Edouard ont des circonscriptions dont la population est notablement moins nombreuse.</small></p>
-              </div>
-
-              <div className="column">
-                <h4>Crédits</h4>
-
-                <p>Copyright &copy; 2019 <a href="https://attaboy.ca/">Luke Andrews</a></p>
-
-                <p>
-                  <a href="https://github.com/attaboy/electoralcartogram">Code source sur GitHub</a>
-                  <span> · Résultats des élections copiés de <a href="https://elections.ca/content.aspx?section=ele&dir=pas&document=index&lang=f">Élections Canada</a></span>
-                </p>
-
-                <p>Commentaires (et corrections de français) encouragés: <a href="https://twitter.com/attaboy">@attaboy</a></p>
-
-                <p>Édition précédente: <a href="/2011/">2011</a></p>
-
-                {process.env.buildTimestamp ? (
-                  <p>v{process.env.version}, dernière modification: {formatDate(new Date(process.env.buildTimestamp), lang)}</p>
-                ) : null}
-              </div>
+        <div id="electionSelector">
+          <button
+            className="button-transparent"
+            type="button"
+            disabled={election === Elections[0]}
+            title={
+              lang === Lang.fr ? "Élection précédente" : "Previous election"
+            }
+            onClick={() => setNextOrPreviousElection(-1)}
+          >
+            ◀︎
+          </button>
+          <label htmlFor="electionSelectorSelect" className="selectContainer">
+            <select
+              ref={electionSelector}
+              className="select"
+              id="electionSelectorSelect"
+              value={election}
+              onChange={(evt) =>
+                setElection(evt.currentTarget.value as Election)
+              }
+            >
+              {Elections.map((election) => {
+                const electionType = getElectionTypeFor(election);
+                return (
+                  <option key={election} value={election}>
+                    {election} {electionType}
+                  </option>
+                );
+              })}
+            </select>
+          </label>
+          <button
+            className="button-transparent"
+            type="button"
+            disabled={election === Elections[Elections.length - 1]}
+            title={lang === Lang.fr ? "Élection suivante" : "Next election"}
+            onClick={() => setNextOrPreviousElection(1)}
+          >
+            ▶︎
+          </button>
+        </div>
+        <div id="search">
+          <input
+            type="search"
+            placeholder={
+              lang === Lang.fr
+                ? "Rechercher par circonscription"
+                : "Search by riding name"
+            }
+            onKeyUp={(e) => handleInputKeyUp(e, sortedResults)}
+            onChange={updateSearchText}
+            value={searchText}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
+          />
+          {searchResultsVisible ? (
+            <div id="searchResults">
+              {sortedResults.map((riding) => (
+                <SearchResult
+                  key={`searchResult-${riding.id}`}
+                  searchText={searchText}
+                  setSearchText={setSearchText}
+                  riding={riding}
+                />
+              ))}
             </div>
-          ): (
-            <div className="columns">
-              <div className="column">
-                <h4>What’s this?</h4>
-
-                <p>In Canada, each of the 338 Members of Parliament in the <a href="https://www.ourcommons.ca/en">House of Commons</a> represent a riding (also known as an electoral district). In general, the ridings are divided evenly by population rather than geographical size.* As of 2021, the average population of a riding is approximately 112,800.</p>
-
-                <p>In this <a href="https://en.wikipedia.org/wiki/Cartogram">cartogram</a>, each riding is the same size and shape, so population distribution is emphasized. In general, ridings that border each other geographically are shown near each other, with the rough shape of the country preserved.</p>
-
-                <p><small>*Some rural areas, the three territories, and Prince Edward Island have ridings with notably smaller populations.</small></p>
-              </div>
-
-              <div className="column">
-                <h4>Credits</h4>
-
-                <p>Copyright &copy; <a href="https://attaboy.ca/">Luke Andrews</a>, 2019</p>
-
-                <p>
-                  <a href="https://github.com/attaboy/electoralcartogram">Source code on GitHub</a>
-                  <span> · Electoral results copied from <a href="https://elections.ca/content.aspx?section=ele&dir=pas&document=index&lang=e">Elections Canada</a></span>
-                </p>
-
-                <p>Feedback welcome: <a href="https://bsky.app/profile/attaboy.ca">@attaboy.ca on Bluesky</a></p>
-
-                <p>Previous edition: <a href="/2011/">2011</a></p>
-
-                {process.env.buildTimestamp ? (
-                  <p>v{process.env.version}, last modified: {formatDate(new Date(process.env.buildTimestamp), lang)}</p>
-                ) : null}
-              </div>
-            </div>
+          ) : null}
+        </div>
+      </header>
+      <div style={{ position: "relative" }}>
+        <div className="map" onClick={onClickNoRiding}>
+          <Map
+            onClick={onClickRiding}
+            onHoverOn={onHoverOn}
+            onHoverOff={onHoverOff}
+            election={election}
+            searchText={searchText}
+          />
+          {currentRiding ? (
+            <Tooltip coords={coords} nextCurrentRiding={currentRiding} />
+          ) : null}
+        </div>
+        <div className="overlay">
+          {ridingInfo ? (
+            <RidingInfo ridingInfo={ridingInfo} />
+          ) : (
+            <Summary election={election} />
           )}
-        </footer>
+        </div>
       </div>
-    );
+      <footer>
+        <Footer />
+      </footer>
+    </div>
+  );
 };
 
 export default Home;
