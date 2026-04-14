@@ -3,7 +3,7 @@ import { getSummaryByParty } from "../data/result_data";
 import { useLang } from "../hooks/useLang";
 import { Election } from "../pages";
 import { ElectionTitle } from "./ElectionTitle";
-import { PartyDecorator } from "./PartyDecorator";
+import { PartyDecoratorTableCell } from "./PartyDecoratorTableCell";
 
 interface SummaryProps {
   election: Election
@@ -27,11 +27,7 @@ export function Summary({ election }: SummaryProps) {
             const party = Party.findByRawName(partyId);
             return (
               <tr key={partyId}>
-                <td className="partyCell">
-                  <div className="partyCellContent">
-                    <PartyDecorator party={party} />
-                  </div>
-                </td>
+                <PartyDecoratorTableCell party={party} />
                 <td className="candidateName">{party[lang]}</td>
                 <td className="voteCount">{summary[partyId]}</td>
               </tr>

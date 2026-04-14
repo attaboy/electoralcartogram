@@ -1,6 +1,6 @@
 import Party from "../data/party"
 import { Lang, useLang } from "../hooks/useLang"
-import { PartyDecorator } from "./PartyDecorator"
+import { PartyDecoratorTableCell } from "./PartyDecoratorTableCell";
 
 export interface RidingWinner {
   candidate: string
@@ -80,18 +80,10 @@ export function RidingInfo({ ridingInfo }: RidingInfoProps) {
         </thead>
         <tbody>
           <tr>
-            <td className="partyCell">
-              <div className="partyCellContent">
-                {originalParty ? (
-                  <div className="originalPartyDecorator">
-                    <PartyDecorator party={originalParty} />
-                  </div>
-                ) : null}
-                <div className={originalParty ? "changedPartyDecorator" : ""}>
-                  <PartyDecorator party={winningParty} />
-                </div>
-              </div>
-            </td>
+            <PartyDecoratorTableCell
+              originalParty={originalParty}
+              party={winningParty}
+            />
             <td className="candidateName">
               <div>
                 <span>
@@ -130,11 +122,7 @@ export function RidingInfo({ ridingInfo }: RidingInfoProps) {
               const name = loser.candidate.replace(/ \*\*/, "");
               return (
                 <tr key={`${name}-${party.rawName}`}>
-                  <td className="partyCell">
-                    <div className="partyCellContent">
-                      <PartyDecorator party={party} />
-                    </div>
-                  </td>
+                  <PartyDecoratorTableCell party={party} />
                   <td className="candidateName">
                     <div>
                       <span>
