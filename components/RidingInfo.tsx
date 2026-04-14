@@ -1,6 +1,6 @@
 import Party from "../data/party"
 import { Lang, useLang } from "../hooks/useLang"
-import { PartyDecorator } from "./PartyDecorator"
+import { PartyDecoratorTableCell } from "./PartyDecoratorTableCell";
 
 export interface RidingWinner {
   candidate: string
@@ -42,9 +42,9 @@ export function RidingInfo({ ridingInfo }: RidingInfoProps) {
 
   const electedAs = (party: Party, changedDate: string | undefined): string => {
     if (lang === Lang.fr) {
-      return ` (changé(e) de ${party[lang]}${changedDate ? `, ${changedDate}` : ""})`;
+      return `Parti changé ${changedDate ? changedDate : ""}`;
     }
-    return ` (changed from ${party[lang]}${changedDate ? `, ${changedDate}` : ""})`;
+    return `Changed party ${changedDate ? changedDate : ""}`;
   };
 
   const winner = ridingInfo.winner.candidate.replace(/ \*\*$/, "");
@@ -57,8 +57,13 @@ export function RidingInfo({ ridingInfo }: RidingInfoProps) {
   return (
     <div>
       <h5>
-        <img src={ridingInfo.flag}
-          style={{ height: "24px", marginRight: "0.5em", verticalAlign: "bottom" }}
+        <img
+          src={ridingInfo.flag}
+          style={{
+            height: "24px",
+            marginRight: "0.5em",
+            verticalAlign: "bottom",
+          }}
           alt={ridingInfo.flagDescription}
         />
         {ridingName === ridingInfo.province ? null : (
@@ -68,47 +73,72 @@ export function RidingInfo({ ridingInfo }: RidingInfoProps) {
       <table>
         <thead>
           <tr>
-            <td colSpan={4}><h3>{ridingName}</h3></td>
+            <td colSpan={4}>
+              <h3>{ridingName}</h3>
+            </td>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td className="partyCell"><PartyDecorator party={winningParty} /></td>
+            <PartyDecoratorTableCell
+              originalParty={originalParty}
+              party={winningParty}
+            />
             <td className="candidateName">
               <div>
-                <span><b>{winner}, {winningParty[lang]}</b></span>
+                <span>
+                  <b>
+                    {winner},{" "}
+                    {originalParty ? (
+                      <>{originalParty[lang]}&nbsp;→&nbsp;</>
+                    ) : (
+                      ""
+                    )}
+                    {winningParty[lang]}
+                  </b>
+                </span>
               </div>
               <div style={{ fontSize: "0.9rem" }}>
-                {elected}{originalParty ? (
-                  <i>{electedAs(originalParty, ridingInfo.winner.changedDate)}</i>
-                ) : null}
+                {elected}
+                <br />
+                {originalParty
+                  ? electedAs(originalParty, ridingInfo.winner.changedDate)
+                  : null}
               </div>
             </td>
             <td className="votePctg">
-              <b>{pctFormatter.format(ridingInfo.winner.votePercentage / 100)}</b>
+              <b>
+                {pctFormatter.format(ridingInfo.winner.votePercentage / 100)}
+              </b>
             </td>
             <td className="voteCount">
               <b>{voteFormatter.format(ridingInfo.winner.votes)}</b>
             </td>
           </tr>
-          {ridingInfo.losers.filter((loser) => loser.votePercentage >= 1).map((loser) => {
-            const party = Party.findByRawName(loser.party);
-            const name = loser.candidate.replace(/ \*\*/, "");
-            return (
-              <tr key={`${name}-${party.rawName}`}>
-                <td className="partyCell">
-                  <PartyDecorator party={party} />
-                </td>
-                <td className="candidateName">
-                  <div>
-                    <span>{name}, {party[lang]}</span>
-                  </div>
-                </td>
-                <td className="votePctg">{pctFormatter.format(loser.votePercentage / 100)}</td>
-                <td className="voteCount">{voteFormatter.format(loser.votes)}</td>
-              </tr>
-            );
-          })}
+          {ridingInfo.losers
+            .filter((loser) => loser.votePercentage >= 1)
+            .map((loser) => {
+              const party = Party.findByRawName(loser.party);
+              const name = loser.candidate.replace(/ \*\*/, "");
+              return (
+                <tr key={`${name}-${party.rawName}`}>
+                  <PartyDecoratorTableCell party={party} />
+                  <td className="candidateName">
+                    <div>
+                      <span>
+                        {name}, {party[lang]}
+                      </span>
+                    </div>
+                  </td>
+                  <td className="votePctg">
+                    {pctFormatter.format(loser.votePercentage / 100)}
+                  </td>
+                  <td className="voteCount">
+                    {voteFormatter.format(loser.votes)}
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>

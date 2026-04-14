@@ -1,6 +1,6 @@
 {
   "name": "electoralcartogram",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Electoral Cartogram of Canada",
   "main": "index.js",
   "dependencies": {
@@ -19,7 +19,9 @@
     "dev": "next dev",
     "build": "next build",
     "export": "next build",
-    "start": "next start"
+    "start": "next start",
+    "convert-tableau-results": "node scripts/convert-tableau-results.js",
+    "convert-preliminary-tsv-results": "node scripts/convert-preliminary-tsv-results.js"
   },
   "engines": {
     "node": ">=20.9.0"
