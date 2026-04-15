@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * One-off generator: reads the 2025 SVG and writes data/riding_data-2025.ts
+ * One-off generator: reads the 2025 SVG and writes data/riding_data_2025.ts
  * Run: node scripts/generate-riding-data-2025.mjs
  */
 import fs from "fs";
@@ -11,7 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const SVG_PATH =
   "/Users/luke/Library/Mobile Documents/com~apple~CloudDocs/Work/electoral cartogram/canada map 2025 just ridings.svg";
-const OUT_PATH = path.join(__dirname, "../data/riding_data-2025.ts");
+const OUT_PATH = path.join(__dirname, "../data/riding_data_2025.ts");
 
 const PROVINCE_ORDER = [
   "British-Columbia",
