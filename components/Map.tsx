@@ -81,13 +81,6 @@ const Map = ({
         data-label="Electoral Cartogram of Canada"
         transform="matrix(1.07895,0,0,0.938776,-107.895,-46.9388)"
       >
-        <rect
-          x="100"
-          y="50"
-          width="760"
-          height="490"
-          style={{ fill: "none" }}
-        />
         <clipPath id="_clip1">
           <rect x="100" y="50" width="760" height="490" />
         </clipPath>
