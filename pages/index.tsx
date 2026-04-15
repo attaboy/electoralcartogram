@@ -146,9 +146,15 @@ const Home = () => {
     if (currentElectionIndex === -1) {
       throw new Error(`Current election (${election}) not found in election set`);
     } else if (nextOrPrevious === -1) {
-      newIndex = currentElectionIndex === 0 ? lastElectionIndex : currentElectionIndex - 1;
+      if (currentElectionIndex === 0) {
+        return;
+      }
+      newIndex = currentElectionIndex - 1;
     } else {
-      newIndex = currentElectionIndex === lastElectionIndex ? 0 : currentElectionIndex + 1;
+      if (currentElectionIndex === lastElectionIndex) {
+        return;
+      }
+      newIndex = currentElectionIndex + 1;
     }
     setElection(Elections[newIndex]);
   }, [election]);
