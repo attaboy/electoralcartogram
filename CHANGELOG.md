@@ -1,3 +1,32 @@
+## 3.1.2
+
+- Fixed a bug where pressing arrow keys would incorrectly loop around between the first and last election
+
+## 3.1.1
+
+- Adjusted colours for independent seats and water labels
+- Fixed capitalization of Regina Qu’Appelle
+
+## 3.1.0
+
+- Removed SASS dependency in favour of regular CSS
+
+## 3.0.1
+
+- Updated to include by-selection and seat change data up to April 2026
+- Improved how party changes (floor crossing) are displayed
+
+# 3.0.0
+
+- New map to reflect the electoral district redistribution that took effect in 2025
+- Incorporated data from the April 28, 2025 general election
+
+# 2.0.0
+
+- Upgraded to Next.js 16 and React 19, using Node 22
+- Converted from class components to functional components
+- Updated to include by-election and party change data from 2021 to 2024
+
 ## 1.2.2
 
 - Updated with latest preliminary data from Elections Canada as of Oct 1, 2021
@@ -27,6 +56,6 @@
 
 - Update vulnerable dependencies
 
-## 1.0.0
+# 1.0.0
 
 - Initial release with results from the 2015 and 2019 elections
