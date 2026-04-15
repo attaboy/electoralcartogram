@@ -1,3 +1,7 @@
+## 3.1.3
+
+- Updated Next.js to 16.2.3
+
 ## 3.1.2
 
 - Fixed a bug where pressing arrow keys would incorrectly loop around between the first and last election
