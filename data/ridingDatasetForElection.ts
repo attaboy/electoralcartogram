@@ -1,7 +1,7 @@
 import type { Election } from "../pages";
 import type { ProvinceData } from "./riding_data";
 import { ridingDataSet2015 } from "./riding_data_2015";
-import { ridingDataSet2025 } from "./riding_data-2025";
+import { ridingDataSet2025 } from "./riding_data_2025";
 
 /** First election whose results use the post–2024 redistribution ridings. */
 export const firstElectionUsing2025Ridings = "2025-04-25" as const satisfies Election;
