@@ -1,3 +1,7 @@
+## 3.1.4
+
+- Improved contrast of provincial and national borders
+
 ## 3.1.3
 
 - Updated Next.js to 16.2.3
