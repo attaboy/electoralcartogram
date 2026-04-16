@@ -4,7 +4,9 @@
   --ocean-blue-dark: hsl(209, 66%, 79%);
   --ocean-blue-text: hsl(209, 30%, 55%);
   --foreign-land-gray: hsl(207, 17%, 74%);
+  --foreign-land-gray-dark: hsl(207, 17%, 24%);
   --canada-land-green: hsl(168, 30%, 74%);
+  --canada-land-green-light: hsl(168, 30%, 84%);
   --liberal-red: hsla(359, 78%, 47%, 1);
   --liberal-red-bright: hsla(359, 78%, 67%, 1);
   --ndp-orange: hsla(28, 92%, 50%, 1);
@@ -503,18 +505,33 @@ svg .canadaLand {
   fill: var(--canada-land-green);
 }
 
-svg .internationalBorder {
+svg .internationalBorderFg {
   fill: none;
-  stroke: hsl(207, 17%, 12%);
-  stroke-width: 2px;
+  stroke: black;
+  stroke-width: .75px;
+  stroke-linecap: round;
 }
 
-svg .provincialBorder {
+svg .internationalBorderBg {
   fill: none;
-  stroke: rgb(0, 0, 0);
-  stroke-opacity: 0.75;
-  stroke-width: 2px;
-  stroke-dasharray: 4, 4, 0, 0;
+  stroke: var(--foreign-land-gray);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+}
+
+svg .provincialBorderFg {
+  fill: none;
+  stroke: black;
+  stroke-width: .75px;
+  stroke-dasharray: 1.5px;
+  stroke-linecap: round;
+}
+
+svg .provincialBorderBg {
+  fill: none;
+  stroke: var(--canada-land-green);
+  stroke-width: 0.75px;
+  stroke-linecap: round;
 }
 
 svg .countryText {
@@ -568,10 +585,21 @@ svg .waterText {
     display: none;
   }
 
-  svg .provincialBorder,
-  svg .internationalBorder {
-    stroke-opacity: 1;
-    stroke-width: 3px;
+  svg .provincialBorderFg,
+  svg .provincialBorderBg {
+    stroke-width: 0.2vw;
+  }
+
+  svg .provincialBorderFg {
+    stroke-dasharray: 0.4vw;
+  }
+
+  svg .internationalBorderFg {
+    stroke-width: 0.2vw;
+  }
+
+  svg .internationalBorderBg {
+    stroke-width: 0.4vw;
   }
 }
 
