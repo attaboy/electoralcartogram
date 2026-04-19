@@ -6,6 +6,9 @@
  *
  * Run from repo root: node scripts/remap-hex-grid.mjs
  *
+ * Not idempotent: run only on a clean tree (e.g. reset Map, Borders, riding_data, mapLayout
+ * from git) before re-running, or output coordinates will be wrong.
+ *
  * Rewrites data/riding_data_2015.ts, data/riding_data_2025.ts, components/Map.tsx,
  * components/Borders2015.tsx, components/Borders2025.tsx.
  *
@@ -347,6 +350,414 @@ function composeChainToMat(chainSvg) {
       [0, 0, 1],
     ],
   );
+}
+
+function identity3() {
+  return [
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 1],
+  ];
+}
+
+function composeMatArray(mats) {
+  return mats.reduce((acc, M) => multiply3(acc, M), identity3());
+}
+
+function nearly(a, b, eps = 1e-3) {
+  return Math.abs(a - b) < eps;
+}
+
+/** True if M is translate(tx,ty) with identity linear part. */
+function isTranslate2d(M) {
+  return (
+    nearly(M[0][0], 1) &&
+    nearly(M[1][1], 1) &&
+    nearly(M[0][1], 0) &&
+    nearly(M[1][0], 0) &&
+    nearly(M[2][0], 0) &&
+    nearly(M[2][1], 0) &&
+    nearly(M[2][2], 1)
+  );
+}
+
+function transformPathDWithMat3(d, M) {
+  const inv = invert3(M);
+  const segs = d.trim().match(/[MmLlZz][^MmLlZz]*/g) || [];
+  const parts = [];
+  let cx = 0,
+    cy = 0;
+  for (const seg of segs) {
+    const cmd0 = seg[0];
+    const rest = seg.slice(1).trim();
+    if (cmd0 === "Z" || cmd0 === "z") {
+      parts.push("Z");
+      continue;
+    }
+    const nums = rest.split(/[\s,]+/).filter(Boolean).map(Number);
+    const rel = cmd0 === cmd0.toLowerCase();
+    for (let i = 0; i < nums.length; i += 2) {
+      let x = nums[i];
+      let y = nums[i + 1];
+      if (rel) {
+        x += cx;
+        y += cy;
+      }
+      const [tx, ty] = apply3(M, x, y);
+      const oc = i === 0 ? cmd0.toUpperCase() : "L";
+      parts.push(`${oc}${q4(tx)},${q4(ty)}`);
+      cx = x;
+      cy = y;
+    }
+  }
+  return parts.join("");
+}
+
+/**
+ * p' = inv(S)*T*S applied to path local points (S = suffix chain below the removed translate).
+ */
+function bakePathDRemovingTranslate(d, suffixFromPath, Tremove) {
+  const invS = invert3(suffixFromPath);
+  const M = multiply3(multiply3(invS, Tremove), suffixFromPath);
+  return transformPathDWithMat3(d, M);
+}
+
+/**
+ * Extended ancestor stack for TSX: matrix("..."), `matrix(...)`, `translate(...)`.
+ */
+function stackAtExtended(text, pos) {
+  const stack = [];
+  let idx = 0;
+  while (idx < pos) {
+    const nextOpen = text.indexOf("<g", idx);
+    const nextClose = text.indexOf("</g>", idx);
+    if (nextOpen === -1 && nextClose === -1) break;
+    const useOpen = nextOpen !== -1 && (nextClose === -1 || nextOpen < nextClose);
+    if (useOpen) {
+      const gtEnd = text.indexOf(">", nextOpen);
+      if (gtEnd === -1 || gtEnd > pos) break;
+      const tag = text.slice(nextOpen, gtEnd + 1);
+      let m = /\btransform="matrix\(([^"]+)\)"/.exec(tag);
+      if (m) {
+        stack.push(mat3FromSvg(parseMatrix(`matrix(${m[1]})`)));
+        idx = gtEnd + 1;
+        continue;
+      }
+      m = /transform=\{`matrix\(([^`]+)\)`\}/.exec(tag);
+      if (m) {
+        stack.push(mat3FromSvg(parseMatrix(`matrix(${m[1]})`)));
+        idx = gtEnd + 1;
+        continue;
+      }
+      m = /transform=\{`translate\(([^`]+)\)`\}/.exec(tag);
+      if (m) {
+        const parts = m[1].split(",").map((x) => parseFloat(x.trim()));
+        if (parts.length >= 2 && parts.every((n) => !Number.isNaN(n))) {
+          stack.push(translateMat3(parts[0], parts[1]));
+        }
+        idx = gtEnd + 1;
+        continue;
+      }
+      idx = gtEnd + 1;
+    } else {
+      if (nextClose >= pos) break;
+      if (stack.length) stack.pop();
+      idx = nextClose + 4;
+    }
+  }
+  return stack;
+}
+
+/** Suffix = transforms after the matching translate(tx,ty) in parent order. */
+function findSuffixAfterTranslate(stackMats, tx, ty) {
+  for (let i = 0; i < stackMats.length; i++) {
+    const Mi = stackMats[i];
+    if (
+      isTranslate2d(Mi) &&
+      nearly(Mi[0][2], tx, 0.05) &&
+      nearly(Mi[1][2], ty, 0.05)
+    ) {
+      return { index: i, suffix: composeMatArray(stackMats.slice(i + 1)) };
+    }
+  }
+  return null;
+}
+
+function substituteMapConstants(text, layout) {
+  let out = text;
+  const sub = {
+    MAP_FRAME_X: layout.frameX,
+    MAP_FRAME_Y: layout.frameY,
+    MAP_BG_SHIFT_X: layout.bgShiftX,
+    MAP_BG_SHIFT_Y: layout.bgShiftY,
+    MAP_RIDING_SHIFT_X: layout.ridingShiftX,
+    MAP_RIDING_SHIFT_Y: layout.ridingShiftY,
+  };
+  for (const [k, v] of Object.entries(sub)) {
+    out = out.split(`\$\{${k}\}`).join(String(v));
+  }
+  return out;
+}
+
+function applyRideShiftToProvinceTransforms(provinces, rx, ry) {
+  const T = translateMat3(rx, ry);
+  for (const p of provinces) {
+    const Mp = mat3FromSvg(parseMatrix(p.transform));
+    const M2 = multiply3(T, Mp);
+    p.transform = `matrix(${M2[0][0]},${M2[0][1]},${M2[1][0]},${M2[1][1]},${M2[0][2]},${M2[1][2]})`;
+  }
+}
+
+function writeRidingDataset(tsPath, exportName, provinces) {
+  const out = `import { ProvinceData } from "./riding_data";
+
+
+export const ${exportName}: ProvinceData[] = [
+${provinces.map(formatProvince).join(",\n")}
+];
+`;
+  fs.writeFileSync(tsPath, out, "utf8");
+}
+
+/**
+ * Bake paths, rects, and static text in Map.tsx: remove bg and riding translates from coordinates.
+ */
+function bakeMapTsx(mapText, layout) {
+  const subbed = substituteMapConstants(mapText, layout);
+  const T_outer = mat3FromSvg(parseMatrix(T_OUTER_STR));
+  const Tbg = translateMat3(layout.bgShiftX, layout.bgShiftY);
+  const Tride = translateMat3(layout.ridingShiftX, layout.ridingShiftY);
+
+  let text = subbed;
+
+  const pathRe = /<path\b[\s\S]*?\sd="([^"]+)"[\s\S]*?\/>/g;
+  text = text.replace(pathRe, (match, dVal, offset) => {
+    const stack = stackAtExtended(text, offset);
+    const full = composeMatArray([T_outer, ...stack]);
+    const chainMats = [T_outer, ...stack];
+    let d = dVal;
+    const hitBg = findSuffixAfterTranslate(chainMats, layout.bgShiftX, layout.bgShiftY);
+    if (hitBg) {
+      d = bakePathDRemovingTranslate(d, hitBg.suffix, Tbg);
+    }
+    const hitRide = findSuffixAfterTranslate(chainMats, layout.ridingShiftX, layout.ridingShiftY);
+    if (hitRide) {
+      d = bakePathDRemovingTranslate(d, hitRide.suffix, Tride);
+    }
+    if (d === dVal) return match;
+    const needle = `d="${dVal}"`;
+    const i = match.indexOf(needle);
+    if (i < 0) throw new Error("bakeMapTsx path d mismatch");
+    return match.slice(0, i) + `d="${d}"` + match.slice(i + needle.length);
+  });
+
+  const textRe = /<text(\s+)x="([^"]+)"(\s+)y="([^"]+)"/g;
+  text = text.replace(textRe, (match, _s1, xv, _s2, yv, offset) => {
+    if (match.includes("{getLabelFor")) return match;
+    const x = stripPx(xv);
+    const y = stripPx(yv);
+    const stack = stackAtExtended(text, offset);
+    const chainMats = [T_outer, ...stack];
+    let px = x,
+      py = y;
+    const hitBg = findSuffixAfterTranslate(chainMats, layout.bgShiftX, layout.bgShiftY);
+    if (hitBg) {
+      const invS = invert3(hitBg.suffix);
+      const M = multiply3(multiply3(invS, Tbg), hitBg.suffix);
+      [px, py] = apply3(M, x, y);
+    }
+    const hitRide = findSuffixAfterTranslate(chainMats, layout.ridingShiftX, layout.ridingShiftY);
+    if (hitRide) {
+      const invS = invert3(hitRide.suffix);
+      const M = multiply3(multiply3(invS, Tride), hitRide.suffix);
+      [px, py] = apply3(M, px, py);
+    }
+    if (px === x && py === y) return match;
+    return match.replace(
+      /x="[^"]+"(\s+)y="[^"]+"/,
+      `x="${px.toFixed(3)}px"$1y="${py.toFixed(3)}px"`,
+    );
+  });
+
+  const rectRe = /<rect\b([^>]*)\/>/g;
+  text = text.replace(rectRe, (match, attrs, offset) => {
+    const stack = stackAtExtended(text, offset);
+    const chainMats = [T_outer, ...stack];
+    const xm = /\bx="([^"]+)"/.exec(attrs);
+    const ym = /\by="([^"]+)"/.exec(attrs);
+    const wm = /\bwidth="([^"]+)"/.exec(attrs);
+    const hm = /\bheight="([^"]+)"/.exec(attrs);
+    if (!xm || !ym || !wm || !hm) return match;
+    const x = parseFloat(xm[1]);
+    const y = parseFloat(ym[1]);
+    const w = parseFloat(wm[1]);
+    const h = parseFloat(hm[1]);
+    const corners = [
+      [x, y],
+      [x + w, y],
+      [x + w, y + h],
+      [x, y + h],
+    ];
+    let pts = corners;
+    const applyBake = (Trem, hit) => {
+      if (!hit) return;
+      const invS = invert3(hit.suffix);
+      const M = multiply3(multiply3(invS, Trem), hit.suffix);
+      pts = pts.map(([cx, cy]) => apply3(M, cx, cy));
+    };
+    applyBake(Tbg, findSuffixAfterTranslate(chainMats, layout.bgShiftX, layout.bgShiftY));
+    applyBake(Tride, findSuffixAfterTranslate(chainMats, layout.ridingShiftX, layout.ridingShiftY));
+    if (pts === corners) return match;
+    let minX = Infinity,
+      minY = Infinity,
+      maxX = -Infinity,
+      maxY = -Infinity;
+    for (const [qx, qy] of pts) {
+      minX = Math.min(minX, qx);
+      minY = Math.min(minY, qy);
+      maxX = Math.max(maxX, qx);
+      maxY = Math.max(maxY, qy);
+    }
+    const newAttrs = attrs
+      .replace(/\bx="[^"]+"/, `x="${q4(minX)}"`)
+      .replace(/\by="[^"]+"/, `y="${q4(minY)}"`)
+      .replace(/\bwidth="[^"]+"/, `width="${q4(maxX - minX)}"`)
+      .replace(/\bheight="[^"]+"/, `height="${q4(maxY - minY)}"`);
+    return `<rect${newAttrs}/>`;
+  });
+
+  /** Template form (before constant substitution) */
+  text = text.replace(
+    /<g transform=\{`matrix\(1,0,0,1,\$\{MAP_BG_SHIFT_X\},\$\{MAP_BG_SHIFT_Y\}\)`\}>/g,
+    "<g>",
+  );
+  text = text.replace(
+    /<g\s+transform=\{`translate\(\$\{MAP_RIDING_SHIFT_X\},\$\{MAP_RIDING_SHIFT_Y\}\)`\}\s*>/g,
+    "<g>",
+  );
+  const bgOpen = `<g transform={\`matrix(1,0,0,1,${layout.bgShiftX},${layout.bgShiftY})\`}>`;
+  text = text.split(bgOpen).join("<g>");
+  const rideOpens = [
+    `<g\n            transform={\`translate(${layout.ridingShiftX},${layout.ridingShiftY})\`}\n          >`,
+    `<g transform={\`translate(${layout.ridingShiftX},${layout.ridingShiftY})\`}>`,
+  ];
+  for (const ro of rideOpens) {
+    text = text.split(ro).join("<g>");
+  }
+
+  text = text.replace(
+    /import \{\s*\n\s*MAP_BG_SHIFT_X,\s*\n\s*MAP_BG_SHIFT_Y,\s*\n\s*MAP_FRAME_X,\s*\n\s*MAP_FRAME_Y,\s*\n\s*MAP_PROVINCIAL_NUDGE_Y,\s*\n\s*MAP_RIDING_SHIFT_X,\s*\n\s*MAP_RIDING_SHIFT_Y,\s*\n\s*MAP_VIEWBOX_STR,\s*\n\} from "\.\.\/data\/mapLayout\.generated";/m,
+    `import {
+  MAP_FRAME_X,
+  MAP_FRAME_Y,
+  MAP_VIEWBOX_STR,
+} from "../data/mapLayout.generated";`,
+  );
+  text = text.replace(
+    /\{\s*electionUses2025RidingBoundaries\(election\)\s*\?\s*\(\s*[\s\S]*?<Borders2025[\s\S]*?\/>\s*\)\s*:\s*\(\s*[\s\S]*?<Borders2015[\s\S]*?\/>\s*\)\s*\}/m,
+    `{electionUses2025RidingBoundaries(election) ? (
+              <Borders2025 />
+            ) : (
+              <Borders2015 />
+            )}`,
+  );
+
+  return text;
+}
+
+/**
+ * Bake Map background translate into border paths (bg is a parent in Map, not in this file).
+ * W = E*Tbg*S_bf*p  =>  p' = inv(S_bf)*Tbg*S_bf*p  (S_bf = border-file chain only).
+ * Do not include E (electoral outer matrix) in S: inv(E*S)*Tbg*(E*S) is wrong.
+ */
+function bakeBordersTsx(relPath, layout) {
+  let text = fs.readFileSync(path.join(ROOT, relPath), "utf8");
+  const Tbg = translateMat3(layout.bgShiftX, layout.bgShiftY);
+
+  const pathRe = /<path\b[\s\S]*?\sd="([^"]+)"[\s\S]*?\/>/g;
+  text = text.replace(pathRe, (match, dVal, offset) => {
+    const stack = stackAtExtended(text, offset);
+    const S_bf = composeMatArray(stack);
+    const d = bakePathDRemovingTranslate(dVal, S_bf, Tbg);
+    if (d === dVal) return match;
+    const needle = `d="${dVal}"`;
+    const i = match.indexOf(needle);
+    if (i < 0) throw new Error(`bakeBordersTsx path d mismatch in ${relPath}`);
+    return match.slice(0, i) + `d="${d}"` + match.slice(i + needle.length);
+  });
+  fs.writeFileSync(path.join(ROOT, relPath), text, "utf8");
+  console.log("Baked bg into", relPath);
+}
+
+/**
+ * Bake translate(0, ty) from explicit <g> wrappers; remove wrappers.
+ * Run before bakeBordersTsx. Expands ProvinceBorderWrap to a numeric translate for parsing.
+ */
+function bakeBorderProvincialNudgeAndUsHalf(relPath, tyProvincial, labelHalfRow) {
+  let text = fs.readFileSync(path.join(ROOT, relPath), "utf8");
+  const tyStr = tyProvincial.toFixed(4);
+  text = text.replace(
+    /<ProvinceBorderWrap nudge=\{provincialNudge\}>/g,
+    `<g transform={\`translate(0,${tyStr})\`}>`,
+  );
+  text = text.replace(/<\/ProvinceBorderWrap>/g, "</g>");
+  text = text.replace(
+    /\$\{LABEL_HEX_HALF_ROW\}/g,
+    ((SQRT3 * S) / 2).toFixed(4),
+  );
+
+  const T_outer = mat3FromSvg(parseMatrix(T_OUTER_STR));
+  const Tprov = translateMat3(0, tyProvincial);
+  const Tus = translateMat3(0, labelHalfRow);
+
+  const pathRe = /<path\b[\s\S]*?\sd="([^"]+)"[\s\S]*?\/>/g;
+  text = text.replace(pathRe, (match, dVal, offset) => {
+    const stack = stackAtExtended(text, offset);
+    const chainMats = [T_outer, ...stack];
+    let d = dVal;
+    if (labelHalfRow !== 0) {
+      const hitUs = findSuffixAfterTranslate(chainMats, 0, labelHalfRow);
+      if (hitUs) {
+        d = bakePathDRemovingTranslate(d, hitUs.suffix, Tus);
+      }
+    }
+    if (tyProvincial !== 0) {
+      const hitPr = findSuffixAfterTranslate(chainMats, 0, tyProvincial);
+      if (hitPr) {
+        d = bakePathDRemovingTranslate(d, hitPr.suffix, Tprov);
+      }
+    }
+    if (d === dVal) return match;
+    const needle = `d="${dVal}"`;
+    const i = match.indexOf(needle);
+    if (i < 0) throw new Error(`bakeBorderNudge path d mismatch in ${relPath}`);
+    return match.slice(0, i) + `d="${d}"` + match.slice(i + needle.length);
+  });
+
+  const halfStr = ((SQRT3 * S) / 2).toFixed(4);
+  if (labelHalfRow !== 0) {
+    text = text.split(`<g transform={\`translate(0,${halfStr})\`}>`).join("<g>");
+  }
+  text = text.split(`<g transform={\`translate(0,${tyStr})\`}>`).join("<g>");
+  text = text.replace(
+    /^import \{ ProvinceBorderWrap \} from "\.\/ProvinceBorderWrap";\n/m,
+    "",
+  );
+  text = text.replace(
+    /^\/\*\* Labels-space half row[\s\S]*? \*\/\nconst LABEL_HEX_HALF_ROW[^\n]+\n\n/m,
+    "",
+  );
+  text = text.replace(
+    /export function Borders2015\(\{[\s\S]*?\}\s*=\s*\{\}\)\s*\{/,
+    "export function Borders2015() {",
+  );
+  text = text.replace(
+    /export function Borders2025\(\{[\s\S]*?\}\s*=\s*\{\}\)\s*\{/,
+    "export function Borders2025() {",
+  );
+
+  fs.writeFileSync(path.join(ROOT, relPath), text, "utf8");
+  console.log("Baked provincial/US nudge in", relPath);
 }
 
 function formatRiding(r, indent) {
@@ -875,17 +1286,13 @@ function computeAndWriteMapLayout(mapText) {
 
   const outPath = path.join(ROOT, "data", "mapLayout.generated.ts");
   const q = (n) => Number(n.toFixed(4));
+  const provincialNudge2015 = provincialNudgeY - (SQRT3 * S) / 2;
   const body = `/** Generated by scripts/remap-hex-grid.mjs — do not edit by hand. */
 export const MAP_VIEW_WIDTH = ${viewW};
 export const MAP_VIEW_HEIGHT = ${viewH};
 export const MAP_VIEWBOX_STR = "0 0 ${viewW} ${viewH}";
 export const MAP_FRAME_X = ${q(frameX)};
 export const MAP_FRAME_Y = ${q(frameY)};
-export const MAP_BG_SHIFT_X = ${q(txy[0])};
-export const MAP_BG_SHIFT_Y = ${q(txy[1])};
-export const MAP_RIDING_SHIFT_X = ${q(ride_shift_x)};
-export const MAP_RIDING_SHIFT_Y = ${q(ride_shift_y)};
-export const MAP_PROVINCIAL_NUDGE_Y = ${q(provincialNudgeY)};
 `;
   fs.writeFileSync(outPath, body, "utf8");
   console.log("Wrote", outPath, {
@@ -898,6 +1305,19 @@ export const MAP_PROVINCIAL_NUDGE_Y = ${q(provincialNudgeY)};
     yCanTop: y_can_top,
     Hhex,
   });
+  return {
+    viewW,
+    viewH,
+    frameX,
+    frameY,
+    bgShiftX: txy[0],
+    bgShiftY: txy[1],
+    ridingShiftX: ride_shift_x,
+    ridingShiftY: ride_shift_y,
+    provincialNudgeY,
+    provincialNudge2015,
+    provincialNudge2025: provincialNudgeY,
+  };
 }
 
 function stripPx(s) {
@@ -981,8 +1401,41 @@ function main() {
   remapTsxFile("components/Borders2015.tsx", r2015.Aff);
   remapTsxFile("components/Borders2025.tsx", r2025.Aff);
 
-  const mapText = fs.readFileSync(path.join(ROOT, "components", "Map.tsx"), "utf8");
-  computeAndWriteMapLayout(mapText);
+  let mapText = fs.readFileSync(path.join(ROOT, "components", "Map.tsx"), "utf8");
+  const layout = computeAndWriteMapLayout(mapText);
+
+  const p2015Path = path.join(ROOT, "data", "riding_data_2015.ts");
+  const p2025Path = path.join(ROOT, "data", "riding_data_2025.ts");
+  const prov2015 = extractDatasetArray(
+    fs.readFileSync(p2015Path, "utf8"),
+    "ridingDataSet2015",
+  );
+  const prov2025 = extractDatasetArray(
+    fs.readFileSync(p2025Path, "utf8"),
+    "ridingDataSet2025",
+  );
+  applyRideShiftToProvinceTransforms(prov2015, layout.ridingShiftX, layout.ridingShiftY);
+  applyRideShiftToProvinceTransforms(prov2025, layout.ridingShiftX, layout.ridingShiftY);
+  writeRidingDataset(p2015Path, "ridingDataSet2015", prov2015);
+  writeRidingDataset(p2025Path, "ridingDataSet2025", prov2025);
+
+  mapText = bakeMapTsx(mapText, layout);
+  fs.writeFileSync(path.join(ROOT, "components", "Map.tsx"), mapText, "utf8");
+  console.log("Baked shifts into Map.tsx");
+
+  const halfRow = (SQRT3 * S) / 2;
+  bakeBorderProvincialNudgeAndUsHalf(
+    "components/Borders2015.tsx",
+    layout.provincialNudge2015,
+    halfRow,
+  );
+  bakeBorderProvincialNudgeAndUsHalf(
+    "components/Borders2025.tsx",
+    layout.provincialNudge2025,
+    0,
+  );
+  bakeBordersTsx("components/Borders2015.tsx", layout);
+  bakeBordersTsx("components/Borders2025.tsx", layout);
 }
 
 main();
