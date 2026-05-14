@@ -1939,7 +1939,7 @@ export const ridingDataSet2025: ProvinceData[] = [
       {
         "id": "Trois-Rivières",
         "en": "Trois Rivières",
-        "fr": "Trois Rivières",
+        "fr": "Trois-Rivières",
         "transform": "matrix(1,0,0,1,825.7061,290.5068)",
         "pathD": "M-10,0L-5,-8.6603L5,-8.6603L10,0L5,8.6603L-5,8.6603Z",
         "index": 24075
@@ -2035,7 +2035,7 @@ export const ridingDataSet2025: ProvinceData[] = [
       {
         "id": "Rivière-des-Mille-Îles",
         "en": "Rivière des Mille Îles",
-        "fr": "Rivière des Mille Îles",
+        "fr": "Rivière-des-Mille-Îles",
         "transform": "matrix(1,0,0,1,795.7062,342.4681)",
         "pathD": "M-10,0L-5,-8.6603L5,-8.6603L10,0L5,8.6603L-5,8.6603Z",
         "index": 24063
@@ -2178,8 +2178,8 @@ export const ridingDataSet2025: ProvinceData[] = [
       },
       {
         "id": "Marc-Aurèle-Fortin",
-        "en": "Marc Aurèle Fortin",
-        "fr": "Marc Aurèle Fortin",
+        "en": "Marc-Aurèle-Fortin",
+        "fr": "Marc-Aurèle-Fortin",
         "transform": "matrix(1,0,0,1,810.7062,333.8079)",
         "pathD": "M-10,0L-5,-8.6603L5,-8.6603L10,0L5,8.6603L-5,8.6603Z",
         "index": 24045
@@ -2266,16 +2266,16 @@ export const ridingDataSet2025: ProvinceData[] = [
       },
       {
         "id": "Lac-Saint-Louis",
-        "en": "Lac Saint Louis",
-        "fr": "Lac Saint Louis",
+        "en": "Lac-Saint-Louis",
+        "fr": "Lac-Saint-Louis",
         "transform": "matrix(1,0,0,1,825.7061,394.4295)",
         "pathD": "M-10,0L-5,-8.6603L5,-8.6603L10,0L5,8.6603L-5,8.6603Z",
         "index": 24034
       },
       {
         "id": "Lac-Saint-Jean",
-        "en": "Lac Saint Jean",
-        "fr": "Lac Saint Jean",
+        "en": "Lac-Saint-Jean",
+        "fr": "Lac-Saint-Jean",
         "transform": "matrix(1,0,0,1,840.7061,281.8465)",
         "pathD": "M-10,0L-5,-8.6603L5,-8.6603L10,0L5,8.6603L-5,8.6603Z",
         "index": 24033
@@ -2322,8 +2322,8 @@ export const ridingDataSet2025: ProvinceData[] = [
       },
       {
         "id": "Honoré-Mercier",
-        "en": "Honoré Mercier",
-        "fr": "Honoré Mercier",
+        "en": "Honoré-Mercier",
+        "fr": "Honoré-Mercier",
         "transform": "matrix(1,0,0,1,885.7060,325.1477)",
         "pathD": "M-10,0L-5,-8.6603L5,-8.6603L10,0L5,8.6603L-5,8.6603Z",
         "index": 24027
@@ -2361,9 +2361,9 @@ export const ridingDataSet2025: ProvinceData[] = [
         "index": 24023
       },
       {
-        "id": "Dorval---Lachine---Lasalle",
-        "en": "Dorval — Lachine — Lasalle",
-        "fr": "Dorval — Lachine — Lasalle",
+        "id": "Dorval---Lachine---LaSalle",
+        "en": "Dorval — Lachine — LaSalle",
+        "fr": "Dorval — Lachine — LaSalle",
         "transform": "matrix(1,0,0,1,840.7061,403.0897)",
         "pathD": "M-10,0L-5,-8.6603L5,-8.6603L10,0L5,8.6603L-5,8.6603Z",
         "index": 24022

@@ -2201,9 +2201,9 @@ export const ridingDataSet2015: ProvinceData[] = [
         "index": 24038
       },
       {
-        "id": "Lasalle---Émard---Verdun",
-        "en": "Lasalle — Émard — Verdun",
-        "fr": "Lasalle — Émard — Verdun",
+        "id": "LaSalle---Émard---Verdun",
+        "en": "LaSalle — Émard — Verdun",
+        "fr": "LaSalle — Émard — Verdun",
         "transform": "matrix(1,0,0,1,855.7095,394.5638)",
         "pathD": "M-10,0L-5,-8.6603L5,-8.6603L10,0L5,8.6603L-5,8.6603Z",
         "index": 24037
@@ -2305,9 +2305,9 @@ export const ridingDataSet2015: ProvinceData[] = [
         "index": 24025
       },
       {
-        "id": "Dorval---Lachine---Lasalle",
-        "en": "Dorval — Lachine — Lasalle",
-        "fr": "Dorval — Lachine — Lasalle",
+        "id": "Dorval---Lachine---LaSalle",
+        "en": "Dorval — Lachine — LaSalle",
+        "fr": "Dorval — Lachine — LaSalle",
         "transform": "matrix(1,0,0,1,840.7095,385.9036)",
         "pathD": "M-10,0L-5,-8.6603L5,-8.6603L10,0L5,8.6603L-5,8.6603Z",
         "index": 24024
